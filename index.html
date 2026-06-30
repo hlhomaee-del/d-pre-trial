@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Divorce Trial Companion — Pro Se Preparation & In-Court Organizer</title>
+<title>Divorce Court Preparation Organizer — Interactive Template & Custody Calendar</title>
 <style>
 /* ============================================================
    COLOR + TYPE SYSTEM  (courthouse-document aesthetic)
@@ -35,7 +35,8 @@
 .acc-10{--accent:#5f6033;--accent-ink:#fff;}
 .acc-11{--accent:#8a3a2c;--accent-ink:#fff;}
 .acc-12{--accent:#34546e;--accent-ink:#fff;}
-.acc-13{--accent:#9a7b23;--accent-ink:#fff;}
+.acc-13{--accent:#6b4f8a;--accent-ink:#fff;}
+.acc-14{--accent:#9a7b23;--accent-ink:#fff;}
 
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -256,6 +257,31 @@ table.data-table{border-collapse:collapse;width:100%;font-size:.86rem;background
 .print-instruction{background:#eef2f8;border:1px solid #c2cfe4;border-radius:var(--radius-sm);padding:10px 12px;font-size:.8rem;color:#28344d;margin-top:10px;}
 @media(max-width:720px){.readiness-hero{grid-template-columns:1fr}.readiness-detail-row{grid-template-columns:54px 1fr}.readiness-detail-row .d-message{grid-column:1/-1}.readiness-counts{grid-template-columns:repeat(3,1fr)}}
 
+/* ===== Parenting schedule & custody calendar ===== */
+.custody-legend{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px;}
+.legend-chip,.event-chip{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:4px 9px;font-size:.72rem;font-weight:700;border:1px solid var(--line-2);}
+.legend-chip:before{content:"";width:10px;height:10px;border-radius:3px;background:var(--chip);}
+.legend-a{--chip:#3b6fa8;background:#edf4fb;color:#244b75}.legend-b{--chip:#8b4f78;background:#f8eef5;color:#663656}.legend-shared{--chip:#7c6a2c;background:#fbf5de;color:#66541b}.legend-other{--chip:#596273;background:#f0f2f5;color:#3f4754}
+.calendar-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.calendar-toolbar .month-nav{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.calendar-toolbar h3{margin:0;border:0;padding:0;font-size:1.2rem;}
+.custody-calendar{display:grid;grid-template-columns:repeat(7,minmax(115px,1fr));border:1px solid var(--line-2);border-radius:var(--radius);overflow:auto;background:#fff;min-width:805px;}
+.calendar-weekday{background:var(--navy);color:#fff;text-align:center;font-size:.75rem;font-weight:800;padding:8px 4px;border-right:1px solid #3a4b73;}
+.calendar-blank{min-height:122px;background:#f4f3ef;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+.calendar-day{min-height:122px;padding:7px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;position:relative;}
+.calendar-day.assignment-a{background:#edf4fb}.calendar-day.assignment-b{background:#f8eef5}.calendar-day.assignment-shared{background:#fbf5de}.calendar-day.assignment-other{background:#f0f2f5}
+.day-number{font-family:var(--mono);font-size:.76rem;font-weight:800;color:var(--navy);margin-bottom:5px;}
+.day-events{display:flex;flex-direction:column;gap:3px;margin-bottom:5px}.event-chip{border-radius:4px;padding:2px 5px;font-size:.65rem;background:#fff8e9;color:#6b4410;border-color:#e3c489;white-space:normal;}
+.day-controls{display:grid;gap:4px}.day-controls select,.day-controls input{font-size:.7rem;padding:4px 5px;min-width:0;}
+.calendar-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-top:12px}.summary-box{border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px;background:#fbfaf6}.summary-box strong{display:block;font-size:1.05rem;color:var(--navy)}.summary-box span{font-size:.75rem;color:var(--ink-soft)}
+.custody-print-note{font-size:.78rem;color:var(--ink-soft);margin-top:8px;}
+
+/* click-to-open use notice */
+.notice-modal{position:fixed;inset:0;background:rgba(9,17,34,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:500;}
+.notice-modal.open{display:flex}.notice-dialog{width:min(760px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:12px;border:2px solid var(--gold);box-shadow:0 24px 70px rgba(0,0,0,.35);}
+.notice-head{display:flex;justify-content:space-between;gap:15px;align-items:center;background:var(--navy);color:#fff;padding:15px 18px;border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:1}.notice-head h2{color:#fff;margin:0;font-size:1.25rem}.notice-close{background:transparent;color:#fff;border:1px solid #7885a2;border-radius:5px;font-size:1.15rem;cursor:pointer;width:36px;height:36px}.notice-body{padding:18px 22px}.notice-body h3{font-size:1rem;margin-top:18px}.notice-body li{margin:5px 0}.notice-actions{padding:0 22px 20px;display:flex;justify-content:flex-end}.notice-link{background:none;border:0;color:var(--navy-3);text-decoration:underline;cursor:pointer;font:inherit;padding:0;}
+@media(max-width:900px){.custody-calendar{min-width:735px}.calendar-day,.calendar-blank{min-height:112px}}
+@media print{.notice-modal{display:none !important}.custody-calendar{min-width:0 !important;grid-template-columns:repeat(7,1fr)}.calendar-day,.calendar-blank{min-height:96px}.day-controls select,.day-controls input{font-size:7.5pt;padding:2px}.calendar-weekday{font-size:8pt}.event-chip{font-size:6.5pt}.custody-legend{break-inside:avoid}}
+
 /* toast */
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:11px 18px;border-radius:99px;font-size:.86rem;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s;z-index:200;border:1px solid var(--gold);}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
@@ -308,21 +334,24 @@ footer a{color:var(--navy-3);}
 
 <div class="banner">
   <div class="wrap">
-    <div class="seal">PRO<br>SE<br>TRIAL</div>
-    <div>
-      This is a private organizing tool for someone preparing for a <strong>divorce trial without a lawyer</strong>. It is <strong>not legal advice</strong> and does not predict outcomes. Court rules, deadlines, and the rules of evidence <strong>vary by state and by judge</strong> — always confirm what applies in your court. The signed, written orders and the entered judgment are what control.
+    <div class="seal">COURT<br>PREP<br>FILE</div>
+    <div style="flex:1">
+      A private, editable template for organizing court dates, documents, possible exhibits, people, questions, deadlines, hearing notes, and parenting schedules. It helps you <strong>find and review your own information</strong>; it does not decide legal strategy.
+      <div style="margin-top:7px"><button class="btn btn-plain btn-sm no-print" type="button" onclick="openUseNotice()">ⓘ Important Use Notice</button></div>
     </div>
   </div>
 </div>
 
 <header class="masthead">
   <div class="wrap">
-    <p class="docket-eyebrow">Self-Represented · Trial Preparation · Working File · Not for filing</p>
-    <h1>Divorce Trial Companion</h1>
+    <p class="docket-eyebrow">Editable court-preparation template · Private working file · Not for filing</p>
+    <h1>Divorce Court Preparation Organizer</h1>
     <div class="toolbar no-print">
       <button class="btn btn-gold" onclick="saveNow()">▣ Save progress</button>
-      <button class="btn btn-ghost" onclick="exportText()">⤓ Export notes (.txt)</button>
+      <button class="btn btn-ghost" onclick="exportExcelWorkbook()">▦ Export Excel workbook</button>
+      <button class="btn btn-ghost" onclick="exportWordDocument()">▤ Export Word document</button>
       <button class="btn btn-ghost" onclick="printAllPages()">⎙ Color print preview / Save PDF</button>
+      <button class="btn btn-ghost" type="button" onclick="openUseNotice()">ⓘ Use Notice</button>
       <button class="btn btn-danger" onclick="clearAll()">⟲ Clear all</button>
     </div>
   </div>
@@ -344,7 +373,7 @@ footer a{color:var(--navy-3);}
   <div class="section-head">
     <p class="eyebrow">Section 1</p>
     <h2>Start here — your case at a glance</h2>
-    <p>Set up who's who, where the case is, and where you are in the process. Everything you type stays on this device. <span class="tab-progress" data-progress-for="1"></span></p>
+    <p>Record the case information shown on your papers and track the procedural steps you have personally confirmed. The tool does not determine your legal status or deadlines. Everything you type stays on this device. <span class="tab-progress" data-progress-for="1"></span></p>
   </div>
 
   <div class="card">
@@ -421,7 +450,7 @@ footer a{color:var(--navy-3);}
   <div class="section-head">
     <p class="eyebrow">Section 3 · The heart of the file</p>
     <h2>Evidence &amp; exhibit manager</h2>
-    <p>Every document, photo, message, or record you might show the judge is an "exhibit." This is your master list and your checkpoint system — it cross-references each exhibit to the tab in your physical binder so you can find it instantly in court. <span class="tab-progress" data-progress-for="3"></span></p>
+    <p>List documents, photos, messages, records, or other items you may want to discuss with the court. Entering an item here does not make it admissible. This is an organizational index that cross-references each item to a binder or folder location. <span class="tab-progress" data-progress-for="3"></span></p>
   </div>
 
   <div class="collapse" data-open="true">
@@ -434,7 +463,7 @@ footer a{color:var(--navy-3);}
     <div class="tbl-toolbar no-print">
       <button class="btn btn-plain btn-sm" onclick="addExhibit()">+ Add exhibit</button>
       <input type="text" id="exhFilter" placeholder="Filter by any word…" oninput="filterExhibits()">
-      <select id="exhFilterStatus" onchange="filterExhibits()"><option value="">All readiness</option><option>Not ready</option><option>Ready to offer</option><option>Admitted</option></select>
+      <select id="exhFilterStatus" onchange="filterExhibits()"><option value="">All organization statuses</option><option>Incomplete</option><option>Organized for review</option><option>Admitted (recorded)</option></select>
       <span class="small" id="exhCount"></span>
     </div>
     <div class="table-wrap">
@@ -458,11 +487,11 @@ footer a{color:var(--navy-3);}
         <tbody id="exhibitsBody"></tbody>
       </table>
     </div>
-    <p class="small muted">Checkpoints, left to right: <strong>Got</strong> the document · made <strong>×3</strong> copies (judge, other side, you) · can lay <strong>foundation</strong> (show it's real) · ready to <strong>mark</strong> · <strong>shared</strong> with the other side if required · <strong>offered</strong> at trial · <strong>admitted</strong> by the judge.</p>
+    <p class="small muted">Organizational checkpoints, left to right: <strong>Got</strong> the item · prepared the number of copies your court requires · noted a possible authentication/foundation witness · reviewed marking requirements · recorded whether it was shared if required · recorded whether it was offered · recorded whether the judge admitted it. A checked box is only your record; it is not a legal determination.</p>
   </div>
 
   <div class="callout callout-warn">
-    <strong>Bring three copies of every exhibit.</strong> Courts generally expect one for the judge, one for the other party, and one for yourself to hold while you talk. Keep them in the same order and numbering as this list, with a tab for each, so "Exhibit 7" is always behind tab 7.
+    <strong>Confirm the required format and number of copies.</strong> Some courts request paper copies for the judge, the other party, and each side; others use electronic filing or courtroom display systems. Check the judge's orders, local rules, and clerk instructions. Keep your working copies in the same order and numbering as this list.
   </div>
 </section>
 
@@ -471,7 +500,7 @@ footer a{color:var(--navy-3);}
   <div class="section-head">
     <p class="eyebrow">Section 4</p>
     <h2>Witnesses</h2>
-    <p>A witness is anyone who testifies — including you. List who you may call, what each one proves, and whether they'll actually be there on the day. <span class="tab-progress" data-progress-for="4"></span></p>
+    <p>List people who may testify, including yourself, the information you expect each person to provide, and the attendance steps you have confirmed. The tool does not decide whether a witness is necessary, competent, or permitted to testify. <span class="tab-progress" data-progress-for="4"></span></p>
   </div>
 
   <div class="collapse" data-open="false">
@@ -481,10 +510,10 @@ footer a{color:var(--navy-3);}
 
   <div class="card">
     <h3>Witness list</h3>
-    <p class="small">In "Proves," note the issue(s) and the exhibit numbers that come in through this witness.</p>
+    <p class="small">In “Information / connection,” note the issue, topic, and any exhibit numbers you believe may be associated with this person. Confirm admissibility and foundation requirements separately.</p>
     <div class="table-wrap">
       <table class="data-table">
-        <thead><tr><th style="min-width:140px">Name</th><th style="min-width:130px">Role / relationship</th><th style="min-width:200px">What they prove (issue + Ex. #)</th><th style="min-width:120px">Helps</th><th style="min-width:140px">Subpoena / contact</th><th style="min-width:130px">On trial day</th><th style="min-width:140px">Notes</th><th></th></tr></thead>
+        <thead><tr><th style="min-width:140px">Name</th><th style="min-width:130px">Role / relationship</th><th style="min-width:200px">Information / connection (issue + item #)</th><th style="min-width:120px">Listed by</th><th style="min-width:140px">Attendance / subpoena notes</th><th style="min-width:130px">On trial day</th><th style="min-width:140px">Notes</th><th></th></tr></thead>
         <tbody id="witnessBody"></tbody>
       </table>
     </div>
@@ -492,7 +521,7 @@ footer a{color:var(--navy-3);}
   </div>
 
   <div class="callout callout-note">
-    <strong>If a witness might not show.</strong> Some witnesses only attend if formally subpoenaed, and subpoenas usually must be served a certain number of days ahead. Mark each witness's status here and confirm your court's subpoena rules early.
+    <strong>Attendance and subpoenas are jurisdiction-specific.</strong> Do not assume a person will appear or that a subpoena is valid merely because it is listed here. Confirm the correct form, service method, witness-fee requirements, and deadlines with official court resources or a licensed attorney.
   </div>
 </section>
 
@@ -501,11 +530,11 @@ footer a{color:var(--navy-3);}
   <div class="section-head">
     <p class="eyebrow">Section 5</p>
     <h2>My testimony &amp; direct questions</h2>
-    <p>Plan what you'll tell the judge in your own words, and the open-ended questions you'll ask your own witnesses. <span class="tab-progress" data-progress-for="5"></span></p>
+    <p>Organize facts you personally know and possible questions for witnesses. This planner does not determine whether a fact, answer, or question is relevant, admissible, complete, or strategically appropriate. <span class="tab-progress" data-progress-for="5"></span></p>
   </div>
 
   <div class="callout callout-good">
-    <strong>On direct, ask open questions.</strong> When questioning your own witness (or telling your own story), use who / what / when / where / how. Let the witness do the talking. Save the pointed yes-or-no questions for cross-examination of the other side.
+    <strong>General preparation concept.</strong> Direct examination often uses open-ended questions such as who, what, when, where, and how, while leading questions are more commonly associated with cross-examination. Exceptions and judicial limits apply, so treat this as study information rather than a courtroom rule for your case.
   </div>
 
   <div class="card">
@@ -513,7 +542,7 @@ footer a{color:var(--navy-3);}
     <p class="small">Each point: the fact in plain words, the exhibit that backs it up, and which issue it serves.</p>
     <div class="table-wrap">
       <table class="data-table">
-        <thead><tr><th style="min-width:280px">Point / fact (in my own words)</th><th style="min-width:120px">Backed by (Ex. #)</th><th style="min-width:150px">Issue</th><th></th></tr></thead>
+        <thead><tr><th style="min-width:280px">Fact or event I personally know</th><th style="min-width:120px">Possible supporting item #</th><th style="min-width:150px">Issue / topic</th><th></th></tr></thead>
         <tbody id="directSelfBody"></tbody>
       </table>
     </div>
@@ -524,7 +553,7 @@ footer a{color:var(--navy-3);}
     <h3>Questions for my witnesses</h3>
     <div class="table-wrap">
       <table class="data-table">
-        <thead><tr><th style="min-width:130px">Witness</th><th style="min-width:300px">Open-ended question</th><th style="min-width:160px">What it proves (Ex. #)</th><th></th></tr></thead>
+        <thead><tr><th style="min-width:130px">Witness</th><th style="min-width:300px">Possible open-ended question</th><th style="min-width:160px">Issue / item connection</th><th></th></tr></thead>
         <tbody id="directWitBody"></tbody>
       </table>
     </div>
@@ -537,7 +566,7 @@ footer a{color:var(--navy-3);}
   <div class="section-head">
     <p class="eyebrow">Section 6</p>
     <h2>Cross-examination</h2>
-    <p>Cross-examination is your chance to question the other party and their witnesses. Plan tight, factual questions in advance. <span class="tab-progress" data-progress-for="6"></span></p>
+    <p>Use this section to organize possible questions for an opposing witness and identify the factual source for each topic. The right to question, permitted scope, and form of questions are controlled by applicable rules and the judge. <span class="tab-progress" data-progress-for="6"></span></p>
   </div>
 
   <div class="collapse" data-open="true">
@@ -547,10 +576,10 @@ footer a{color:var(--navy-3);}
 
   <div class="card">
     <h3>Cross questions</h3>
-    <p class="small">If you plan to challenge a witness with their own prior words or a document, note it in "Impeachment" with the exhibit number.</p>
+    <p class="small">If a prior statement or document may relate to a contradiction, record it for review. Do not assume it can be used in court; authentication, disclosure, privilege, and evidence rules may apply.</p>
     <div class="table-wrap">
       <table class="data-table">
-        <thead><tr><th style="min-width:130px">Witness</th><th style="min-width:130px">Topic</th><th style="min-width:260px">Leading question (one fact each)</th><th style="min-width:170px">Impeachment (prior words / Ex. #)</th><th style="min-width:130px">Goal</th><th></th></tr></thead>
+        <thead><tr><th style="min-width:130px">Witness</th><th style="min-width:130px">Topic</th><th style="min-width:260px">Possible focused question</th><th style="min-width:170px">Prior statement / item to review</th><th style="min-width:130px">Factual point</th><th></th></tr></thead>
         <tbody id="crossBody"></tbody>
       </table>
     </div>
@@ -558,7 +587,7 @@ footer a{color:var(--navy-3);}
   </div>
 
   <div class="callout callout-warn">
-    <strong>A caution on accusing someone of lying.</strong> Don't call a witness a liar unless you can show it with a document or their own prior statement. Let the contradiction speak for itself — judges find that far more persuasive than the accusation.
+    <strong>Keep the plan factual.</strong> Record the specific statement, event, or document you want to compare rather than adding conclusions about credibility. The judge decides credibility, and a licensed attorney can advise whether and how a prior statement may be used.
   </div>
 </section>
 
@@ -666,12 +695,12 @@ footer a{color:var(--navy-3);}
 <!-- ============ TAB 10 ============ -->
 <section class="tab-section acc-10" id="tab-10" role="tabpanel" aria-labelledby="navbtn-10">
   <div class="section-head">
-    <p class="eyebrow">Section 10 · Keep open during trial</p>
-    <h2>Objections &amp; procedure — quick reference</h2>
-    <p>Plain-English explanations of the most common objections: what each means, when you might say it, and how to respond if it's used against you. <span class="tab-progress" data-progress-for="10"></span></p>
+    <p class="eyebrow">Section 10 · Recognition practice</p>
+    <h2>Court vocabulary — recognize terms and common pitfalls</h2>
+    <p>Become familiar with words you may hear in court and the common misunderstandings behind them. The goal is recognition: knowing what a term generally refers to, noticing when you may need clarification, and avoiding assumptions. It is not an objection script or case-specific advice. <span class="tab-progress" data-progress-for="10"></span></p>
   </div>
 
-  <div class="callout callout-warn"><strong>Evidence rules vary by state.</strong> This is a general study aid, not the rules of your court. Look up your state's rules of evidence, and when in doubt, ask the judge how they'd like you to proceed — that's a completely normal thing for a self-represented person to do.</div>
+  <div class="callout callout-note"><strong>Recognition practice only.</strong> These cards help users recognize unfamiliar vocabulary and common traps—for example, assuming every out-of-court statement is automatically excluded or assuming a document is usable merely because it exists. The court and governing rules determine what applies. Use the cards to create questions for official court resources or an attorney, not as instructions for what to say.</div>
 
   <div id="objectionsWrap"></div>
 
@@ -686,7 +715,7 @@ footer a{color:var(--navy-3);}
   <div class="section-head">
     <p class="eyebrow">Section 11 · Open this in the courtroom</p>
     <h2>Live mode — your in-court companion</h2>
-    <p>A calm command center for the day itself: who's present, instant exhibit lookup, a running log of what's said, and a builder that helps you frame a clear response on the spot. <span class="tab-progress" data-progress-for="11"></span></p>
+    <p>A private organizational workspace for attendance, quick item lookup, contemporaneous notes, and a neutral factual-response draft based only on words you enter. It does not evaluate legal relevance, admissibility, or strategy. <span class="tab-progress" data-progress-for="11"></span></p>
   </div>
 
   <div class="live-banner">
@@ -721,8 +750,8 @@ footer a{color:var(--navy-3);}
   </div>
 
   <div class="card">
-    <h3>Help me respond</h3>
-    <p class="small">When the other side says something you need to answer, work through these four boxes. The tool drafts a calm, court-ready sentence you can read or adapt.</p>
+    <h3>Organize a factual response</h3>
+    <p class="small">Use these boxes to separate the statement, your factual correction or context, a possible supporting item, and the point you want to preserve. The generated language is only an editable note based on your entries, not legal advice or a determination that it should be said in court.</p>
     <div class="grid g2">
       <div class="field"><label for="rb_said">1 · What did they say or claim?</label><textarea id="rb_said" data-field placeholder="e.g., That I never contributed to the mortgage."></textarea></div>
       <div class="field"><label for="rb_truth">2 · Is it true?</label>
@@ -731,8 +760,8 @@ footer a{color:var(--navy-3);}
       <div class="field"><label for="rb_evidence">3 · What answers it? (exhibit # or witness)</label><input type="text" id="rb_evidence" data-field placeholder="e.g., Exhibit 7 — bank statements"></div>
       <div class="field"><label for="rb_point">4 · The point I want the judge to take</label><textarea id="rb_point" data-field placeholder="e.g., I paid the mortgage from my account every month for three years."></textarea></div>
     </div>
-    <button class="btn btn-gold btn-sm no-print" onclick="composeResponse()">↻ Compose a response</button>
-    <div class="respond-out" id="respondOut"><span class="ph">Your drafted response will appear here.</span></div>
+    <button class="btn btn-gold btn-sm no-print" onclick="composeResponse()">↻ Compose neutral draft</button>
+    <div class="respond-out" id="respondOut"><span class="ph">Your editable factual draft will appear here.</span></div>
     <div class="toolbar no-print" style="margin-top:8px">
       <button class="btn btn-plain btn-sm" onclick="copyText('respondOut')">⧉ Copy</button>
       <button class="btn btn-plain btn-sm" onclick="logResponse()">＋ Save to today's log</button>
@@ -804,42 +833,143 @@ footer a{color:var(--navy-3);}
 <!-- ============ TAB 13 ============ -->
 <section class="tab-section acc-13" id="tab-13" role="tabpanel" aria-labelledby="navbtn-13">
   <div class="section-head">
-    <p class="eyebrow">Section 13 · Live final check</p>
-    <h2>Trial readiness dashboard &amp; complete packet</h2>
-    <p>This page reads every section, identifies what is ready, flags what still needs work, and states plainly when an issue has no proof connected to it yet. The dashboard and packet update automatically as you type. <span class="tab-progress" data-progress-for="13"></span></p>
+    <p class="eyebrow">Section 13 · Parenting schedule template</p>
+    <h2>Custody, parenting-time &amp; holiday calendar</h2>
+    <p>Build an editable visual schedule showing regular days, holidays, school breaks, exchanges, and one-time changes. This section organizes a schedule the user enters; it does not create, interpret, or change a custody order. <span class="tab-progress" data-progress-for="13"></span></p>
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>The signed order or written agreement controls.</strong>
+    Holiday names and common U.S. dates are provided only as editable planning prompts. They are not a legal default and do not determine which parent receives a holiday, when an exchange occurs, or whether a school or court observes that date.
+  </div>
+
+  <div class="card">
+    <h3>Family labels &amp; schedule settings</h3>
+    <div class="grid">
+      <div class="field"><label for="custody_parent_a">Parent / household A label</label><input type="text" id="custody_parent_a" data-field placeholder="e.g., Mother, Alex, Parent A"></div>
+      <div class="field"><label for="custody_parent_b">Parent / household B label</label><input type="text" id="custody_parent_b" data-field placeholder="e.g., Father, Jordan, Parent B"></div>
+      <div class="field"><label for="custody_children">Child or children</label><input type="text" id="custody_children" data-field placeholder="Names or initials"></div>
+      <div class="field"><label for="custody_order_date">Order / agreement date being followed</label><input type="date" id="custody_order_date" data-field></div>
+      <div class="field"><label for="custody_year">Holiday planning year</label><input type="number" id="custody_year" data-field min="2000" max="2100"></div>
+      <div class="field"><label for="custody_month">Calendar month displayed</label><input type="month" id="custody_month" data-field></div>
+    </div>
+    <div class="custody-legend" aria-label="Calendar color legend">
+      <span class="legend-chip legend-a" id="custodyLegendA">Parent / household A</span>
+      <span class="legend-chip legend-b" id="custodyLegendB">Parent / household B</span>
+      <span class="legend-chip legend-shared">Shared / exchange day</span>
+      <span class="legend-chip legend-other">Other / special arrangement</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Regular weekly schedule</h3>
+    <p class="small">Record the usual weekly pattern. You can apply this pattern to the visible calendar month, then modify individual dates for holidays, travel, school closures, or agreed changes.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Day</th><th>Parent / household</th><th>Start</th><th>End</th><th style="min-width:170px">Exchange place / person</th><th style="min-width:180px">Notes</th><th></th></tr></thead>
+        <tbody id="custodyWeekBody"></tbody>
+      </table>
+    </div>
+    <div class="toolbar no-print">
+      <button class="btn btn-gold btn-sm" type="button" onclick="applyWeeklyPlanToMonth()">↻ Apply weekly plan to visible month</button>
+      <button class="btn btn-plain btn-sm" type="button" onclick="addCustodyWeekRow()">+ Add weekly rule</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Holiday &amp; special-day allocation</h3>
+    <p class="small">Load common U.S. holiday dates for the selected year, then edit every row to match the actual order or written agreement. Add birthdays, religious holidays, school breaks, vacations, and family-specific traditions.</p>
+    <div class="toolbar no-print">
+      <button class="btn btn-gold btn-sm" type="button" onclick="loadCommonHolidays(true)">★ Load / refresh common U.S. dates</button>
+      <button class="btn btn-plain btn-sm" type="button" onclick="addCustodyHolidayRow()">+ Add holiday or special day</button>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="min-width:170px">Holiday / occasion</th><th style="min-width:125px">Date</th><th style="min-width:145px">Assigned to</th><th style="min-width:150px">Rotation / rule</th><th>Start</th><th>End</th><th style="min-width:160px">Exchange details</th><th style="min-width:180px">Notes</th><th></th></tr></thead>
+        <tbody id="custodyHolidayBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>One-time changes, school events &amp; exceptions</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Date</th><th style="min-width:170px">Event / change</th><th style="min-width:145px">Assigned to</th><th>Start</th><th>End</th><th style="min-width:160px">Location / exchange</th><th style="min-width:190px">Notes / confirmation</th><th></th></tr></thead>
+        <tbody id="custodyEventBody"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-plain btn-sm add-row-btn no-print" type="button" onclick="addCustodyEventRow()">+ Add one-time event</button>
+  </div>
+
+  <div class="card">
+    <div class="calendar-toolbar">
+      <div>
+        <h3 id="custodyCalendarTitle">Parenting calendar</h3>
+        <p class="small" style="margin:3px 0 0">Choose a household for each day and add a short note. Holiday and exception rows appear automatically on matching dates.</p>
+      </div>
+      <div class="month-nav no-print">
+        <button class="btn btn-plain btn-sm" type="button" onclick="moveCustodyMonth(-1)">‹ Previous month</button>
+        <button class="btn btn-plain btn-sm" type="button" onclick="showCustodyToday()">Today</button>
+        <button class="btn btn-plain btn-sm" type="button" onclick="moveCustodyMonth(1)">Next month ›</button>
+        <button class="btn btn-danger btn-sm" type="button" onclick="clearVisibleCustodyMonth()">Clear visible month</button>
+      </div>
+    </div>
+    <div class="table-wrap"><div class="custody-calendar" id="custodyCalendarGrid" aria-live="polite"></div></div>
+    <div class="calendar-summary" id="custodyCalendarSummary"></div>
+    <p class="custody-print-note">The color calendar is included in Print / Save PDF. Excel and Word exports also include the regular schedule, holiday table, exceptions, and every saved calendar date.</p>
+  </div>
+
+  <div class="card">
+    <h3>Exchange, communication &amp; practical notes</h3>
+    <div class="grid g2">
+      <div class="field"><label for="custody_exchange">Usual exchange location, time, and responsible adult</label><textarea id="custody_exchange" data-field></textarea></div>
+      <div class="field"><label for="custody_transport">Transportation responsibilities</label><textarea id="custody_transport" data-field></textarea></div>
+      <div class="field"><label for="custody_contact">Communication method and notice expectations</label><textarea id="custody_contact" data-field></textarea></div>
+      <div class="field"><label for="custody_school">School, childcare, activity, medication, or travel notes</label><textarea id="custody_school" data-field></textarea></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 14 ============ -->
+<section class="tab-section acc-14" id="tab-14" role="tabpanel" aria-labelledby="navbtn-14">
+  <div class="section-head">
+    <p class="eyebrow">Section 14 · Live final check</p>
+    <h2>Organizational trial-readiness dashboard &amp; complete packet</h2>
+    <p>This page checks whether fields and organizational checkpoints were completed and whether you manually linked supporting material to an issue. It cannot determine legal readiness, truth, relevance, admissibility, sufficiency of proof, compliance, or likely outcome. The dashboard and packet update automatically as you type. <span class="tab-progress" data-progress-for="14"></span></p>
   </div>
 
   <div class="card no-print">
     <div class="toolbar">
-      <button class="btn btn-gold" onclick="refreshFinalPage()">↻ Refresh readiness &amp; packet</button>
-      <button class="btn btn-plain" onclick="copyText('packetReadout')">⧉ Copy packet</button>
-      <button class="btn btn-plain" onclick="downloadPacket()">⤓ Download packet (.txt)</button>
+      <button class="btn btn-gold" onclick="refreshFinalPage()">↻ Refresh dashboard &amp; packet</button>
+      <button class="btn btn-plain" onclick="exportExcelWorkbook()">▦ Export Excel workbook</button>
+      <button class="btn btn-plain" onclick="exportWordDocument()">▤ Export Word document</button>
       <button class="btn btn-plain" onclick="printAllPages()">⎙ Color print preview / Save PDF</button>
     </div>
-    <div class="print-instruction"><strong>One click prints all 13 sections.</strong> Your browser will open its print preview. Choose <em>Save as PDF</em>. Colors are preserved through print-color settings; if your browser shows a “Background graphics” option, keep it enabled for the richest color output.</div>
+    <div class="print-instruction"><strong>One click prints all 14 sections.</strong> Your browser will open its print preview. Choose <em>Save as PDF</em>. Colors are preserved through print-color settings; if your browser shows a “Background graphics” option, keep it enabled for the richest color output.</div>
   </div>
 
   <!-- READINESS UI ANCHOR: overview metrics and numbered domain cards -->
   <div class="card" id="readinessDashboardCard">
-    <h3>Trial Readiness — one-glance dashboard</h3>
-    <div id="readinessDashboardAnchor" class="readiness-shell" aria-live="polite"><div class="readiness-empty">The readiness analysis will appear here.</div></div>
+    <h3>Organizational Trial Readiness — one-glance dashboard</h3>
+    <div id="readinessDashboardAnchor" class="readiness-shell" aria-live="polite"><div class="readiness-empty">The organizational completeness analysis will appear here.</div></div>
   </div>
 
   <!-- READINESS UI ANCHOR: prioritized next actions -->
   <div class="card" id="readinessActionsCard">
     <h3>Prioritized next actions</h3>
-    <div id="readinessActionsAnchor"><div class="readiness-empty">Your highest-priority next steps will appear here.</div></div>
+    <div id="readinessActionsAnchor"><div class="readiness-empty">Your highest-priority organizational next steps will appear here.</div></div>
   </div>
 
   <!-- READINESS UI ANCHOR: detailed coded findings -->
   <div class="card" id="readinessDetailCard">
-    <h3>Number-coded readiness findings</h3>
+    <h3>Number-coded organizational findings</h3>
     <div id="readinessDetailAnchor"><div class="readiness-empty">Detailed findings will appear here.</div></div>
   </div>
 
   <div class="card">
-    <h3>Complete trial packet summary</h3>
-    <div class="readout" id="packetReadout"><span class="empty">Your full packet will build automatically from everything entered in Sections 1–12.</span></div>
+    <h3>Complete organized packet summary</h3>
+    <div class="readout" id="packetReadout"><span class="empty">Your full packet will build automatically from everything entered in Sections 1–12 and will carry the legal-use disclaimer into Word and print exports.</span></div>
   </div>
 
   <div class="card">
@@ -848,7 +978,14 @@ footer a{color:var(--navy-3);}
     <p class="small muted" style="margin-top:10px">Resource links open official government and court websites. Some examples are New York–specific because that's a common starting point; if your case is elsewhere, search "[your state] courts self-represented divorce" and your county court's website for local rules and forms.</p>
   </div>
 
-  <div class="callout callout-key"><strong>One last word.</strong> This packet is your organization, not your verdict. A divorce trial with property, support, or children at stake is genuinely high-stakes — even a single limited-scope consult with a family-law attorney to pressure-test your plan can change the outcome. You've done real work getting ready. Walk in steady.</div>
+  <div class="card" id="legalDisclaimerCard">
+    <h3>Important use notice</h3>
+    <p class="small">This is an organizational template. The full legal and product-use notice is available at any time without interrupting the workspace.</p>
+    <button class="btn btn-plain no-print" type="button" onclick="openUseNotice()">ⓘ Read the full Important Use Notice</button>
+    <p class="print-only small"><strong>Organizational template only.</strong> It does not provide legal advice or determine legal sufficiency. Full use notice is included in Word and Excel exports.</p>
+  </div>
+
+  <div class="callout callout-key"><strong>One last word.</strong> This packet is an organizational record, not a legal assessment or verdict. Review every entry for accuracy, confirm all official requirements, and obtain qualified legal advice when possible.</div>
 </section>
 
 </main>
@@ -856,9 +993,33 @@ footer a{color:var(--navy-3);}
 <div id="toast" role="status" aria-live="polite"></div>
 
 <footer>
-  <p><strong>Private &amp; offline.</strong> Everything you type is saved only in this browser on this device using local storage — nothing is sent anywhere, and there is no account, server, tracking, or analytics. If you clear your browser data, switch browsers or devices, or open this file from a different folder, your entries won't follow. Use <em>Export notes</em> and <em>Print / Save PDF</em> to keep backups.</p>
-  <p class="small">This tool is general educational and organizational support for self-represented litigants. It is not legal advice, it does not predict outcomes, and it is not a substitute for a licensed attorney. Rules of procedure and evidence vary by jurisdiction and judge.</p>
+  <p><strong>Private &amp; offline.</strong> Everything you type is saved only in this browser on this device using local storage — nothing is sent anywhere, and there is no account, server, tracking, or analytics. If you clear browser data, switch browsers or devices, or move/open the file differently, entries may not follow. Use <em>Export Excel</em>, <em>Export Word</em>, and <em>Print / Save PDF</em> to keep backups.</p>
+  <p class="small"><button class="notice-link no-print" type="button" onclick="openUseNotice()">Read the Important Use Notice</button><span class="print-only">Organizational template only; not legal advice.</span></p>
 </footer>
+
+<div class="notice-modal no-print" id="useNoticeModal" role="dialog" aria-modal="true" aria-labelledby="useNoticeTitle" onclick="noticeBackdropClose(event)">
+  <div class="notice-dialog" role="document">
+    <div class="notice-head"><h2 id="useNoticeTitle">Important Use Notice</h2><button class="notice-close" type="button" onclick="closeUseNotice()" aria-label="Close notice">×</button></div>
+    <div class="notice-body">
+      <p><strong>This product is a general court-preparation and document-organization template.</strong> It helps users arrange information they choose to enter, including dates, documents, possible exhibits, people, deadlines, questions, hearing notes, and parenting schedules.</p>
+      <h3>What this template does not do</h3>
+      <ul>
+        <li>It does not provide legal advice, legal representation, legal document preparation, or an attorney-client relationship.</li>
+        <li>It does not choose claims, defenses, arguments, witnesses, questions, objections, deadlines, or courtroom strategy.</li>
+        <li>It does not determine whether information is accurate, relevant, authentic, admissible, sufficient, complete, compliant, or likely to produce a particular outcome.</li>
+        <li>Its checklist and dashboard report only what has or has not been entered or marked inside the organizer.</li>
+        <li>The vocabulary cards are for familiarity and recognition only. They do not tell a user when a term applies or what to say in court.</li>
+        <li>The parenting calendar does not create, interpret, or modify a custody order. A signed order or valid written agreement controls.</li>
+      </ul>
+      <h3>User responsibility</h3>
+      <p>Court rules, forms, deadlines, evidence requirements, parenting provisions, and procedures vary by jurisdiction, court, case type, judge, and individual order. Users are responsible for checking official court sources and obtaining advice from a licensed attorney when needed.</p>
+      <h3>Privacy and files</h3>
+      <p>Entries are stored locally in the user’s browser and device unless the user independently exports, prints, shares, or transfers them. The seller does not receive, review, verify, or monitor information entered into this offline file.</p>
+      <p>This organizer and its exports are not intended to be filed with a court unless the user independently confirms that a specific document is accepted and appropriate for filing.</p>
+    </div>
+    <div class="notice-actions"><button class="btn btn-gold" type="button" onclick="closeUseNotice()">I understand</button></div>
+  </div>
+</div>
 
 <script>
 /* ============================================================
@@ -869,6 +1030,7 @@ const dynTables = {};
 let saveTimer = null;
 let current = 0;
 let sections = [];
+let custodyCalendar = {};
 
 function cssEscape(s){ return (window.CSS && CSS.escape) ? CSS.escape(s) : String(s).replace(/["\\]/g,'\\$&'); }
 function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -886,7 +1048,7 @@ function collect(){
     if(!(g in radios)) radios[g] = '';
     if(el.checked) radios[g] = el.value;
   });
-  return { v:1, fields, radios, dyn:dynTables };
+  return { v:2, fields, radios, dyn:dynTables, custodyCalendar };
 }
 function saveNow(showMsg){
   try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(collect()));
@@ -897,6 +1059,7 @@ function saveNow(showMsg){
 function scheduleSave(){ clearTimeout(saveTimer); saveTimer = setTimeout(()=>saveNow(false), 600); }
 
 function restore(data){
+  custodyCalendar = (data && data.custodyCalendar && typeof data.custodyCalendar==='object') ? data.custodyCalendar : {};
   if(data.dyn){
     Object.keys(data.dyn).forEach(key=>{
       const cfg = DYN[key]; if(!cfg) return;
@@ -961,7 +1124,7 @@ function addDynRow(key, tbody, cols, rowId, focus, vals){
   tdDel.style.textAlign='center';
   const del = document.createElement('button');
   del.className='del-row no-print'; del.type='button'; del.textContent='✕'; del.setAttribute('aria-label','Delete row');
-  del.onclick = ()=>{ tr.remove(); dynTables[key]=(dynTables[key]||[]).filter(r=>r!==rowId); saveNow(false); refreshProgress(); scheduleReadinessRefresh(); };
+  del.onclick = ()=>{ tr.remove(); dynTables[key]=(dynTables[key]||[]).filter(r=>r!==rowId); saveNow(false); refreshProgress(); scheduleReadinessRefresh(); if(key.startsWith('custody')) renderCustodyCalendar(); };
   tdDel.appendChild(del);
   tr.appendChild(tdDel);
   tbody.appendChild(tr);
@@ -982,7 +1145,7 @@ function readRows(tbodyId){
 /* ============================================================
    CONTENT DATA
    ============================================================ */
-const TABS = ['Start here','Issues','Evidence','Witnesses','My testimony','Cross-exam','Opening','Closing','Trial notebook','Objections','Live mode','Logistics','Packet'];
+const TABS = ['Start here','Issues','Evidence','Witnesses','My testimony','Cross-exam','Opening','Closing','Trial notebook','Court vocabulary','Live mode','Logistics','Parenting calendar','Packet'];
 
 const STAGES = [
   ['Case filed','The divorce petition/complaint has been filed.'],
@@ -996,58 +1159,58 @@ const STAGES = [
   ['Decision & judgment','The court decides; the signed judgment controls.']
 ];
 
+const LEGAL_DISCLAIMER_TEXT = `This product is a general court-preparation and document-organization template. It is not a law firm, attorney, legal service, legal document preparation service, court form, or substitute for legal advice, and use does not create an attorney-client relationship. It does not select claims, defenses, arguments, evidence, witnesses, questions, objections, deadlines, wording, parenting arrangements, or strategy. Its checklist and dashboard report only what has or has not been entered or marked inside the organizer; they cannot verify accuracy, relevance, authenticity, admissibility, sufficiency, completeness, compliance, or likely outcome. Vocabulary cards are for familiarity and recognition only. The parenting calendar does not create, interpret, or modify a custody order; a signed order or valid written agreement controls. Court rules, forms, deadlines, evidence requirements, parenting provisions, and procedures vary by jurisdiction, court, case type, judge, and individual order. Users must confirm requirements through official court sources and obtain advice from a licensed attorney when needed. Entries are stored locally on the user’s device unless independently exported or shared; the seller does not receive, review, or verify them.`;
+
 const HOW_TRIAL = `
-<p>A divorce trial is how a judge decides the issues you and the other party could not agree on. There is usually no jury in family cases — the judge decides.</p>
-<p>The day generally moves in this order: brief <strong>opening statements</strong>; the party who goes first presents their <strong>case</strong> (calling witnesses and offering exhibits); the other party does the same; each side can <strong>cross-examine</strong> the other's witnesses; then <strong>closing arguments</strong>. The judge may rule that day or issue a written decision later.</p>
-<p>Your job as a self-represented person is to (1) know the issues, (2) have your evidence organized and ready to offer, (3) ask clear questions, and (4) stay calm and respectful. This tool is built around exactly those four things.</p>
-<p class="small muted">Your court may do things a little differently. When unsure, it is completely acceptable to ask the judge, "Your Honor, may I ask how you'd like me to proceed?"</p>`;
+<p>In a contested divorce, a judge may be asked to decide issues the parties have not resolved. The exact process depends on the jurisdiction, case type, judge, prior orders, and whether some issues have already been settled.</p>
+<p>A trial often includes introductions or openings, presentation of testimony and documents, questioning by the other side, and closing arguments. The order and amount of formality can differ, and the judge may change the sequence.</p>
+<p>This tool supports four organizational goals: identify the issues you believe remain unresolved, index possible supporting material, prepare factual notes and questions, and record deadlines or instructions you have confirmed.</p>
+<p class="small muted">Use the signed orders, official docket, local rules, and the judge's directions as the controlling sources. It is appropriate to ask a procedural question such as, “Your Honor, may I ask how the court would like me to proceed?” The court generally cannot give legal advice.</p>`;
 
 const EXHIBIT_HELP = `
-<p>An <strong>exhibit</strong> is any physical or document evidence you want the judge to consider — bank statements, texts, emails, photos, records, letters. Each gets a number (or letter) so everyone can refer to it.</p>
-<p>To actually get an exhibit "in," you generally: <strong>mark</strong> it, <strong>lay a foundation</strong> (show what it is and that it's authentic — e.g., "These are my bank statements that I downloaded from my bank"), <strong>offer</strong> it into evidence, let the other side object if they wish, and the judge <strong>admits</strong> or excludes it. Only admitted exhibits count.</p>
-<p>The checkpoint columns track each exhibit from "gathered" all the way to "admitted." The <strong>Binder / tab</strong> column is the bridge to your physical copies: if Exhibit 7 lives behind tab 7 of your binder, you can find it in seconds when the judge says "show me."</p>
-<p class="small muted">Some evidence (like statements someone made outside court) can run into hearsay limits. Section 10 covers common objections in plain English.</p>`;
+<p>An <strong>exhibit</strong> is a label courts may use for a document or other item offered for consideration. Listing something here does not make it evidence and does not mean the judge will admit or consider it.</p>
+<p>Courts commonly require a party to identify the item, establish an appropriate foundation or authentication, comply with disclosure and procedural requirements, offer it, and address any objection. The precise requirements and available exceptions vary significantly.</p>
+<p>The checkpoint columns are a private organizational record. <strong>Binder / tab</strong> records where your working copy is located. “Foundation,” “mark,” “shared,” “offered,” and “admitted” boxes record steps you believe occurred or need review; they are not legal conclusions.</p>
+<p class="small muted">Documents, messages, summaries, recordings, and records can raise hearsay, authentication, privacy, completeness, privilege, notice, or other issues. Confirm the applicable rules and pretrial orders before relying on any item.</p>`;
 
 const WITNESS_HELP = `
-<p>A <strong>witness</strong> is anyone who testifies under oath — including <em>you</em>. List everyone who could help prove an issue.</p>
-<p>You question your own witnesses on <strong>direct examination</strong> (open questions), and you may <strong>cross-examine</strong> the other side's witnesses (pointed, leading questions). If a witness won't come voluntarily, you may need a <strong>subpoena</strong> — and those usually must be served a set number of days before trial, so plan early.</p>
-<p>For each witness, be clear on one thing: <em>what does this person prove that I can't prove another way?</em> If the answer is "nothing," you may not need them.</p>`;
+<p>A <strong>witness</strong> is a person who may provide testimony. Listing a person here does not establish that the person is required, available, competent, or permitted to testify.</p>
+<p>Use this section to record the subject matter you expect the person to address, any item you believe may be connected to that testimony, and the attendance steps you have confirmed.</p>
+<p>Subpoena forms, service methods, witness fees, notice, and deadlines vary. Do not rely on a subpoena or voluntary appearance without checking the governing requirements. A lawyer can help evaluate whether proposed testimony is relevant, admissible, cumulative, privileged, or otherwise limited.</p>`;
 
 const CROSS_HELP = `
-<p>Cross-examination is tight and controlled. A few rules that help:</p>
-<p><strong>Lead.</strong> On cross you can ask leading (yes/no) questions: "You were living in the home in March, correct?" Each question should contain just <em>one</em> fact.</p>
-<p><strong>Don't ask what you don't know.</strong> Only ask questions where you already know — and can prove — the answer. Surprises on cross usually hurt you.</p>
-<p><strong>Use documents.</strong> If a witness says something different from a prior statement or a document, that document (an exhibit) does the work. Have the exhibit number ready.</p>
-<p><strong>Know when to stop.</strong> Once you've made your point, move on. You don't have to cross-examine every witness.</p>`;
+<p>This section is for organizing factual topics and possible questions, not for deciding courtroom strategy.</p>
+<p><strong>Focused questions.</strong> Cross-examination often uses short questions directed to a single factual point, but the court controls the permitted form and scope.</p>
+<p><strong>Record the source.</strong> Note the testimony, prior statement, or document that gives you a good-faith factual basis for the topic. Do not assume a document or statement may be used merely because it is listed.</p>
+<p><strong>Separate facts from conclusions.</strong> Record the exact inconsistency or event rather than labeling a witness dishonest. Credibility is for the judge to decide.</p>
+<p><strong>Review necessity.</strong> A party is not always required to question every witness. A licensed attorney can advise on strategy, preservation, impeachment requirements, and possible risks.</p>`;
 
 const OBJECTIONS = [
-  ['Hearsay','A statement someone made <em>outside</em> court, offered to prove that what they said was true.','When the other side tries to use what a third person said (a text, a "he told me…") to prove a fact.','If you hear it against you, you can explain why it fits an exception (for example, the statement is a business record, or it\'s the opposing party\'s own words), or offer it for a reason other than its truth.'],
-  ['Relevance','Evidence that doesn\'t make any fact the court must decide more or less likely.','When testimony or a document has nothing to do with the issues being tried.','Explain in one sentence how it connects to an issue the court must decide ("This goes to who paid the mortgage, Your Honor").'],
-  ['Foundation / authentication','There\'s no showing yet of what the document is or that it\'s genuine.','When a document appears without anyone explaining where it came from.','Lay the foundation first: who made it, where it came from, how you know it\'s what it claims to be — then re-offer it.'],
-  ['Leading the witness','A question that suggests its own answer, asked of your <em>own</em> witness on direct.','You generally object to this when the other side feeds answers to their witness.','On <em>cross</em>, leading is allowed — so this objection mostly applies during direct examination.'],
-  ['Speculation / no personal knowledge','The witness is guessing about something they didn\'t see or know firsthand.','When a witness testifies about what someone else thought, or about events they weren\'t present for.','Rephrase to ask only what the witness personally saw, heard, or did.'],
-  ['Asked and answered','The same question has already been asked and answered.','When a point is being repeated to hammer it home.','Move on once you have the answer; you can return to it in closing.'],
-  ['Argumentative','The "question" is really an argument, not a request for facts.','When cross-examination turns into debating the witness.','Keep questions factual and one fact at a time; save argument for closing.'],
-  ['Narrative','A question so broad the witness just talks at length with no control.','Sometimes raised when "tell me everything that happened" invites a runaway answer.','Break it into specific questions: when, where, who, what next.'],
-  ['Best evidence','For the contents of a writing, the original (or a reliable copy) is generally needed rather than someone\'s memory of it.','When a witness describes what a document said instead of showing it.','Have the actual document marked as an exhibit and offer it.'],
-  ['Privilege','Certain communications are protected (e.g., attorney–client).','When a question seeks protected communications.','Don\'t ask for privileged content; if asked, you can note the privilege.']
+  ['Hearsay','An out-of-court statement offered to prove the truth of what the statement asserts. Exclusions and exceptions are complex and jurisdiction-specific.','A statement, message, record, or retelling may trigger a hearsay question depending on why it is offered.','Record who made the statement, when, where it appears, why it is being offered, and any official rule or attorney guidance you need to check. Do not assume an exception applies.'],
+  ['Relevance','Evidence generally must relate to a fact that matters to an issue the court is deciding; additional limits may still apply.','A question or item may appear disconnected from the issues or requested relief.','Write the issue and factual connection in one sentence for your own review. The judge decides relevance and may exclude relevant material for other reasons.'],
+  ['Foundation / authentication','A party may need testimony or other support showing what an item is and that it is what the party claims.','A document, image, message, recording, or record is presented without enough identifying context.','Record the source, creator, custodian, date, method of receipt, completeness, and possible witness. Confirm the actual legal requirements separately.'],
+  ['Leading question','A question suggests the answer. Leading questions are often associated with cross-examination, but rules and exceptions vary.','A question supplies the desired answer rather than asking the witness to describe facts.','Label whether the questioning is direct or cross and review the judge’s directions. Rephrase only after considering applicable rules.'],
+  ['Speculation / personal knowledge','A witness generally testifies from personal knowledge rather than guessing, although expert and other rules may differ.','The answer appears to describe another person’s thoughts, motives, or events the witness did not perceive.','Record what the witness personally saw, heard, did, or reviewed and identify whether expert testimony or another rule is involved.'],
+  ['Asked and answered','A question repeats a point already covered; the judge controls whether further questioning is allowed.','The same factual question is repeatedly posed to the same witness.','Note where the answer already appears so you can avoid unnecessary repetition or explain why clarification is sought.'],
+  ['Argumentative','A question may be framed as an accusation or argument rather than a request for factual testimony.','The question debates with the witness or embeds a conclusion.','Rewrite the note as a specific factual question and reserve legal argument for the appropriate stage, subject to the judge’s directions.'],
+  ['Narrative','An overly broad question may invite a long, unfocused answer.','A prompt asks a witness to recount an entire history without clear boundaries.','Break the topic into dates, events, people, and documents for organizational purposes. The judge controls the permitted questioning.'],
+  ['Original-writing / contents issue','Rules concerning proof of the contents of writings, recordings, or photographs are often called the original-writing or “best evidence” rule. Duplicates and exceptions may be allowed.','A person describes the contents of a document or recording instead of presenting an appropriate version, or completeness is disputed.','Record what item contains the information, whether an original or duplicate exists, and what rule or exception needs verification.'],
+  ['Privilege / protected information','Some communications or information may be protected from disclosure. Privilege, waiver, confidentiality, and exceptions are fact-specific.','A question or document may involve attorney-client, medical, settlement, mediation, or other protected material.','Stop and obtain qualified legal guidance before disclosing or using potentially privileged or protected information.']
 ];
 
 const DAY_FLOW = `
-<p><strong>Before you\'re called:</strong> arrive early, clear security, find your courtroom, check in with the clerk, and silence your phone. Sit where the clerk directs.</p>
-<p><strong>When the case is called:</strong> step forward, state your name, and note whether the other party is present (mark it in Live Mode).</p>
-<p><strong>Openings:</strong> short roadmaps from each side.</p>
-<p><strong>First party\'s case:</strong> they call witnesses and offer exhibits; you may cross-examine and you may object.</p>
-<p><strong>Your case:</strong> you testify and/or call witnesses, and offer your exhibits one by one (mark → foundation → offer → admitted).</p>
-<p><strong>Closings:</strong> each side argues how the evidence supports their requests.</p>
-<p><strong>Decision:</strong> the judge rules from the bench or in a later written decision. Listen for any deadlines and write them down.</p>`;
+<p><strong>Before the case is called:</strong> confirm the courtroom, check-in process, security rules, and any electronic-device restrictions using official instructions.</p>
+<p><strong>When the case is called:</strong> follow the clerk's and judge's directions, state your name when asked, and record attendance or instructions.</p>
+<p><strong>Presentation:</strong> the court determines the order for openings, testimony, documents, questioning, and closing argument. A prior order or local rule may control.</p>
+<p><strong>Rulings and next steps:</strong> record exactly what the judge orders, including deadlines, submissions, future dates, and who must prepare an order. The signed or entered order controls.</p>
+<p class="small muted">This is a general orientation, not a prediction of how a particular courtroom will proceed.</p>`;
 
 const TRIAL_FLOW = ['Openings','First party\'s case','Cross-examination','Your case','Cross-examination','Closings','Decision'];
 
 const BRING = [
   'Three copies of every exhibit (judge, other side, you), tabbed and in order',
   'Your printed exhibit list (Section 3) and witness list (Section 4)',
-  'This packet printed (Section 13), plus your outline and notes',
+  'This packet printed (Section 14), plus your outline and notes',
   'A copy of every prior court order and the papers that started the case',
   'Financial documents and disclosure forms relevant to your issues',
   'Photo ID and any case/index number written down',
@@ -1117,16 +1280,16 @@ const DYN = {
     {type:'checkbox'},{type:'checkbox'},{type:'checkbox'},{type:'checkbox'},{type:'checkbox'},{type:'checkbox'},{type:'checkbox'},
     {type:'textarea',ph:'Notes / objection'} ] },
   witnesses:{ tbody:'witnessBody', cols:[
-    {type:'text',ph:'Name'},{type:'text',ph:'Role'},{type:'textarea',ph:'Proves'},
+    {type:'text',ph:'Name'},{type:'text',ph:'Role'},{type:'textarea',ph:'Information / connection'},
     {type:'select',opts:['—','Me','Other side','Neutral']},{type:'select',opts:['—','Will attend','Needs subpoena','Subpoena served','Unsure']},
     {type:'select',opts:['—','Expected','Present','Absent','Excused']},{type:'textarea',ph:'Notes'} ] },
   directSelf:{ tbody:'directSelfBody', cols:[
-    {type:'textarea',ph:'Point / fact'},{type:'text',ph:'Ex. #'},{type:'select',opts:ISSUE_OPTS} ] },
+    {type:'textarea',ph:'Fact or event'},{type:'text',ph:'Item #'},{type:'select',opts:ISSUE_OPTS} ] },
   directWit:{ tbody:'directWitBody', cols:[
-    {type:'text',ph:'Witness'},{type:'textarea',ph:'Open-ended question'},{type:'text',ph:'Proves / Ex. #'} ] },
+    {type:'text',ph:'Witness'},{type:'textarea',ph:'Possible open-ended question'},{type:'text',ph:'Issue / item connection'} ] },
   cross:{ tbody:'crossBody', cols:[
-    {type:'text',ph:'Witness'},{type:'text',ph:'Topic'},{type:'textarea',ph:'Leading question'},
-    {type:'text',ph:'Prior words / Ex. #'},{type:'text',ph:'Goal'} ] },
+    {type:'text',ph:'Witness'},{type:'text',ph:'Topic'},{type:'textarea',ph:'Possible focused question'},
+    {type:'text',ph:'Prior statement / item'},{type:'text',ph:'Factual point'} ] },
   closing:{ tbody:'closingBody', cols:[
     {type:'select',opts:ISSUE_OPTS},{type:'textarea',ph:'What evidence showed'},
     {type:'textarea',ph:'Why it supports me'},{type:'textarea',ph:'Relief'} ] },
@@ -1139,7 +1302,16 @@ const DYN = {
     {type:'text',ph:'time',ro:true},{type:'text',ph:'Who'},{type:'textarea',ph:'What was said / happened'},
     {type:'checkbox'},{type:'textarea',ph:'My note / answer'} ] },
   deadline:{ tbody:'deadlineBody', cols:[
-    {type:'text',ph:'What\'s due'},{type:'date'},{type:'checkbox'},{type:'textarea',ph:'Notes'} ] }
+    {type:'text',ph:'What\'s due'},{type:'date'},{type:'checkbox'},{type:'textarea',ph:'Notes'} ] },
+  custodyWeek:{ tbody:'custodyWeekBody', cols:[
+    {type:'select',opts:['—','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']},
+    {type:'select',opts:['—','Parent A','Parent B','Shared / exchange','Other']},{type:'time'},{type:'time'},{type:'text',ph:'Place / responsible adult'},{type:'textarea',ph:'Routine or condition'} ] },
+  custodyHoliday:{ tbody:'custodyHolidayBody', cols:[
+    {type:'text',ph:'Holiday / occasion'},{type:'date'},{type:'select',opts:['—','Parent A','Parent B','Shared / exchange','Other','Follow order']},
+    {type:'select',opts:['—','Every year','Odd years','Even years','Alternate yearly','Split day','Follow order']},{type:'time'},{type:'time'},{type:'text',ph:'Exchange details'},{type:'textarea',ph:'Notes'} ] },
+  custodyEvent:{ tbody:'custodyEventBody', cols:[
+    {type:'date'},{type:'text',ph:'Event or change'},{type:'select',opts:['—','Parent A','Parent B','Shared / exchange','Other','Follow order']},
+    {type:'time'},{type:'time'},{type:'text',ph:'Location / exchange'},{type:'textarea',ph:'Notes / confirmation'} ] }
 };
 
 /* add-row helpers */
@@ -1157,11 +1329,132 @@ function addClosingRow(){ addDynRow('closing',document.getElementById('closingBo
 function addOrderRow(){ addDynRow('order',document.getElementById('orderBody'),DYN.order.cols,null,true); saveNow(false); }
 function addAppearRow(){ addDynRow('appearExtra',document.getElementById('appearExtraBody'),DYN.appearExtra.cols,null,true); saveNow(false); }
 function addDeadlineRow(){ addDynRow('deadline',document.getElementById('deadlineBody'),DYN.deadline.cols,null,true); saveNow(false); }
+function addCustodyWeekRow(){ addDynRow('custodyWeek',document.getElementById('custodyWeekBody'),DYN.custodyWeek.cols,null,true); saveNow(false); }
+function addCustodyHolidayRow(){ addDynRow('custodyHoliday',document.getElementById('custodyHolidayBody'),DYN.custodyHoliday.cols,null,true); saveNow(false); renderCustodyCalendar(); }
+function addCustodyEventRow(){ addDynRow('custodyEvent',document.getElementById('custodyEventBody'),DYN.custodyEvent.cols,null,true); saveNow(false); renderCustodyCalendar(); }
 function addLogRow(){
   const t=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   addDynRow('log',document.getElementById('logBody'),DYN.log.cols,null,false,[t]);
   saveNow(false);
 }
+
+/* ============================================================
+   PARENTING SCHEDULE & CUSTODY CALENDAR
+   ============================================================ */
+const WEEKDAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+function isoDate(y,m,d){ return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
+function nthWeekday(y,m,weekday,n){ const first=new Date(y,m,1); const d=1+((7+weekday-first.getDay())%7)+(n-1)*7; return isoDate(y,m,d); }
+function lastWeekday(y,m,weekday){ const last=new Date(y,m+1,0); const d=last.getDate()-((7+last.getDay()-weekday)%7); return isoDate(y,m,d); }
+function easterISO(y){
+  const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),month=Math.floor((h+l-7*m+114)/31),day=((h+l-7*m+114)%31)+1;
+  return isoDate(y,month-1,day);
+}
+function commonHolidayRows(year){
+  return [
+    ["New Year's Day",isoDate(year,0,1)],["Martin Luther King Jr. Day",nthWeekday(year,0,1,3)],["Presidents Day",nthWeekday(year,1,1,3)],
+    ["Easter Sunday",easterISO(year)],["Mother's Day",nthWeekday(year,4,0,2)],["Memorial Day",lastWeekday(year,4,1)],
+    ["Father's Day",nthWeekday(year,5,0,3)],["Juneteenth",isoDate(year,5,19)],["Independence Day",isoDate(year,6,4)],
+    ["Labor Day",nthWeekday(year,8,1,1)],["Indigenous Peoples' / Columbus Day",nthWeekday(year,9,1,2)],["Halloween",isoDate(year,9,31)],
+    ["Veterans Day",isoDate(year,10,11)],["Thanksgiving Day",nthWeekday(year,10,4,4)],["Christmas Eve",isoDate(year,11,24)],
+    ["Christmas Day",isoDate(year,11,25)],["New Year's Eve",isoDate(year,11,31)],
+    ["Child's birthday",''],["Parent A birthday",''],["Parent B birthday",''],["Spring school break",''],["Winter school break",''],["Summer vacation block",'']
+  ];
+}
+function custodyYear(){
+  const y=parseInt(gv('custody_year'),10); return Number.isFinite(y)&&y>=2000&&y<=2100?y:new Date().getFullYear();
+}
+function ensureCustodyDefaults(){
+  const y=custodyYear();
+  if(!gv('custody_year')) document.getElementById('custody_year').value=String(y);
+  if(!gv('custody_month')) document.getElementById('custody_month').value=`${y}-${String(new Date().getMonth()+1).padStart(2,'0')}`;
+  if(!readRows('custodyWeekBody').length){ WEEKDAYS.forEach(day=>addDynRow('custodyWeek',document.getElementById('custodyWeekBody'),DYN.custodyWeek.cols,null,false,[day])); }
+  if(!readRows('custodyHolidayBody').length) loadCommonHolidays(false);
+  if(!readRows('custodyEventBody').length) addDynRow('custodyEvent',document.getElementById('custodyEventBody'),DYN.custodyEvent.cols,null,false);
+}
+function loadCommonHolidays(showMessage){
+  const y=custodyYear();
+  const rows=readRows('custodyHolidayBody');
+  const byName=new Map(rows.map((r,i)=>[(r[0]||'').trim().toLowerCase(),i]));
+  commonHolidayRows(y).forEach(([name,date])=>{
+    const key=name.toLowerCase();
+    if(byName.has(key)){
+      const tr=document.querySelectorAll('#custodyHolidayBody tr')[byName.get(key)];
+      const dateEl=tr&&tr.querySelectorAll('input,select,textarea')[1];
+      if(dateEl && date) dateEl.value=date;
+    }else{
+      addDynRow('custodyHoliday',document.getElementById('custodyHolidayBody'),DYN.custodyHoliday.cols,null,false,[name,date]);
+    }
+  });
+  saveNow(false); renderCustodyCalendar();
+  if(showMessage!==false) toast(`Common ${y} dates loaded — edit them to match the order`);
+}
+function custodyLabels(){ return {A:gv('custody_parent_a')||'Parent / household A',B:gv('custody_parent_b')||'Parent / household B'}; }
+function custodyAssignmentLabel(v){ const l=custodyLabels(); return v==='A'?l.A:v==='B'?l.B:v==='Shared'?'Shared / exchange':v==='Other'?'Other / special':'Unassigned'; }
+function parentValueFromTable(v){ return v==='Parent A'?'A':v==='Parent B'?'B':v==='Shared / exchange'?'Shared':v==='Other'?'Other':''; }
+function custodyClass(v){ return v==='A'?'assignment-a':v==='B'?'assignment-b':v==='Shared'?'assignment-shared':v==='Other'?'assignment-other':''; }
+function updateCustodyDay(date,key,value){
+  if(!custodyCalendar[date]) custodyCalendar[date]={parent:'',note:''};
+  custodyCalendar[date][key]=value;
+  if(!custodyCalendar[date].parent&&!custodyCalendar[date].note) delete custodyCalendar[date];
+  saveNow(false); renderCustodyCalendar();
+}
+function monthValue(){
+  let v=gv('custody_month');
+  if(!/^\d{4}-\d{2}$/.test(v)){ const d=new Date(); v=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; const el=document.getElementById('custody_month'); if(el) el.value=v; }
+  return v;
+}
+function calendarEventsByDate(){
+  const map={};
+  const add=(date,label,parent)=>{ if(!date||!label)return; if(!map[date])map[date]=[]; map[date].push({label,parent:parentValueFromTable(parent)}); };
+  readRows('custodyHolidayBody').forEach(r=>add(clean(r[1]),clean(r[0]),clean(r[2])));
+  readRows('custodyEventBody').forEach(r=>add(clean(r[0]),clean(r[1]),clean(r[2])));
+  return map;
+}
+function renderCustodyCalendar(){
+  const grid=document.getElementById('custodyCalendarGrid'); if(!grid) return;
+  const mv=monthValue(), [y,m1]=mv.split('-').map(Number), m=m1-1;
+  const first=new Date(y,m,1), days=new Date(y,m+1,0).getDate(), events=calendarEventsByDate(), labels=custodyLabels();
+  const title=document.getElementById('custodyCalendarTitle'); if(title) title.textContent=new Intl.DateTimeFormat(undefined,{month:'long',year:'numeric'}).format(first)+' Parenting Calendar';
+  const la=document.getElementById('custodyLegendA'),lb=document.getElementById('custodyLegendB'); if(la)la.textContent=labels.A;if(lb)lb.textContent=labels.B;
+  grid.innerHTML='';
+  WEEKDAYS.forEach(w=>{ const h=document.createElement('div');h.className='calendar-weekday';h.textContent=w.slice(0,3);grid.appendChild(h); });
+  for(let i=0;i<first.getDay();i++){ const b=document.createElement('div');b.className='calendar-blank';grid.appendChild(b); }
+  const counts={A:0,B:0,Shared:0,Other:0,Blank:0};
+  for(let d=1;d<=days;d++){
+    const date=isoDate(y,m,d), saved=custodyCalendar[date]||{parent:'',note:''}; counts[saved.parent||'Blank']++;
+    const cell=document.createElement('div');cell.className='calendar-day '+custodyClass(saved.parent);cell.dataset.date=date;
+    const num=document.createElement('div');num.className='day-number';num.textContent=String(d);cell.appendChild(num);
+    if(events[date]){ const box=document.createElement('div');box.className='day-events'; events[date].forEach(ev=>{ const chip=document.createElement('span');chip.className='event-chip';chip.textContent=ev.label+(ev.parent?' · '+custodyAssignmentLabel(ev.parent):'');box.appendChild(chip); });cell.appendChild(box); }
+    const controls=document.createElement('div');controls.className='day-controls';
+    const sel=document.createElement('select');sel.setAttribute('aria-label',`Assignment for ${date}`);
+    [['','Unassigned'],['A',labels.A],['B',labels.B],['Shared','Shared / exchange'],['Other','Other / special']].forEach(([v,t])=>{const o=document.createElement('option');o.value=v;o.textContent=t;if(saved.parent===v)o.selected=true;sel.appendChild(o);});
+    sel.addEventListener('change',()=>updateCustodyDay(date,'parent',sel.value));
+    const note=document.createElement('input');note.type='text';note.placeholder='Short note';note.value=saved.note||'';note.setAttribute('aria-label',`Note for ${date}`);note.addEventListener('change',()=>updateCustodyDay(date,'note',note.value.trim()));
+    controls.append(sel,note);cell.appendChild(controls);grid.appendChild(cell);
+  }
+  const totalCells=first.getDay()+days; for(let i=totalCells;i<42;i++){ const b=document.createElement('div');b.className='calendar-blank';grid.appendChild(b); }
+  const summary=document.getElementById('custodyCalendarSummary'); if(summary) summary.innerHTML=[
+    [counts.A,labels.A],[counts.B,labels.B],[counts.Shared,'Shared / exchange days'],[counts.Other,'Other / special days'],[counts.Blank,'Unassigned days'],[(Object.keys(events).filter(k=>k.startsWith(mv)).length),'Dates with holidays / exceptions']
+  ].map(x=>`<div class="summary-box"><strong>${escapeHtml(x[0])}</strong><span>${escapeHtml(x[1])}</span></div>`).join('');
+}
+function moveCustodyMonth(delta){ const [y,m]=monthValue().split('-').map(Number); const d=new Date(y,m-1+delta,1); document.getElementById('custody_month').value=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; saveNow(false); renderCustodyCalendar(); }
+function showCustodyToday(){ const d=new Date(); document.getElementById('custody_month').value=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; document.getElementById('custody_year').value=String(d.getFullYear()); saveNow(false); renderCustodyCalendar(); }
+function applyWeeklyPlanToMonth(){
+  const rules={}; readRows('custodyWeekBody').forEach(r=>{ const idx=WEEKDAYS.indexOf(clean(r[0])); if(idx>=0&&clean(r[1])) rules[idx]=r; });
+  if(!Object.keys(rules).length){ toast('Enter at least one weekly rule first'); return; }
+  if(!confirm('Apply the weekly pattern to every day in the visible month? Existing individual day assignments in that month will be replaced.')) return;
+  const [y,m1]=monthValue().split('-').map(Number),m=m1-1,days=new Date(y,m+1,0).getDate();
+  for(let d=1;d<=days;d++){ const date=isoDate(y,m,d),r=rules[new Date(y,m,d).getDay()]; if(!r)continue; const note=[clean(r[2])&&clean(r[3])?`${clean(r[2])}–${clean(r[3])}`:clean(r[2])||clean(r[3]),clean(r[4]),clean(r[5])].filter(Boolean).join(' · '); custodyCalendar[date]={parent:parentValueFromTable(clean(r[1])),note}; }
+  saveNow(false);renderCustodyCalendar();toast('Weekly pattern applied to visible month');
+}
+function clearVisibleCustodyMonth(){ const mv=monthValue(); if(!confirm(`Clear all day assignments and notes saved for ${mv}? Holiday and exception tables will remain.`))return; Object.keys(custodyCalendar).forEach(k=>{if(k.startsWith(mv+'-'))delete custodyCalendar[k];});saveNow(false);renderCustodyCalendar(); }
+function custodyCalendarRows(){ return Object.entries(custodyCalendar).sort((a,b)=>a[0].localeCompare(b[0])).map(([date,v])=>[date,custodyAssignmentLabel(v.parent),v.note||'']); }
+
+/* Important Use Notice modal */
+function openUseNotice(){ const m=document.getElementById('useNoticeModal');if(!m)return;m.classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>m.querySelector('.notice-close')?.focus(),0); }
+function closeUseNotice(){ const m=document.getElementById('useNoticeModal');if(!m)return;m.classList.remove('open');document.body.style.overflow=''; }
+function noticeBackdropClose(e){ if(e.target&&e.target.id==='useNoticeModal')closeUseNotice(); }
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeUseNotice();});
 
 /* ============================================================
    BUILD STATIC CONTENT
@@ -1188,7 +1481,7 @@ function buildAll(){
     const open=i<2?'true':'false';
     const c=document.createElement('div'); c.className='collapse'; c.setAttribute('data-open',open);
     c.innerHTML=`<button class="collapse-head" aria-expanded="${open}"><span>${o[0]}</span><span class="tw">▾</span></button>
-      <div class="collapse-body"><p><strong>What it means:</strong> ${o[1]}</p><p><strong>When you might raise it:</strong> ${o[2]}</p><p><strong>If it\'s used against you:</strong> ${o[3]}</p></div>`;
+      <div class="collapse-body"><p><strong>General meaning:</strong> ${o[1]}</p><p><strong>Situation sometimes associated with this term:</strong> ${o[2]}</p><p><strong>Organizational prompt:</strong> ${o[3]}</p></div>`;
     ow.appendChild(c);
   });
   // trial flow strip
@@ -1268,7 +1561,7 @@ function activate(i){
   window.scrollTo({top:0,behavior:'smooth'});
   updatePager();
   if(sections[i].id==='tab-11'){ runFinder(); }
-  if(sections[i].id==='tab-13'){ refreshFinalPage(); }
+  if(sections[i].id==='tab-14'){ refreshFinalPage(); }
 }
 function go(dir){ activate(Math.min(Math.max(current+dir,0),sections.length-1)); }
 function updatePager(){
@@ -1342,24 +1635,24 @@ function checkAbsent(){
   if(v('resp')==='Absent') absent.push('the Respondent / Defendant');
   if(!absent.length){ note.innerHTML=''; return; }
   note.innerHTML=`<div class="callout callout-warn" style="margin-top:12px"><strong>A party is marked absent (${absent.join(' and ')}).</strong>
-    Courts handle an absent party in different ways — the court may let the present party proceed, may treat it as a default or inquest, or may adjourn to another date. You can ask the judge directly: "Your Honor, how would you like to proceed given that ${absent.join(' and ')} is not present?" Write down whatever the court decides in today's log. This is organizational guidance, not legal advice.</div>`;
+    Do not assume the consequence of an absence. Follow the judge's directions and record the ruling or next date. A neutral procedural question is: "Your Honor, may I ask how the court would like me to proceed given that ${absent.join(' and ')} is not present?" This tool does not determine default, adjournment, notice, or proof requirements.</div>`;
 }
 
 /* ============================================================
    EXHIBITS: status, filter, finder
    ============================================================ */
 function exhibitStatus(row){
-  // row indices: 5 got,6 x3,7 found,8 mark,9 shared,10 offer,11 adm
-  if(row[11]) return 'Admitted';
-  if(row[5]&&row[6]&&row[7]) return 'Ready to offer';
-  return 'Not ready';
+  // row indices: 5 gathered,6 copies,7 foundation note,8 marking review,9 shared,10 offered,11 admitted
+  if(row[11]) return 'Admitted (recorded)';
+  if(row[5]&&row[6]&&row[7]&&row[8]) return 'Organized for review';
+  return 'Incomplete';
 }
 function updateExhibitCount(){
-  const rows=readRows('exhibitsBody');
-  const adm=rows.filter(r=>exhibitStatus(r)==='Admitted').length;
-  const ready=rows.filter(r=>exhibitStatus(r)==='Ready to offer').length;
+  const rows=readRows('exhibitsBody').filter(r=>clean(r[0])||clean(r[1]));
+  const adm=rows.filter(r=>exhibitStatus(r)==='Admitted (recorded)').length;
+  const organized=rows.filter(r=>exhibitStatus(r)==='Organized for review').length;
   const el=document.getElementById('exhCount');
-  if(el) el.textContent=`${rows.length} exhibit${rows.length===1?'':'s'} · ${ready} ready · ${adm} admitted`;
+  if(el) el.textContent=`${rows.length} item${rows.length===1?'':'s'} · ${organized} organized for review · ${adm} admitted (recorded)`;
 }
 function filterExhibits(){
   const q=(document.getElementById('exhFilter').value||'').toLowerCase();
@@ -1397,19 +1690,16 @@ function runFinder(){
 function composeResponse(){
   const said=gv('rb_said'), truth=gv('rb_truth'), ev=gv('rb_evidence'), point=gv('rb_point');
   const out=document.getElementById('respondOut');
-  if(!said&&!point){ out.innerHTML='<span class="ph">Fill in at least what they said and the point you want to make.</span>'; return; }
-  let s='Your Honor, ';
-  if(truth==='That\'s not accurate') s+='I need to respectfully correct that. ';
-  else if(truth==='That\'s only partly accurate') s+='that\'s only partly accurate. ';
-  else if(truth==='That\'s accurate, but it leaves out context') s+='that\'s accurate as far as it goes, but it leaves out important context. ';
-  else if(truth==='I\'m not sure / I\'d need to check') s+='I\'d want to verify that before responding fully, ';
-  if(point) s+=point.replace(/\s+$/,'')+(/[.!?]$/.test(point.trim())?' ':'. ');
-  if(ev){
-    if(/^ex/i.test(ev.trim())) s+=`${ev} supports this. `;
-    else s+=`The evidence — ${ev} — supports this. `;
-  }
-  s+='I\'d ask the court to weigh that.';
-  out.textContent=s;
+  if(!said&&!point){ out.innerHTML='<span class="ph">Enter the statement and the factual point you want to preserve.</span>'; return; }
+  const parts=['Your Honor, I would like to clarify the factual record.'];
+  if(truth==='That\'s not accurate') parts.push('I believe that statement is not accurate.');
+  else if(truth==='That\'s only partly accurate') parts.push('I believe that statement is only partly accurate.');
+  else if(truth==='That\'s accurate, but it leaves out context') parts.push('I believe that statement leaves out context.');
+  else if(truth==='I\'m not sure / I\'d need to check') parts.push('I would need to verify that before giving a complete response.');
+  if(point) parts.push(point.replace(/\s+$/,'')+(/[.!?]$/.test(point.trim())?'':'.'));
+  if(ev) parts.push(`I have identified ${ev} as a possible supporting item or source, subject to the court's rules and ruling.`);
+  parts.push('This is an editable factual note generated only from my entries; I will follow the court\'s directions.');
+  out.textContent=parts.join(' ');
 }
 function logResponse(){
   const out=document.getElementById('respondOut');
@@ -1510,7 +1800,7 @@ function hasProofForIssue(issue, exhibits, witnesses, selfPoints, directQuestion
   if(directQuestions.some(r=>textMatches(r[2]) || textMatches(r[1]))) return true;
   return false;
 }
-function statusLabel(level){ return level==='ready'?'Ready':level==='critical'?'Critical gap':'Needs work'; }
+function statusLabel(level){ return level==='ready'?'Complete':level==='critical'?'Urgent organizational gap':'Needs entry/review'; }
 function daysUntil(dateStr){
   if(!dateStr) return null;
   const d=new Date(dateStr+'T12:00:00'); if(Number.isNaN(d.getTime())) return null;
@@ -1545,18 +1835,18 @@ function buildTrialReadiness(){
   if(!issues.length){
     add('03','Proof coverage','critical','Proof cannot be evaluated until the contested issues are developed.','Develop the issue map, then connect each issue to exhibit numbers or an exhibit category.',1);
   }else if(proofGaps.length){
-    add('03','Proof coverage','critical',proofGaps.map(r=>`You have no proof for “${clean(r[0])}” yet.`).join(' '),'Connect evidence to every contested issue in Sections 2 and 3. Add exhibit numbers in the issue map or assign exhibits to that issue.',1);
+    add('03','Proof coverage','critical',proofGaps.map(r=>`No supporting material is linked in this tool for “${clean(r[0])}” yet.`).join(' '),'Review each developed issue and, where appropriate, record the items or people you believe may relate to it. Confirm legal sufficiency separately.',1);
   }else{
     add('03','Proof coverage','ready',`Every developed issue has at least one evidence reference or matching exhibit category.`,'',3);
   }
 
   if(!exhibits.length){
-    add('04','Exhibits','critical','No described exhibits have been entered. Blank preloaded exhibit rows do not count as evidence.','Enter the documents, records, messages, photographs, or other proof you may offer in Section 3.',1);
+    add('04','Exhibits','critical','No described items have been entered. Blank preloaded rows do not count as supporting material.','Enter documents, records, messages, photographs, or other items you may want to review in Section 3.',1);
   }else{
     const incomplete=exhibits.filter(r=>!clean(r[0])||!clean(r[2])||!clean(r[4])||!r[5]||!r[6]||!r[7]||!r[8]);
     const unshared=exhibits.filter(r=>!r[9]);
-    const msg=incomplete.length?`${incomplete.length} of ${exhibits.length} exhibit(s) are missing a number, issue, binder location, copy/foundation, or marking checkpoint.`:(unshared.length?`${unshared.length} exhibit(s) are not marked as shared/exchanged; confirm whether your court requires this.`:`${exhibits.length} exhibit(s) are organized through the pre-trial readiness checkpoints.`);
-    add('04','Exhibits',incomplete.length?'attention':'ready',msg,incomplete.length?'Complete the missing exhibit readiness checkpoints and binder locations in Section 3.':'',2);
+    const msg=incomplete.length?`${incomplete.length} of ${exhibits.length} exhibit(s) are missing a number, issue, binder location, copy/foundation, or marking checkpoint.`:(unshared.length?`${unshared.length} exhibit(s) are not marked as shared/exchanged; confirm whether your court requires this.`:`${exhibits.length} item(s) have the tracked organizational checkpoints completed.`);
+    add('04','Exhibits',incomplete.length?'attention':'ready',msg,incomplete.length?'Complete the missing item-description, location, and organizational-review checkpoints in Section 3.':'',2);
   }
 
   if(!witnesses.length&&!selfPoints.length){
@@ -1569,7 +1859,7 @@ function buildTrialReadiness(){
   add('06','Direct examination',selfPoints.length||directQuestions.length?'ready':'attention',selfPoints.length||directQuestions.length?`${selfPoints.length} personal point(s) and ${directQuestions.length} witness question(s) are prepared.`:'No personal-testimony points or open-ended direct questions are prepared.','Prepare your own testimony points and open-ended questions in Section 5.',2);
 
   const cross=readRows('crossBody').filter(r=>clean(r[2]));
-  add('07','Cross-examination',cross.length?'ready':'attention',cross.length?`${cross.length} leading cross-examination question(s) are prepared.`:'No cross-examination questions are entered. This may leave you reacting without a focused plan.','Prepare short, one-fact leading questions and note any impeachment exhibit in Section 6.',3);
+  add('07','Cross-examination',cross.length?'ready':'attention',cross.length?`${cross.length} possible cross-examination question(s) are recorded for review.`:'No possible cross-examination questions are recorded. This is an organizational gap only, not a legal conclusion that questioning is required.','Record focused factual topics and any prior statement or item that needs legal review in Section 6.',3);
 
   const openingFields=[gv('op_intro'),gv('op_issues'),gv('op_preview'),gv('op_request')];
   const openingCount=openingFields.filter(Boolean).length;
@@ -1599,6 +1889,19 @@ function buildTrialReadiness(){
   const logMissing=logistics.filter(Boolean).length<3;
   add('12','Day-of logistics',logMissing||bringDone<Math.ceil(BRING.length*.75)?'attention':'ready',`${logistics.filter(Boolean).length}/4 logistics fields completed; ${bringDone}/${BRING.length} bring-list items checked.`,logMissing||bringDone<Math.ceil(BRING.length*.75)?'Finish the courthouse plan and day-of packing checklist in Section 12.':'',2);
 
+  const custodyIssue=issues.some(r=>['custody','parenting'].some(k=>clean(r[0]).toLowerCase().includes(k)));
+  const custodyWeek=readRows('custodyWeekBody').filter(r=>clean(r[0])&&clean(r[1]));
+  const custodyHolidays=readRows('custodyHolidayBody').filter(r=>clean(r[0])&&r.slice(2).some(v=>clean(v)));
+  const custodyEvents=readRows('custodyEventBody').filter(r=>clean(r[0])||clean(r[1]));
+  const custodyDays=Object.keys(custodyCalendar).length;
+  const custodyStarted=!!(gv('custody_parent_a')||gv('custody_parent_b')||gv('custody_children')||gv('custody_order_date')||custodyWeek.length||custodyHolidays.length||custodyEvents.length||custodyDays||gv('custody_exchange')||gv('custody_transport')||gv('custody_contact')||gv('custody_school'));
+  if(custodyIssue||custodyStarted){
+    const enough=custodyWeek.length>=2&&(custodyHolidays.length||custodyDays);
+    add('13','Parenting schedule',enough?'ready':'attention',`Regular rules: ${custodyWeek.length}; holiday/special rows: ${custodyHolidays.length}; one-time changes: ${custodyEvents.length}; saved calendar days: ${custodyDays}. This reports organizer entries only and does not interpret a custody order.`,enough?'':'Complete the regular schedule and add the holiday or date-specific arrangements stated in the controlling order or agreement.',2);
+  }else{
+    add('13','Parenting schedule (optional)','ready','No parenting schedule has been activated in the organizer. Use Section 13 only when custody or parenting time is relevant.','',3);
+  }
+
   findings.forEach((f,i)=>f.seq=String(i+1).padStart(2,'0'));
   const levelRank={critical:0,attention:1,ready:2};
   actions.sort((a,b)=>a.priority-b.priority || levelRank[a.level]-levelRank[b.level]);
@@ -1614,14 +1917,14 @@ function renderTrialReadiness(data){
   const act=document.getElementById('readinessActionsAnchor');
   const det=document.getElementById('readinessDetailAnchor');
   if(!dash||!act||!det) return;
-  const headline=data.critical?`${data.critical} critical gap${data.critical===1?'':'s'} must be addressed.`:(data.attention?`${data.attention} area${data.attention===1?'':'s'} still need work.`:'Your preparation file is complete across the tracked domains.');
+  const headline=data.critical?`${data.critical} urgent organizational gap${data.critical===1?'':'s'} should be reviewed.`:(data.attention?`${data.attention} area${data.attention===1?'':'s'} still need work.`:'All tracked organizational domains contain the expected entries or checkpoints.');
   const cards=data.findings.map(f=>`<div class="readiness-card ${f.level}"><div class="r-top"><span class="r-code">${f.code}</span><span class="r-status">${statusLabel(f.level)}</span></div><h4>${escapeHtml(f.area)}</h4><p>${escapeHtml(f.message)}</p></div>`).join('');
-  dash.innerHTML=`<div class="readiness-hero"><div class="readiness-score"><div class="score-ring" style="--score:${data.score}%"><strong>${data.score}%</strong></div><div><h3>Preparation readiness</h3><p>${escapeHtml(headline)} This score measures completion and organization, not legal merit or likely outcome.</p></div></div><div class="readiness-counts"><div class="readiness-count"><strong>${data.ready}</strong><span>Ready</span></div><div class="readiness-count"><strong>${data.attention}</strong><span>Needs work</span></div><div class="readiness-count"><strong>${data.critical}</strong><span>Critical gaps</span></div></div></div><div class="readiness-grid">${cards}</div>`;
+  dash.innerHTML=`<div class="readiness-hero"><div class="readiness-score"><div class="score-ring" style="--score:${data.score}%"><strong>${data.score}%</strong></div><div><h3>Organization completeness</h3><p>${escapeHtml(headline)} This score measures entered fields and tracked checkpoints only; it does not measure legal readiness, accuracy, admissibility, sufficiency, compliance, or likely outcome.</p></div></div><div class="readiness-counts"><div class="readiness-count"><strong>${data.ready}</strong><span>Complete</span></div><div class="readiness-count"><strong>${data.attention}</strong><span>Needs work</span></div><div class="readiness-count"><strong>${data.critical}</strong><span>Urgent gaps</span></div></div></div><div class="readiness-grid">${cards}</div>`;
 
   if(data.actions.length){
     act.innerHTML='<ol class="action-list">'+data.actions.slice(0,12).map(a=>`<li class="priority-${a.level}"><div><strong>${escapeHtml(a.title)}</strong><span>${escapeHtml(a.code+' · '+a.detail)}</span></div></li>`).join('')+'</ol>';
   }else{
-    act.innerHTML='<div class="callout callout-good"><strong>No preparation gaps detected in the tracked fields.</strong>Review accuracy, confirm local rules, and pressure-test the file with qualified legal help if possible.</div>';
+    act.innerHTML='<div class="callout callout-good"><strong>No missing entries were detected in the tracked fields.</strong> This does not establish legal readiness. Review accuracy, official orders, local rules, and qualified legal guidance.</div>';
   }
   det.innerHTML='<div class="readiness-detail">'+data.findings.map(f=>`<div class="readiness-detail-row ${f.level}"><div class="d-code">${escapeHtml(f.code)}</div><div class="d-area">${escapeHtml(f.area)}</div><div class="d-message"><strong>${statusLabel(f.level)}.</strong> ${escapeHtml(f.message)}${f.action?' <em>Next: '+escapeHtml(f.action)+'</em>':''}</div></div>`).join('')+'</div>';
 }
@@ -1630,8 +1933,9 @@ function buildPacket(){
   const out=[];
   const readiness=buildTrialReadiness();
   const builtAt=new Date().toLocaleString();
-  out.push(`<h4>Packet status</h4><p><strong>Readiness: ${readiness.score}%</strong> · ${readiness.ready} ready · ${readiness.attention} need work · ${readiness.critical} critical gap(s)<br><span class="small muted">Compiled ${escapeHtml(builtAt)} from every saved field in Sections 1–12.</span></p>`);
-  if(readiness.proofGaps.length) out.push('<div class="callout callout-key"><strong>Proof gaps</strong>'+readiness.proofGaps.map(r=>`<div>You have no proof for <strong>${escapeHtml(clean(r[0]))}</strong> yet.</div>`).join('')+'</div>');
+  out.push(`<h4>Packet status</h4><p><strong>Organization completeness: ${readiness.score}%</strong> · ${readiness.ready} complete · ${readiness.attention} need entry/review · ${readiness.critical} urgent organizational gap(s)<br><span class="small muted">Compiled ${escapeHtml(builtAt)} from every saved field in Sections 1–13.</span></p>`);
+  out.push(`<p class="small"><strong>Important use notice:</strong> This is an organizational template, not a legal assessment. <button class="notice-link no-print" type="button" onclick="openUseNotice()">Read the full notice</button></p>`);
+  if(readiness.proofGaps.length) out.push('<div class="callout callout-key"><strong>Unlinked supporting material</strong>'+readiness.proofGaps.map(r=>`<div>No supporting material is linked in this tool for <strong>${escapeHtml(clean(r[0]))}</strong> yet.</div>`).join('')+'</div>');
 
   let cap=`${gv('cap_court')||'Court'}`;
   const place=[gv('cap_county'),gv('cap_state')].filter(Boolean).join(', ');
@@ -1646,29 +1950,29 @@ function buildPacket(){
   out.push('<h4>2 · Procedural stage reached</h4>'+(stage.length?`<p>${stage.map(escapeHtml).join(' → ')}</p>`:'<p class="empty">No procedural stage marked.</p>'));
 
   const iss=readRows('issuesBody').filter(r=>clean(r[0])&&r.slice(1).some(v=>clean(v)));
-  out.push('<h4>3 · Issues, positions, proof targets, and law</h4>');
-  out.push(iss.length?'<ol>'+iss.map(r=>`<li><strong>${escapeHtml(clean(r[0]))}</strong><br>My request: ${escapeHtml(clean(r[1])||'—')}<br>Other side’s likely position: ${escapeHtml(clean(r[2])||'—')}<br>What I must show: ${escapeHtml(clean(r[3])||'—')}<br>Key evidence: ${escapeHtml(clean(r[4])||'NO PROOF LINKED YET')}<br>Rule/law to confirm: ${escapeHtml(clean(r[5])||'—')}</li>`).join('')+'</ol>':'<p class="empty">No developed issues entered.</p>');
+  out.push('<h4>3 · Issues, positions, factual targets, and law to verify</h4>');
+  out.push(iss.length?'<ol>'+iss.map(r=>`<li><strong>${escapeHtml(clean(r[0]))}</strong><br>My request: ${escapeHtml(clean(r[1])||'—')}<br>Other side’s likely position: ${escapeHtml(clean(r[2])||'—')}<br>Facts / information to investigate: ${escapeHtml(clean(r[3])||'—')}<br>Linked supporting material: ${escapeHtml(clean(r[4])||'NONE ENTERED IN THIS TOOL')}<br>Rule/law to confirm: ${escapeHtml(clean(r[5])||'—')}</li>`).join('')+'</ol>':'<p class="empty">No developed issues entered.</p>');
 
   const exs=readRows('exhibitsBody').filter(r=>clean(r[0])||clean(r[1]));
-  out.push('<h4>4 · Complete exhibit list and readiness</h4>');
+  out.push('<h4>4 · Item / exhibit index and organizational status</h4>');
   if(exs.length){
     out.push(exs.map(r=>`<div class="ex-line"><strong>Ex. ${escapeHtml(clean(r[0])||'?')}</strong> — ${escapeHtml(clean(r[1])||'(no description)')}<br><span class="small">Issue: ${escapeHtml(clean(r[2])||'—')} · Brought in by: ${escapeHtml(clean(r[3])||'—')} · Binder/tab: ${escapeHtml(clean(r[4])||'—')} · ${escapeHtml(exhibitStatus(r))}${clean(r[12])?' · Note: '+escapeHtml(clean(r[12])):''}</span></div>`).join(''));
   }else out.push('<p class="empty">No exhibits entered.</p>');
 
   const wits=readRows('witnessBody').filter(r=>clean(r[0]));
   out.push('<h4>5 · Witness plan</h4>');
-  out.push(wits.length?'<ul>'+wits.map(r=>`<li><strong>${escapeHtml(clean(r[0]))}</strong>${clean(r[1])?' ('+escapeHtml(clean(r[1]))+')':''}<br>Proves: ${escapeHtml(clean(r[2])||'—')} · Helps: ${escapeHtml(clean(r[3])||'—')} · Attendance/subpoena: ${escapeHtml(clean(r[4])||'—')} · Trial day: ${escapeHtml(clean(r[5])||'—')}${clean(r[6])?'<br>Note: '+escapeHtml(clean(r[6])):''}</li>`).join('')+'</ul>':'<p class="empty">No witnesses entered.</p>');
+  out.push(wits.length?'<ul>'+wits.map(r=>`<li><strong>${escapeHtml(clean(r[0]))}</strong>${clean(r[1])?' ('+escapeHtml(clean(r[1]))+')':''}<br>Information / connection: ${escapeHtml(clean(r[2])||'—')} · Listed by: ${escapeHtml(clean(r[3])||'—')} · Attendance/subpoena: ${escapeHtml(clean(r[4])||'—')} · Trial day: ${escapeHtml(clean(r[5])||'—')}${clean(r[6])?'<br>Note: '+escapeHtml(clean(r[6])):''}</li>`).join('')+'</ul>':'<p class="empty">No witnesses entered.</p>');
 
   const self=readRows('directSelfBody').filter(r=>clean(r[0]));
   const direct=readRows('directWitBody').filter(r=>clean(r[0])||clean(r[1]));
-  out.push('<h4>6 · My testimony and direct examination</h4>');
-  if(self.length) out.push('<p><strong>My testimony points</strong></p><ul>'+self.map(r=>`<li>${escapeHtml(clean(r[0]))}${clean(r[1])?' · Ex. '+escapeHtml(clean(r[1])):''}${clean(r[2])?' · '+escapeHtml(clean(r[2])):''}</li>`).join('')+'</ul>');
-  if(direct.length) out.push('<p><strong>Questions for my witnesses</strong></p><ul>'+direct.map(r=>`<li><strong>${escapeHtml(clean(r[0])||'Witness')}:</strong> ${escapeHtml(clean(r[1])||'—')}${clean(r[2])?' · Proves: '+escapeHtml(clean(r[2])):''}</li>`).join('')+'</ul>');
+  out.push('<h4>6 · Personal factual notes and possible direct questions</h4>');
+  if(self.length) out.push('<p><strong>Personal factual notes</strong></p><ul>'+self.map(r=>`<li>${escapeHtml(clean(r[0]))}${clean(r[1])?' · Ex. '+escapeHtml(clean(r[1])):''}${clean(r[2])?' · '+escapeHtml(clean(r[2])):''}</li>`).join('')+'</ul>');
+  if(direct.length) out.push('<p><strong>Questions for my witnesses</strong></p><ul>'+direct.map(r=>`<li><strong>${escapeHtml(clean(r[0])||'Witness')}:</strong> ${escapeHtml(clean(r[1])||'—')}${clean(r[2])?' · Connection: '+escapeHtml(clean(r[2])):''}</li>`).join('')+'</ul>');
   if(!self.length&&!direct.length) out.push('<p class="empty">No testimony points or direct questions entered.</p>');
 
   const cross=readRows('crossBody').filter(r=>clean(r[0])||clean(r[2]));
-  out.push('<h4>7 · Cross-examination plan</h4>');
-  out.push(cross.length?'<ol>'+cross.map(r=>`<li><strong>${escapeHtml(clean(r[0])||'Witness')}</strong> · ${escapeHtml(clean(r[1])||'Topic not labeled')}<br>Question: ${escapeHtml(clean(r[2])||'—')}<br>Impeachment: ${escapeHtml(clean(r[3])||'—')} · Goal: ${escapeHtml(clean(r[4])||'—')}</li>`).join('')+'</ol>':'<p class="empty">No cross-examination questions entered.</p>');
+  out.push('<h4>7 · Possible cross-examination topics for review</h4>');
+  out.push(cross.length?'<ol>'+cross.map(r=>`<li><strong>${escapeHtml(clean(r[0])||'Witness')}</strong> · ${escapeHtml(clean(r[1])||'Topic not labeled')}<br>Question: ${escapeHtml(clean(r[2])||'—')}<br>Prior statement / item: ${escapeHtml(clean(r[3])||'—')} · Factual point: ${escapeHtml(clean(r[4])||'—')}</li>`).join('')+'</ol>':'<p class="empty">No cross-examination questions entered.</p>');
 
   const opening=[['Introduction',gv('op_intro')],['Issues',gv('op_issues')],['Evidence preview',gv('op_preview')],['Requested result',gv('op_request')]];
   out.push('<h4>8 · Opening statement</h4>'+ (opening.some(x=>x[1])?'<p>'+opening.filter(x=>x[1]).map(x=>`<strong>${escapeHtml(x[0])}:</strong> ${escapeHtml(x[1])}`).join('<br><br>')+'</p>':'<p class="empty">No opening entered.</p>'));
@@ -1705,6 +2009,21 @@ function buildPacket(){
   const qs=[gv('q_clerk')&&'Clerk: '+gv('q_clerk'),gv('q_atty')&&'Attorney/legal aid: '+gv('q_atty'),gv('q_self')&&'Personal reminder: '+gv('q_self')].filter(Boolean);
   if(qs.length) out.push('<p><strong>Open questions</strong></p><ul>'+qs.map(q=>`<li>${escapeHtml(q)}</li>`).join('')+'</ul>');
 
+  const cw=readRows('custodyWeekBody').filter(r=>clean(r[0])&&clean(r[1]));
+  const ch=readRows('custodyHolidayBody').filter(r=>clean(r[0])&&(clean(r[1])||clean(r[2])||clean(r[3])));
+  const ce=readRows('custodyEventBody').filter(r=>clean(r[0])||clean(r[1]));
+  const cd=custodyCalendarRows();
+  out.push('<h4>13 · Parenting schedule &amp; custody calendar</h4>');
+  const fam=[['Parent / household A',gv('custody_parent_a')],['Parent / household B',gv('custody_parent_b')],['Child or children',gv('custody_children')],['Order / agreement date',gv('custody_order_date')]].filter(x=>x[1]);
+  if(fam.length) out.push('<p>'+fam.map(x=>`<strong>${escapeHtml(x[0])}:</strong> ${escapeHtml(x[1])}`).join('<br>')+'</p>');
+  if(cw.length) out.push('<p><strong>Regular weekly schedule</strong></p><ul>'+cw.map(r=>`<li><strong>${escapeHtml(clean(r[0]))}:</strong> ${escapeHtml(clean(r[1]))}${clean(r[2])||clean(r[3])?' · '+escapeHtml([clean(r[2]),clean(r[3])].filter(Boolean).join('–')):''}${clean(r[4])?' · '+escapeHtml(clean(r[4])):''}${clean(r[5])?' · '+escapeHtml(clean(r[5])):''}</li>`).join('')+'</ul>');
+  if(ch.length) out.push('<p><strong>Holidays and special days</strong></p><ul>'+ch.map(r=>`<li><strong>${escapeHtml(clean(r[0]))}</strong> · ${escapeHtml(clean(r[1])||'date not entered')} · ${escapeHtml(clean(r[2])||'assignment not entered')} · ${escapeHtml(clean(r[3])||'rotation not entered')}${clean(r[4])||clean(r[5])?' · '+escapeHtml([clean(r[4]),clean(r[5])].filter(Boolean).join('–')):''}${clean(r[6])?' · '+escapeHtml(clean(r[6])):''}${clean(r[7])?' · '+escapeHtml(clean(r[7])):''}</li>`).join('')+'</ul>');
+  if(ce.length) out.push('<p><strong>One-time events and exceptions</strong></p><ul>'+ce.map(r=>`<li><strong>${escapeHtml(clean(r[0])||'Date not entered')} · ${escapeHtml(clean(r[1])||'Event')}</strong> · ${escapeHtml(clean(r[2])||'assignment not entered')}${clean(r[3])||clean(r[4])?' · '+escapeHtml([clean(r[3]),clean(r[4])].filter(Boolean).join('–')):''}${clean(r[5])?' · '+escapeHtml(clean(r[5])):''}${clean(r[6])?' · '+escapeHtml(clean(r[6])):''}</li>`).join('')+'</ul>');
+  if(cd.length) out.push(`<p><strong>Saved calendar dates:</strong> ${cd.length}</p><ul>`+cd.map(r=>`<li>${escapeHtml(r[0])} · ${escapeHtml(r[1])}${r[2]?' · '+escapeHtml(r[2]):''}</li>`).join('')+'</ul>');
+  const cn=[['Usual exchange',gv('custody_exchange')],['Transportation',gv('custody_transport')],['Communication / notice',gv('custody_contact')],['School / care / travel',gv('custody_school')]].filter(x=>x[1]);
+  if(cn.length) out.push('<p><strong>Practical notes</strong><br>'+cn.map(x=>`${escapeHtml(x[0])}: ${escapeHtml(x[1])}`).join('<br>')+'</p>');
+  if(!fam.length&&!cw.length&&!ch.length&&!ce.length&&!cd.length&&!cn.length) out.push('<p class="empty">No parenting schedule information entered.</p>');
+
   document.getElementById('packetReadout').innerHTML=out.join('');
   return readiness;
 }
@@ -1726,8 +2045,151 @@ function scheduleReadinessRefresh(){
 function packetToText(){
   return document.getElementById('packetReadout').innerText.replace(/\n{3,}/g,'\n\n');
 }
-function downloadPacket(){ refreshFinalPage(); downloadBlob(new Blob([packetToText()],{type:'text/plain'}),'divorce-trial-packet.txt'); toast('Packet downloaded'); }
 
+/* ============================================================
+   WORD + EXCEL EXPORTS — self-contained and offline
+   Word export: HTML document saved as .doc
+   Excel export: SpreadsheetML workbook saved as .xls
+   Both formats open in Microsoft Office and can be uploaded to
+   Google Docs / Google Sheets.
+   ============================================================ */
+function exportFileDate(){
+  return new Date().toISOString().slice(0,10);
+}
+function boolText(v){ return v?'Yes':'No'; }
+function safeXml(v){
+  return String(v===undefined||v===null?'':v)
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+}
+function wordEscape(v){ return escapeHtml(String(v===undefined||v===null?'':v)); }
+function sheetName(name){ return String(name).replace(/[\\/?*\[\]:]/g,' ').trim().slice(0,31)||'Sheet'; }
+function excelCell(value,style){
+  const n=typeof value==='number' && Number.isFinite(value);
+  return `<Cell${style?` ss:StyleID="${style}"`:''}><Data ss:Type="${n?'Number':'String'}">${safeXml(n?value:String(value===undefined||value===null?'':value))}</Data></Cell>`;
+}
+function excelRow(values,style){ return `<Row>${values.map(v=>excelCell(v,style)).join('')}</Row>`; }
+function excelWorksheet(name,rows){
+  const columns='<Column ss:Width="120"/><Column ss:Width="220"/><Column ss:Width="180"/><Column ss:Width="180"/><Column ss:Width="150"/><Column ss:Width="150"/><Column ss:Width="150"/><Column ss:Width="150"/><Column ss:Width="150"/><Column ss:Width="150"/><Column ss:Width="150"/><Column ss:Width="180"/><Column ss:Width="220"/>';
+  const body=rows.map(r=>excelRow(Array.isArray(r)?r:r.values,Array.isArray(r)?'Cell':(r.style||'Cell'))).join('');
+  return `<Worksheet ss:Name="${safeXml(sheetName(name))}"><Table>${columns}${body}</Table><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"><FreezePanes/><FrozenNoSplit/><SplitHorizontal>1</SplitHorizontal><TopRowBottomPane>1</TopRowBottomPane><ProtectObjects>False</ProtectObjects><ProtectScenarios>False</ProtectScenarios></WorksheetOptions></Worksheet>`;
+}
+function exportDataSheets(){
+  const readiness=buildTrialReadiness();
+  const stages=STAGES.filter((_,i)=>chk('stagechk_'+i)).map(s=>s[0]).join(' → ');
+  const caseRows=[
+    {values:['DIVORCE COURT PREPARATION ORGANIZER — ORGANIZATIONAL EXPORT',''],style:'Title'},
+    {values:['Generated',new Date().toLocaleString()]},
+    {values:['Important disclaimer',LEGAL_DISCLAIMER_TEXT],style:'Warning'},
+    {values:['Field','Value'],style:'Header'},
+    ['Court name',gv('cap_court')],['County / district',gv('cap_county')],['State',gv('cap_state')],['Case / index / docket no.',gv('cap_index')],
+    ['Judge',gv('cap_judge')],['Trial date',gv('cap_trialdate')],['Petitioner / Plaintiff',gv('cap_party_a')],['Respondent / Defendant',gv('cap_party_b')],
+    ['My role',radioVal('role')],['Representation status',radioVal('rep')],['Procedural stages marked',stages]
+  ];
+  const issues=[{values:['Issue','Requested result entered by user','Other side’s likely position entered by user','Facts / information to investigate','Linked supporting material','Rule / law to verify'],style:'Header'},
+    ...readRows('issuesBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,6))];
+  const exhibits=[{values:['Item / Ex. #','Description','Issue / topic','Possible witness / source','Binder / folder','Gathered','Copies prepared','Foundation note','Marking reviewed','Shared recorded','Offered recorded','Admitted recorded','Notes'],style:'Header'},
+    ...readRows('exhibitsBody').filter(r=>r.some(v=>v===true||clean(v))).map(r=>[r[0],r[1],r[2],r[3],r[4],...r.slice(5,12).map(boolText),r[12]])];
+  const witnesses=[{values:['Name','Role / relationship','Information / connection','Listed by','Attendance / subpoena notes','Trial-day status','Notes'],style:'Header'},
+    ...readRows('witnessBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,7))];
+  const testimony=[{values:['Type','Person / witness','Fact or possible question','Possible item # / connection','Issue / topic'],style:'Header'}];
+  readRows('directSelfBody').filter(r=>r.some(v=>clean(v))).forEach(r=>testimony.push(['Personal factual note','Me',r[0],r[1],r[2]]));
+  readRows('directWitBody').filter(r=>r.some(v=>clean(v))).forEach(r=>testimony.push(['Possible direct question',r[0],r[1],r[2],'']));
+  const cross=[{values:['Witness','Topic','Possible focused question','Prior statement / item to review','Factual point'],style:'Header'},
+    ...readRows('crossBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,5))];
+  const statements=[{values:['Section','Component','User entry'],style:'Header'},
+    ['Opening','Introduction',gv('op_intro')],['Opening','Issues',gv('op_issues')],['Opening','Evidence preview',gv('op_preview')],['Opening','Requested result',gv('op_request')],
+    ...readRows('closingBody').filter(r=>r.some(v=>clean(v))).flatMap((r,i)=>[
+      ['Closing',`Issue ${i+1}`,r[0]],['Closing',`Evidence ${i+1}`,r[1]],['Closing',`Reasoning ${i+1}`,r[2]],['Closing',`Requested relief ${i+1}`,r[3]]
+    ]),
+    ['Closing','Opening line',gv('cl_intro')],['Closing','Hard facts / context',gv('cl_weak')],['Closing','Final request',gv('cl_request')]
+  ];
+  const order=[{values:['Order #','Witness / step','Topics','Item / Ex. #','Estimated time'],style:'Header'},
+    ...readRows('orderBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,5))];
+  const live=[{values:['Category','Person / time','Status / statement','Possible support / response needed','Note'],style:'Header'}];
+  APPEAR_ROLES.forEach(r=>{ const s=radioVal('appear_'+r[0]),n=gv('appearnote_'+r[0]); if(s||n) live.push(['Attendance',r[1],s,'',n]); });
+  readRows('appearExtraBody').filter(r=>r.some(v=>clean(v))).forEach(r=>live.push(['Other person',r[0],r[2],r[1],r[3]]));
+  if([gv('rb_said'),gv('rb_truth'),gv('rb_evidence'),gv('rb_point')].some(Boolean)) live.push(['Factual response draft',gv('rb_said'),gv('rb_truth'),gv('rb_evidence'),gv('rb_point')]);
+  readRows('logBody').filter(r=>r.some(v=>v===true||clean(v))).forEach(r=>live.push(['Courtroom log',r[0],`${r[1]}: ${r[2]}`,r[3]?'Response flagged':'',r[4]]));
+  const logistics=[{values:['Category','Item','Date / status','Completed','Notes'],style:'Header'}];
+  readRows('deadlineBody').filter(r=>r.some(v=>v===true||clean(v))).forEach(r=>logistics.push(['Deadline',r[0],r[1],boolText(r[2]),r[3]]));
+  BRING.forEach((b,i)=>logistics.push(['Bring checklist',b,'',boolText(chk('bring_'+i)),'']));
+  [['Courthouse / room',gv('loc_where')],['Date / arrival',gv('loc_when')],['Parking / transit',gv('loc_park')],['Security / ID',gv('loc_security')],['Questions for clerk',gv('q_clerk')],['Questions for attorney / legal aid',gv('q_atty')],['Personal reminders',gv('q_self')]].forEach(r=>logistics.push(['Logistics / questions',r[0],'','',r[1]]));
+  const custody=[{values:['PARENTING SCHEDULE & CUSTODY CALENDAR','','','','','','',''],style:'Title'},
+    ['Parent / household A',gv('custody_parent_a')],['Parent / household B',gv('custody_parent_b')],['Child or children',gv('custody_children')],['Order / agreement date',gv('custody_order_date')],['Holiday year',gv('custody_year')],
+    {values:['REGULAR WEEKLY SCHEDULE','','','','','','',''],style:'Header'},
+    {values:['Day','Parent / household','Start','End','Exchange place / person','Notes','',''],style:'Header'},
+    ...readRows('custodyWeekBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,6)),
+    {values:['HOLIDAYS & SPECIAL DAYS','','','','','','',''],style:'Header'},
+    {values:['Holiday / occasion','Date','Assigned to','Rotation / rule','Start','End','Exchange details','Notes'],style:'Header'},
+    ...readRows('custodyHolidayBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,8)),
+    {values:['ONE-TIME EVENTS & EXCEPTIONS','','','','','','',''],style:'Header'},
+    {values:['Date','Event / change','Assigned to','Start','End','Location / exchange','Notes / confirmation',''],style:'Header'},
+    ...readRows('custodyEventBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,7)),
+    {values:['SAVED CALENDAR DAYS','','','','','','',''],style:'Header'},
+    {values:['Date','Assignment','Note','','','','',''],style:'Header'},
+    ...custodyCalendarRows(),
+    {values:['PRACTICAL NOTES','','','','','','',''],style:'Header'},
+    ['Usual exchange',gv('custody_exchange')],['Transportation',gv('custody_transport')],['Communication / notice',gv('custody_contact')],['School / care / travel',gv('custody_school')]
+  ];
+  const readyRows=[{values:['Code','Area','Status','Finding','Suggested next organizational step'],style:'Header'},
+    ...readiness.findings.map(f=>({values:[f.code,f.area,statusLabel(f.level),f.message,f.action],style:f.level==='ready'?'Good':f.level==='critical'?'Danger':'Attention'}))];
+  const objectionRows=[{values:['Term','General meaning','Situation sometimes associated with term','Organizational prompt'],style:'Header'},...OBJECTIONS.map(o=>o.map(x=>String(x).replace(/<[^>]+>/g,'')))];
+  const packetRows=[{values:['COMPLETE PACKET — TEXT VERSION'],style:'Title'}, {values:['Disclaimer',LEGAL_DISCLAIMER_TEXT],style:'Warning'}, {values:['Packet text',''] ,style:'Header'}, ...packetToText().split(/\n/).map(line=>['',line])];
+  return [
+    {name:'Case Overview',rows:caseRows},{name:'Issues',rows:issues},{name:'Items and Exhibits',rows:exhibits},{name:'Witnesses',rows:witnesses},
+    {name:'Testimony and Direct',rows:testimony},{name:'Cross Examination',rows:cross},{name:'Opening and Closing',rows:statements},{name:'Order of Proof',rows:order},
+    {name:'Live Mode and Log',rows:live},{name:'Deadlines and Logistics',rows:logistics},{name:'Parenting Schedule',rows:custody},{name:'Readiness Check',rows:readyRows},{name:'Evidence Terms',rows:objectionRows},{name:'Full Packet',rows:packetRows}
+  ];
+}
+function exportExcelWorkbook(){
+  saveNow(false); refreshFinalPage();
+  const sheets=exportDataSheets();
+  const xml=`<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+<Styles>
+<Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Top" ss:WrapText="1"/><Borders/><Font ss:FontName="Aptos" ss:Size="10"/><Interior/><NumberFormat/><Protection/></Style>
+<Style ss:ID="Cell"><Alignment ss:Vertical="Top" ss:WrapText="1"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#D9D3C4"/></Borders></Style>
+<Style ss:ID="Title"><Font ss:Bold="1" ss:Size="15" ss:Color="#FFFFFF"/><Interior ss:Color="#101F3D" ss:Pattern="Solid"/><Alignment ss:Vertical="Center" ss:WrapText="1"/></Style>
+<Style ss:ID="Header"><Font ss:Bold="1" ss:Color="#FFFFFF"/><Interior ss:Color="#1D3563" ss:Pattern="Solid"/><Alignment ss:Vertical="Center" ss:WrapText="1"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#FFFFFF"/></Borders></Style>
+<Style ss:ID="Warning"><Font ss:Bold="1" ss:Color="#6B2030"/><Interior ss:Color="#F6ECEF" ss:Pattern="Solid"/><Alignment ss:Vertical="Top" ss:WrapText="1"/></Style>
+<Style ss:ID="Good"><Interior ss:Color="#E9F2EA" ss:Pattern="Solid"/><Alignment ss:Vertical="Top" ss:WrapText="1"/></Style>
+<Style ss:ID="Attention"><Interior ss:Color="#FFF8E9" ss:Pattern="Solid"/><Alignment ss:Vertical="Top" ss:WrapText="1"/></Style>
+<Style ss:ID="Danger"><Interior ss:Color="#FBEBEE" ss:Pattern="Solid"/><Alignment ss:Vertical="Top" ss:WrapText="1"/></Style>
+</Styles>${sheets.map(s=>excelWorksheet(s.name,s.rows)).join('')}</Workbook>`;
+  downloadBlob(new Blob(['\ufeff',xml],{type:'application/vnd.ms-excel;charset=utf-8'}),`Divorce-Court-Preparation-Organizer-${exportFileDate()}.xls`);
+  toast('Excel workbook exported');
+}
+function wordTable(headers,rows){ if(!rows.length)return '<p class="empty">No entries.</p>'; return '<table class="status"><thead><tr>'+headers.map(h=>'<th>'+wordEscape(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+wordEscape(v)+'</td>').join('')+'</tr>').join('')+'</tbody></table>'; }
+function buildWordDocument(){
+  const readiness=refreshFinalPage();
+  const findings=readiness.findings.map(f=>`<tr class="${f.level}"><td>${wordEscape(f.code)}</td><td>${wordEscape(f.area)}</td><td>${wordEscape(statusLabel(f.level))}</td><td>${wordEscape(f.message)}</td><td>${wordEscape(f.action)}</td></tr>`).join('');
+  const actions=readiness.actions.length?`<ol>${readiness.actions.map(a=>`<li><strong>${wordEscape(a.title)}</strong><br>${wordEscape(a.detail)}</li>`).join('')}</ol>`:'<p>No missing entries were detected in the tracked fields. This is not a legal-readiness determination.</p>';
+  const objections=OBJECTIONS.map(o=>`<tr><td>${wordEscape(o[0])}</td><td>${wordEscape(String(o[1]).replace(/<[^>]+>/g,''))}</td><td>${wordEscape(String(o[2]).replace(/<[^>]+>/g,''))}</td><td>${wordEscape(String(o[3]).replace(/<[^>]+>/g,''))}</td></tr>`).join('');
+  return `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="UTF-8"><title>Divorce Court Preparation Organizer Export</title><style>
+  @page{margin:.7in} body{font-family:Aptos,Arial,sans-serif;color:#1b1b1b;font-size:10.5pt;line-height:1.45} h1,h2,h3,h4{font-family:Georgia,serif;color:#101f3d} h1{border-bottom:4px double #b48a32;padding-bottom:8px} h2{margin-top:28px;border-bottom:2px solid #b48a32;padding-bottom:5px} h4{margin-top:20px;border-bottom:1px solid #d9d3c4;padding-bottom:4px}.disclaimer{background:#f6ecef;border:1px solid #d9b3bd;padding:12px 14px;color:#6b2030}.meta{color:#555}.status{border-collapse:collapse;width:100%;margin:10px 0}.status th{background:#101f3d;color:white;text-align:left;padding:7px}.status td{border:1px solid #c7bfa9;padding:7px;vertical-align:top}.status tr.ready td{background:#e9f2ea}.status tr.attention td{background:#fff8e9}.status tr.critical td{background:#fbebee}.callout{border:1px solid #c7bfa9;padding:10px;margin:10px 0}.small,.muted{font-size:9pt;color:#555}.empty{color:#777;font-style:italic}.ex-line{padding:5px 0;border-bottom:1px dotted #c7bfa9} ul,ol{margin-top:5px} table{page-break-inside:auto} tr{page-break-inside:avoid} h4{page-break-after:avoid}</style></head><body>
+  <h1>Divorce Court Preparation Organizer</h1><p class="meta">Word export generated ${wordEscape(new Date().toLocaleString())}</p>
+  <div class="disclaimer"><strong>LEGAL AND PRODUCT-USE DISCLAIMER</strong><br>${wordEscape(LEGAL_DISCLAIMER_TEXT)}</div>
+  <h2>Organizational Readiness Check</h2><p><strong>Organization completeness: ${readiness.score}%</strong> · ${readiness.ready} complete · ${readiness.attention} need entry/review · ${readiness.critical} urgent organizational gap(s).</p>
+  <table class="status"><thead><tr><th>Code</th><th>Area</th><th>Status</th><th>Finding</th><th>Next organizational step</th></tr></thead><tbody>${findings}</tbody></table>
+  <h3>Prioritized Next Actions</h3>${actions}
+  <h2>Parenting Schedule &amp; Custody Calendar</h2>
+  <p><strong>Parent / household A:</strong> ${wordEscape(gv('custody_parent_a')||'—')}<br><strong>Parent / household B:</strong> ${wordEscape(gv('custody_parent_b')||'—')}<br><strong>Child or children:</strong> ${wordEscape(gv('custody_children')||'—')}<br><strong>Order / agreement date:</strong> ${wordEscape(gv('custody_order_date')||'—')}</p>
+  <h3>Regular Weekly Schedule</h3>${wordTable(['Day','Parent / household','Start','End','Exchange','Notes'],readRows('custodyWeekBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,6)))}
+  <h3>Holidays &amp; Special Days</h3>${wordTable(['Holiday / occasion','Date','Assigned to','Rotation / rule','Start','End','Exchange','Notes'],readRows('custodyHolidayBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,8)))}
+  <h3>One-Time Events &amp; Exceptions</h3>${wordTable(['Date','Event / change','Assigned to','Start','End','Location / exchange','Notes'],readRows('custodyEventBody').filter(r=>r.some(v=>clean(v))).map(r=>r.slice(0,7)))}
+  <h3>Saved Calendar Days</h3>${wordTable(['Date','Assignment','Note'],custodyCalendarRows())}
+  <h2>Complete Packet</h2>${document.getElementById('packetReadout').innerHTML}
+  <h2>Appendix: General Evidence Vocabulary</h2><p class="small">Educational reference only. The judge and governing law determine whether a term applies.</p>
+  <table class="status"><thead><tr><th>Term</th><th>General meaning</th><th>Situation sometimes associated with term</th><th>Organizational prompt</th></tr></thead><tbody>${objections}</tbody></table>
+  </body></html>`;
+}
+function exportWordDocument(){
+  saveNow(false); refreshFinalPage();
+  const doc=buildWordDocument();
+  downloadBlob(new Blob(['\ufeff',doc],{type:'application/msword;charset=utf-8'}),`Divorce-Court-Preparation-Organizer-${exportFileDate()}.doc`);
+  toast('Word document exported');
+}
 
 /* One-click all-section color print preview / PDF */
 let printCollapseState=[];
@@ -1745,32 +2207,6 @@ window.addEventListener('afterprint',()=>{
   printCollapseState=[];
   document.body.classList.remove('printing-all');
 });
-
-/* generic export of all notes */
-function labelFor(el){
-  if(el.id){ const l=document.querySelector('label[for="'+cssEscape(el.id)+'"]'); if(l) return l.textContent.trim(); }
-  return '';
-}
-function buildExportText(){
-  let out='DIVORCE TRIAL COMPANION — NOTES\nSaved locally; not legal advice.\n\n';
-  sections.forEach((sec,i)=>{
-    out+='\n========================================\n'+(i+1)+'. '+(TABS[i]||'')+'\n========================================\n';
-    sec.querySelectorAll('input[type=text],input[type=date],input[type=time],input[type=number],textarea,select').forEach(el=>{
-      if(!el.hasAttribute('data-field')) return;
-      const v=(el.value||'').trim(); if(!v) return;
-      const lab=labelFor(el)||el.placeholder||el.id;
-      out+= '• '+lab+': '+v+'\n';
-    });
-    sec.querySelectorAll('input[type=checkbox][data-field]').forEach(el=>{
-      if(el.checked){ const lab=labelFor(el)||el.closest('label')?.textContent?.trim()||el.id; out+='  [x] '+lab+'\n'; }
-    });
-    const rad={};
-    sec.querySelectorAll('[data-field-radio]:checked').forEach(el=>{ rad[el.getAttribute('data-field-radio')]=el.value; });
-    Object.entries(rad).forEach(([g,v])=>out+='• '+g+': '+v+'\n');
-  });
-  return out;
-}
-function exportText(){ downloadBlob(new Blob([buildExportText()],{type:'text/plain'}),'divorce-trial-notes.txt'); toast('Notes exported'); }
 
 /* ============================================================
    UTIL
@@ -1828,14 +2264,17 @@ function init(){
   let data=null;
   try{ data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null'); }catch(e){}
   if(data) restore(data); else seedDefaults();
+  ensureCustodyDefaults();
+  renderCustodyCalendar();
 
   // autosave
-  document.addEventListener('input',e=>{ if(e.target.matches('[data-field],[data-field-radio]')){ scheduleSave(); scheduleReadinessRefresh(); if(e.target.closest('#exhibitsBody')) updateExhibitCount(); }});
-  document.addEventListener('change',e=>{ if(e.target.matches('[data-field],[data-field-radio]')){ scheduleSave(); refreshProgress(); scheduleReadinessRefresh(); if(e.target.closest('#exhibitsBody')){ updateExhibitCount(); } }});
+  document.addEventListener('input',e=>{ if(e.target.matches('[data-field],[data-field-radio]')){ scheduleSave(); scheduleReadinessRefresh(); if(e.target.closest('#exhibitsBody')) updateExhibitCount(); if(e.target.closest('#custodyHolidayBody,#custodyEventBody,#custodyWeekBody')||['custody_parent_a','custody_parent_b','custody_month','custody_year'].includes(e.target.id)) renderCustodyCalendar(); }});
+  document.addEventListener('change',e=>{ if(e.target.matches('[data-field],[data-field-radio]')){ scheduleSave(); refreshProgress(); scheduleReadinessRefresh(); if(e.target.closest('#exhibitsBody')){ updateExhibitCount(); } if(e.target.id==='custody_year') loadCommonHolidays(false); if(e.target.closest('#custodyHolidayBody,#custodyEventBody,#custodyWeekBody')||['custody_parent_a','custody_parent_b','custody_month','custody_year'].includes(e.target.id)) renderCustodyCalendar(); }});
 
   refreshPchips(); checkAbsent();
   updateExhibitCount();
   refreshProgress();
+  renderCustodyCalendar();
   refreshFinalPage();
   activate(0);
   updatePager();
