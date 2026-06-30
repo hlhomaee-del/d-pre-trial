@@ -76,9 +76,26 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .progress-label{font-size:.78rem;color:var(--ink-soft);margin:6px 2px 0;font-family:var(--mono);letter-spacing:.04em;}
 
 /* STICKY NAV */
-.navbar{position:sticky;top:0;z-index:50;background:rgba(241,242,246,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-2);box-shadow:var(--shadow-sm);}
-.nav-scroll{max-width:1180px;margin:0 auto;padding:10px 12px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;}
-.tabbtn{flex:0 0 auto;cursor:pointer;border-radius:var(--radius-sm) var(--radius-sm) 0 0;background:var(--paper-2);color:var(--navy);font-family:var(--sans);font-size:.82rem;font-weight:600;padding:9px 13px;display:flex;align-items:center;gap:8px;border:1px solid var(--line-2);border-bottom:3px solid transparent;box-shadow:var(--shadow-sm);transition:transform .06s,box-shadow .15s;white-space:nowrap;}
+.navbar{position:sticky;top:0;z-index:50;background:rgba(241,242,246,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-2);box-shadow:var(--shadow-sm);}
+.nav-shell{max-width:1228px;margin:0 auto;padding:8px 10px 3px;display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:7px;align-items:center;}
+.nav-viewport{position:relative;min-width:0;overflow:hidden;border-radius:8px;}
+.nav-scroll{width:100%;margin:0;padding:4px 5px 10px;display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;scroll-behavior:smooth;scrollbar-width:auto;scrollbar-color:var(--gold) #d9dde6;-webkit-overflow-scrolling:touch;}
+.nav-scroll::-webkit-scrollbar{height:10px;}
+.nav-scroll::-webkit-scrollbar-track{background:#d9dde6;border-radius:99px;border:2px solid rgba(255,255,255,.75);}
+.nav-scroll::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--gold),var(--gold-soft));border-radius:99px;border:2px solid #d9dde6;}
+.nav-scroll::-webkit-scrollbar-thumb:hover{background:var(--gold);}
+.nav-arrow{width:44px;height:44px;border-radius:50%;border:1px solid #8f6c22;background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#21180a;font-size:1.65rem;font-weight:900;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 7px rgba(16,31,61,.22);transition:transform .12s,opacity .15s,box-shadow .15s;}
+.nav-arrow:hover:not(:disabled){transform:translateY(-1px) scale(1.04);box-shadow:0 4px 11px rgba(16,31,61,.28);}
+.nav-arrow:active:not(:disabled){transform:translateY(1px);}
+.nav-arrow:disabled{opacity:.28;cursor:default;box-shadow:none;}
+.nav-fade{position:absolute;top:0;bottom:10px;width:42px;z-index:2;pointer-events:none;opacity:0;transition:opacity .18s;}
+.nav-fade-left{left:0;background:linear-gradient(90deg,rgba(241,242,246,.98),rgba(241,242,246,0));}
+.nav-fade-right{right:0;background:linear-gradient(270deg,rgba(241,242,246,.98),rgba(241,242,246,0));}
+.nav-viewport.can-left .nav-fade-left,.nav-viewport.can-right .nav-fade-right{opacity:1;}
+.nav-help{max-width:1180px;margin:0 auto;padding:0 58px 7px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--navy-3);font-size:.74rem;font-weight:650;}
+.nav-help strong{color:var(--burgundy);}
+.nav-position{font-family:var(--mono);white-space:nowrap;color:var(--ink-soft);}
+.tabbtn{flex:0 0 auto;cursor:pointer;border-radius:var(--radius-sm) var(--radius-sm) 0 0;background:var(--paper-2);color:var(--navy);font-family:var(--sans);font-size:.82rem;font-weight:600;padding:9px 13px;display:flex;align-items:center;gap:8px;border:1px solid var(--line-2);border-bottom:3px solid transparent;box-shadow:var(--shadow-sm);transition:transform .06s,box-shadow .15s;white-space:nowrap;scroll-margin-inline:52px;}
 .tabbtn:hover{transform:translateY(-1px);}
 .tabbtn .num{font-family:var(--mono);font-size:.7rem;background:var(--accent,#16294e);color:var(--accent-ink,#fff);width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;}
 .tabbtn[aria-selected="true"]{border-bottom-color:var(--accent,#16294e);background:#fff;transform:translateY(-2px);box-shadow:0 -2px 0 var(--accent,#16294e) inset, var(--shadow);}
@@ -296,6 +313,12 @@ footer a{color:var(--navy-3);}
   .masthead h1{font-size:1.4rem;}
   body{font-size:15px;}
   .converter,.grid.g2{grid-template-columns:1fr;}
+  .nav-shell{grid-template-columns:38px minmax(0,1fr) 38px;padding:7px 5px 2px;gap:4px;}
+  .nav-arrow{width:38px;height:38px;font-size:1.4rem;}
+  .nav-scroll{padding-bottom:9px;gap:6px;}
+  .tabbtn{font-size:.78rem;padding:8px 10px;}
+  .nav-help{padding:0 44px 6px;font-size:.68rem;}
+  .nav-help .desktop-cue{display:none;}
 }
 
 /* PRINT */
@@ -363,7 +386,19 @@ footer a{color:var(--navy-3);}
 </div>
 
 <nav class="navbar no-print" aria-label="Sections">
-  <div class="nav-scroll" id="navScroll" role="tablist"></div>
+  <div class="nav-shell">
+    <button class="nav-arrow" id="navPrev" type="button" aria-label="Show earlier sections" title="Show earlier sections">‹</button>
+    <div class="nav-viewport" id="navViewport">
+      <div class="nav-fade nav-fade-left" aria-hidden="true"></div>
+      <div class="nav-scroll" id="navScroll" role="tablist" aria-label="All organizer sections"></div>
+      <div class="nav-fade nav-fade-right" aria-hidden="true"></div>
+    </div>
+    <button class="nav-arrow" id="navNext" type="button" aria-label="Show more sections" title="Show more sections">›</button>
+  </div>
+  <div class="nav-help" aria-live="polite">
+    <span><strong>More sections:</strong> use the gold arrows, swipe, or drag the scrollbar <span class="desktop-cue">to see every tab.</span></span>
+    <span class="nav-position" id="navPosition">Section 1 of 14</span>
+  </div>
 </nav>
 
 <main id="main">
@@ -1531,6 +1566,51 @@ function addExhibitSilent(){
 /* ============================================================
    NAV
    ============================================================ */
+function updateNavScroller(){
+  const nav=document.getElementById('navScroll');
+  const viewport=document.getElementById('navViewport');
+  const prev=document.getElementById('navPrev');
+  const next=document.getElementById('navNext');
+  if(!nav||!viewport||!prev||!next)return;
+  const max=Math.max(0,nav.scrollWidth-nav.clientWidth);
+  const canLeft=nav.scrollLeft>3;
+  const canRight=nav.scrollLeft<max-3;
+  prev.disabled=!canLeft; next.disabled=!canRight;
+  viewport.classList.toggle('can-left',canLeft);
+  viewport.classList.toggle('can-right',canRight);
+}
+function scrollSectionTabs(direction){
+  const nav=document.getElementById('navScroll');
+  if(!nav)return;
+  const amount=Math.max(260,Math.round(nav.clientWidth*.72));
+  nav.scrollBy({left:direction*amount,behavior:'smooth'});
+  window.setTimeout(updateNavScroller,280);
+}
+function revealActiveTab(i){
+  const btn=document.getElementById('navbtn-'+(i+1));
+  if(btn) btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  const pos=document.getElementById('navPosition');
+  if(pos) pos.textContent=`Section ${i+1} of ${sections.length}`;
+  window.setTimeout(updateNavScroller,260);
+}
+function initNavScroller(){
+  const nav=document.getElementById('navScroll');
+  const prev=document.getElementById('navPrev');
+  const next=document.getElementById('navNext');
+  if(!nav||!prev||!next)return;
+  prev.addEventListener('click',()=>scrollSectionTabs(-1));
+  next.addEventListener('click',()=>scrollSectionTabs(1));
+  nav.addEventListener('scroll',updateNavScroller,{passive:true});
+  nav.addEventListener('wheel',e=>{
+    if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
+    const max=Math.max(0,nav.scrollWidth-nav.clientWidth);
+    const movingRight=e.deltaY>0;
+    const canMove=(movingRight&&nav.scrollLeft<max-2)||(!movingRight&&nav.scrollLeft>2);
+    if(canMove){nav.scrollLeft+=e.deltaY;e.preventDefault();}
+  },{passive:false});
+  window.addEventListener('resize',updateNavScroller);
+  requestAnimationFrame(updateNavScroller);
+}
 function buildNav(){
   sections=[...document.querySelectorAll('.tab-section')];
   const nav=document.getElementById('navScroll');
@@ -1558,6 +1638,7 @@ function activate(i){
   document.querySelectorAll('.tabbtn').forEach((b,k)=>{
     b.setAttribute('aria-selected',k===i?'true':'false'); b.tabIndex=k===i?0:-1;
   });
+  revealActiveTab(i);
   window.scrollTo({top:0,behavior:'smooth'});
   updatePager();
   if(sections[i].id==='tab-11'){ runFinder(); }
@@ -2256,6 +2337,7 @@ function injectPagers(){
 function init(){
   buildAll();
   buildNav();
+  initNavScroller();
   injectPagers();
   initSteppers();
   initCollapsibles();
