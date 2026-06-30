@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divorce Trial Companion — Pro Se Preparation & In-Court Organizer</title>
+<style>
+/* ============================================================
+   COLOR + TYPE SYSTEM  (courthouse-document aesthetic)
+   ============================================================ */
+:root{
+  --navy:#101f3d; --navy-2:#16294e; --navy-3:#1d3563;
+  --paper:#f7f5ef; --paper-2:#ffffff;
+  --ink:#1b1b1b; --ink-soft:#3a3f4a;
+  --line:#d9d3c4; --line-2:#c7bfa9;
+  --gold:#b48a32; --gold-soft:#d8c486;
+  --burgundy:#7a2738; --burgundy-soft:#a9505f;
+  --good:#2f6b46; --warn:#9a5a12; --warn-bg:#fbf0db; --danger:#7a2738;
+  --shadow:0 2px 4px rgba(16,31,61,.08), 0 8px 24px rgba(16,31,61,.10);
+  --shadow-sm:0 1px 2px rgba(16,31,61,.10);
+  --radius:8px; --radius-sm:5px;
+  --serif:Georgia,'Times New Roman',Cambria,'Liberation Serif',serif;
+  --sans:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  --mono:'Courier New','SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;
+}
+.acc-1{--accent:#16294e;--accent-ink:#fff;}
+.acc-2{--accent:#2c5d5a;--accent-ink:#fff;}
+.acc-3{--accent:#7a2738;--accent-ink:#fff;}
+.acc-4{--accent:#9a6b1f;--accent-ink:#fff;}
+.acc-5{--accent:#36603f;--accent-ink:#fff;}
+.acc-6{--accent:#a85a36;--accent-ink:#fff;}
+.acc-7{--accent:#1f5566;--accent-ink:#fff;}
+.acc-8{--accent:#5d3a63;--accent-ink:#fff;}
+.acc-9{--accent:#3b5274;--accent-ink:#fff;}
+.acc-10{--accent:#5f6033;--accent-ink:#fff;}
+.acc-11{--accent:#8a3a2c;--accent-ink:#fff;}
+.acc-12{--accent:#34546e;--accent-ink:#fff;}
+.acc-13{--accent:#9a7b23;--accent-ink:#fff;}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:linear-gradient(180deg,#eef0f4 0%,#e7e9ee 100%);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.2;color:var(--navy);}
+a{color:var(--navy-3);}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+
+/* BANNER */
+.banner{background:var(--burgundy);color:#fff;border-bottom:3px solid var(--gold);padding:12px 18px;font-size:.92rem;}
+.banner .wrap{max-width:1180px;margin:0 auto;display:flex;gap:12px;align-items:flex-start;}
+.banner .seal{flex:0 0 auto;font-family:var(--serif);font-weight:700;letter-spacing:.04em;border:2px solid var(--gold-soft);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:.62rem;text-align:center;}
+.banner strong{color:var(--gold-soft);}
+
+/* MASTHEAD */
+.masthead{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-bottom:4px double var(--gold);}
+.masthead .wrap{max-width:1180px;margin:0 auto;padding:22px 18px 18px;}
+.docket-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);margin:0 0 6px;}
+.masthead h1{margin:0;color:#fff;font-size:1.85rem;letter-spacing:.01em;}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.btn{font-family:var(--sans);font-size:.86rem;font-weight:600;cursor:pointer;border-radius:var(--radius-sm);padding:9px 14px;border:1px solid transparent;display:inline-flex;align-items:center;gap:7px;line-height:1;transition:transform .05s,background .15s;}
+.btn:active{transform:translateY(1px);}
+.btn-gold{background:var(--gold);color:#21180a;border-color:#8f6c22;}
+.btn-gold:hover{background:var(--gold-soft);}
+.btn-ghost{background:transparent;color:#fff;border-color:#3a4b73;}
+.btn-ghost:hover{background:#22335c;}
+.btn-danger{background:var(--burgundy);color:#fff;border-color:#5a1c29;}
+.btn-danger:hover{background:var(--burgundy-soft);}
+.btn-sm{font-size:.78rem;padding:6px 10px;}
+.btn-plain{background:var(--paper-2);color:var(--navy);border:1px solid var(--line-2);}
+.btn-plain:hover{background:#efeadd;}
+
+/* OVERALL PROGRESS */
+.overall{max-width:1180px;margin:0 auto;padding:10px 18px 0;}
+.progress-shell{background:#dfe2e9;border-radius:99px;height:10px;overflow:hidden;border:1px solid #c9cdd6;}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-soft));transition:width .3s;}
+.progress-label{font-size:.78rem;color:var(--ink-soft);margin:6px 2px 0;font-family:var(--mono);letter-spacing:.04em;}
+
+/* STICKY NAV */
+.navbar{position:sticky;top:0;z-index:50;background:rgba(241,242,246,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-2);box-shadow:var(--shadow-sm);}
+.nav-scroll{max-width:1180px;margin:0 auto;padding:10px 12px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;}
+.tabbtn{flex:0 0 auto;cursor:pointer;border-radius:var(--radius-sm) var(--radius-sm) 0 0;background:var(--paper-2);color:var(--navy);font-family:var(--sans);font-size:.82rem;font-weight:600;padding:9px 13px;display:flex;align-items:center;gap:8px;border:1px solid var(--line-2);border-bottom:3px solid transparent;box-shadow:var(--shadow-sm);transition:transform .06s,box-shadow .15s;white-space:nowrap;}
+.tabbtn:hover{transform:translateY(-1px);}
+.tabbtn .num{font-family:var(--mono);font-size:.7rem;background:var(--accent,#16294e);color:var(--accent-ink,#fff);width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.tabbtn[aria-selected="true"]{border-bottom-color:var(--accent,#16294e);background:#fff;transform:translateY(-2px);box-shadow:0 -2px 0 var(--accent,#16294e) inset, var(--shadow);}
+.tabbtn .chk{color:var(--good);font-weight:700;}
+
+/* MAIN / SECTIONS */
+main{max-width:1180px;margin:0 auto;padding:18px;}
+.tab-section{display:none;animation:fade .2s ease;}
+.tab-section.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;}}
+.section-head{background:#fff;border:1px solid var(--line);border-left:6px solid var(--accent,#16294e);border-radius:var(--radius);padding:16px 20px;margin-bottom:18px;box-shadow:var(--shadow-sm);}
+.section-head .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#16294e);margin:0 0 4px;}
+.section-head h2{margin:0;font-size:1.5rem;}
+.section-head p{margin:8px 0 0;color:var(--ink-soft);font-size:.95rem;max-width:80ch;}
+.tab-progress{font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);margin-top:8px;}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;box-shadow:var(--shadow-sm);}
+.card > h3:first-child{margin-top:0;}
+.card h3{font-size:1.12rem;border-bottom:1px solid var(--line);padding-bottom:8px;}
+.card h4{font-size:.98rem;color:var(--navy-3);margin:16px 0 8px;}
+
+/* collapsibles */
+.collapse{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:14px;background:#fff;overflow:hidden;box-shadow:var(--shadow-sm);}
+.collapse-head{width:100%;text-align:left;cursor:pointer;border:none;background:#fbfaf6;padding:13px 16px;font-family:var(--serif);font-size:1.05rem;color:var(--navy);font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.collapse-head:hover{background:#f3efe3;}
+.collapse-head .tw{font-family:var(--mono);font-size:1.1rem;color:var(--accent,#16294e);transition:transform .2s;}
+.collapse[data-open="false"] .tw{transform:rotate(-90deg);}
+.collapse-body{padding:16px;border-top:1px solid var(--line);}
+.collapse[data-open="false"] .collapse-body{display:none;}
+
+/* fields */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.grid.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:4px;}
+.field label,.lbl{font-size:.82rem;font-weight:600;color:var(--navy-3);letter-spacing:.01em;}
+.field .hint{font-size:.74rem;color:var(--ink-soft);font-weight:400;}
+input[type=text],input[type=date],input[type=time],input[type=number],input[type=month],select,textarea{font-family:var(--sans);font-size:.92rem;color:var(--ink);background:var(--paper-2);border:1px solid var(--line-2);border-radius:var(--radius-sm);padding:8px 10px;width:100%;}
+textarea{resize:vertical;min-height:64px;line-height:1.5;}
+input::placeholder,textarea::placeholder{color:#9a958a;}
+
+/* checkbox row */
+.chkrow{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px dotted var(--line);}
+.chkrow:last-child{border-bottom:none;}
+.chkrow input[type=checkbox]{width:18px;height:18px;margin-top:2px;flex:0 0 auto;accent-color:var(--accent,#16294e);}
+.chkrow label{font-size:.9rem;font-weight:400;color:var(--ink);cursor:pointer;}
+
+/* tables */
+.table-wrap{overflow-x:auto;margin:4px 0 8px;}
+table.data-table{border-collapse:collapse;width:100%;font-size:.86rem;background:#fff;}
+.data-table th{background:var(--navy);color:#fff;font-weight:600;text-align:left;padding:9px 10px;font-size:.74rem;letter-spacing:.02em;border:1px solid var(--navy-3);position:sticky;top:0;}
+.data-table td{border:1px solid var(--line-2);padding:5px 6px;vertical-align:top;}
+.data-table tr:nth-child(even) td{background:#faf8f2;}
+.data-table input,.data-table select,.data-table textarea{font-size:.82rem;padding:5px 6px;}
+.data-table textarea{min-height:38px;}
+.data-table td.ck{text-align:center;width:34px;}
+.data-table input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent,#16294e);}
+.del-row{background:transparent;border:1px solid var(--line-2);color:var(--burgundy);cursor:pointer;border-radius:4px;font-size:.78rem;padding:4px 7px;}
+.del-row:hover{background:#f6e7ea;}
+.add-row-btn{margin-top:6px;}
+.tbl-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 10px;}
+.tbl-toolbar input[type=text]{max-width:260px;}
+.tbl-toolbar select{max-width:200px;}
+
+/* status pills */
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:99px;letter-spacing:.03em;}
+.pill-missing{background:#f3dede;color:#7a2738;}
+.pill-located{background:#e3eaf5;color:#2b4a7a;}
+.pill-ready{background:#e6efe6;color:#2f6b46;}
+.pill-admitted{background:#dbeede;color:#1e5a33;}
+.pill-warn{background:#efe7d2;color:#7a5a12;}
+
+/* callouts */
+.callout{border-radius:var(--radius);padding:13px 16px;margin:12px 0;font-size:.9rem;border:1px solid;}
+.callout strong{display:block;margin-bottom:3px;}
+.callout-note{background:#eef2f8;border-color:#c2cfe4;color:#28344d;}
+.callout-warn{background:var(--warn-bg);border-color:#e3c489;color:#6b4410;}
+.callout-key{background:#f6ecef;border-color:#d9b3bd;color:#6b2030;}
+.callout-good{background:#e9f2ea;border-color:#bcd6c1;color:#26543a;}
+
+/* stepper */
+.stepper{display:flex;flex-wrap:wrap;gap:0;margin:6px 0 4px;}
+.step{flex:1 1 150px;min-width:140px;position:relative;padding:14px 12px;background:#fff;border:1px solid var(--line-2);border-left:5px solid var(--line-2);border-radius:var(--radius-sm);margin:5px;cursor:pointer;transition:.15s;}
+.step:hover{border-color:var(--gold);}
+.step .s-num{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);}
+.step .s-label{font-weight:700;font-size:.86rem;color:var(--navy);margin-top:2px;}
+.step .s-state{font-size:.74rem;margin-top:4px;color:var(--ink-soft);}
+.step.done{border-left-color:var(--good);background:#f1f7f2;}
+.step.done .s-state{color:var(--good);font-weight:700;}
+.step input{display:none;}
+
+/* pager */
+.pager{display:flex;justify-content:space-between;gap:10px;margin:8px 0 22px;}
+.pager.bottom{margin-top:22px;}
+.pager .btn{flex:0 0 auto;}
+.pager .spacer{flex:1;}
+
+/* readout */
+.readout{background:#fbfaf6;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;font-size:.9rem;}
+.readout h4{margin:14px 0 6px;color:var(--burgundy);border-bottom:1px solid var(--line);padding-bottom:4px;}
+.readout h4:first-child{margin-top:0;}
+.readout ul{margin:6px 0;padding-left:20px;}
+.readout .empty{color:#9a958a;font-style:italic;}
+.readout .ex-line{padding:3px 0;border-bottom:1px dotted var(--line);}
+
+/* ===== NEW: live courtroom mode ===== */
+.live-banner{background:linear-gradient(180deg,#1a1340,#241a52);color:#fff;border:1px solid #3a2f6b;border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;}
+.live-banner h3{color:#fff;border:none;margin:0 0 4px;}
+.live-banner p{margin:0;color:#cfc8ee;font-size:.86rem;}
+.appear-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.appear-card{border:1px solid var(--line-2);border-radius:var(--radius);background:#fff;padding:12px 14px;box-shadow:var(--shadow-sm);}
+.appear-card .who{font-weight:700;color:var(--navy);font-size:.92rem;margin-bottom:7px;}
+.pchips{display:flex;gap:6px;flex-wrap:wrap;}
+.pchip{cursor:pointer;border:1px solid var(--line-2);background:#f7f5ef;border-radius:99px;padding:5px 12px;font-size:.78rem;font-weight:600;color:var(--ink-soft);}
+.pchip input{position:absolute;opacity:0;width:0;height:0;}
+.pchip.sel-present{background:#e6efe6;border-color:#9ec3a6;color:#1e5a33;}
+.pchip.sel-absent{background:#f3dede;border-color:#d6a3ab;color:#7a2738;}
+.pchip.sel-late{background:#efe7d2;border-color:#d8c486;color:#7a5a12;}
+.pchip.sel-excused{background:#e3eaf5;border-color:#a9bbd9;color:#2b4a7a;}
+.appear-note{margin-top:8px;}
+.appear-note textarea{min-height:38px;}
+
+.finder{margin-top:6px;}
+.finder-list{max-height:260px;overflow:auto;border:1px solid var(--line-2);border-radius:var(--radius-sm);background:#fff;}
+.finder-item{padding:9px 12px;border-bottom:1px solid var(--line);font-size:.86rem;}
+.finder-item:last-child{border-bottom:none;}
+.finder-item .lab{font-family:var(--mono);font-weight:700;color:var(--burgundy);margin-right:8px;}
+.finder-item .loc{display:inline-block;margin-top:3px;font-size:.76rem;color:var(--navy-3);background:#eef2f8;border:1px solid #c2cfe4;border-radius:4px;padding:1px 7px;}
+.finder-empty{padding:14px;color:#9a958a;font-style:italic;font-size:.86rem;}
+
+.respond-out{background:#101f3d;color:#fff;border-radius:var(--radius);padding:14px 16px;font-size:.95rem;line-height:1.6;margin-top:10px;border:1px solid var(--gold);min-height:46px;}
+.respond-out .ph{color:#8b96b0;font-style:italic;}
+
+.flow-strip{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.flow-strip .fs{background:#fff;border:1px solid var(--line-2);border-top:3px solid var(--accent,#5f6033);border-radius:var(--radius-sm);padding:7px 11px;font-size:.78rem;font-weight:600;color:var(--navy);}
+.flow-strip .fa{align-self:center;color:var(--gold);font-weight:700;}
+
+
+/* ===== TRIAL READINESS DASHBOARD ===== */
+.readiness-shell{display:grid;gap:14px;}
+.readiness-hero{display:grid;grid-template-columns:minmax(220px,1.25fr) minmax(260px,2fr);gap:16px;align-items:center;background:linear-gradient(135deg,#101f3d 0%,#1d3563 70%,#314c7d 100%);color:#fff;border:1px solid #0c1830;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);}
+.readiness-score{display:flex;align-items:center;gap:15px;}
+.score-ring{width:94px;height:94px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:conic-gradient(var(--gold) var(--score,0%),rgba(255,255,255,.18) 0);position:relative;}
+.score-ring:before{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--navy);}
+.score-ring strong{position:relative;font-family:var(--serif);font-size:1.55rem;color:#fff;}
+.readiness-score h3{color:#fff;border:0;margin:0 0 5px;padding:0;}
+.readiness-score p{margin:0;color:#dce3f2;font-size:.86rem;}
+.readiness-counts{display:grid;grid-template-columns:repeat(3,minmax(90px,1fr));gap:9px;}
+.readiness-count{border:1px solid rgba(255,255,255,.24);border-radius:var(--radius-sm);padding:10px 11px;background:rgba(255,255,255,.08);}
+.readiness-count strong{display:block;font-family:var(--serif);font-size:1.35rem;color:#fff;line-height:1;}
+.readiness-count span{font-size:.74rem;color:#e8ecf5;}
+.readiness-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;}
+.readiness-card{border:1px solid var(--line-2);border-left:6px solid var(--line-2);border-radius:var(--radius);padding:13px 14px;background:#fff;box-shadow:var(--shadow-sm);}
+.readiness-card.ready{border-left-color:var(--good);background:#f1f7f2;}
+.readiness-card.attention{border-left-color:var(--warn);background:#fff8e9;}
+.readiness-card.critical{border-left-color:var(--danger);background:#fbebee;}
+.readiness-card .r-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+.readiness-card .r-code{font-family:var(--mono);font-size:.72rem;font-weight:700;background:var(--navy);color:#fff;border-radius:4px;padding:3px 7px;}
+.readiness-card .r-status{font-size:.69rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;}
+.readiness-card.ready .r-status{color:var(--good);}.readiness-card.attention .r-status{color:var(--warn);}.readiness-card.critical .r-status{color:var(--danger);}
+.readiness-card h4{margin:0 0 5px;font-size:.96rem;color:var(--navy);}
+.readiness-card p{margin:0;font-size:.82rem;color:var(--ink-soft);}
+.action-list{list-style:none;margin:0;padding:0;counter-reset:action;}
+.action-list li{counter-increment:action;display:grid;grid-template-columns:42px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);}
+.action-list li:last-child{border-bottom:0;}
+.action-list li:before{content:"P" counter(action);font-family:var(--mono);font-size:.76rem;font-weight:800;color:#fff;background:var(--navy);border-radius:4px;display:grid;place-items:center;height:28px;}
+.action-list li.priority-critical:before{background:var(--danger);}.action-list li.priority-attention:before{background:var(--warn);}.action-list li.priority-ready:before{background:var(--good);}
+.action-list strong{display:block;color:var(--navy);font-size:.9rem;}
+.action-list span{display:block;color:var(--ink-soft);font-size:.8rem;margin-top:2px;}
+.readiness-detail{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.readiness-detail-row{display:grid;grid-template-columns:62px 145px 1fr;gap:10px;align-items:start;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.82rem;background:#fff;}
+.readiness-detail-row:last-child{border-bottom:0;}
+.readiness-detail-row.ready{background:#f1f7f2;}.readiness-detail-row.attention{background:#fff8e9;}.readiness-detail-row.critical{background:#fbebee;}
+.readiness-detail-row .d-code{font-family:var(--mono);font-weight:800;color:var(--navy);}
+.readiness-detail-row .d-area{font-weight:700;color:var(--navy);}
+.readiness-empty{padding:14px;border:1px dashed var(--line-2);border-radius:var(--radius);color:var(--ink-soft);background:#fbfaf6;}
+.print-instruction{background:#eef2f8;border:1px solid #c2cfe4;border-radius:var(--radius-sm);padding:10px 12px;font-size:.8rem;color:#28344d;margin-top:10px;}
+@media(max-width:720px){.readiness-hero{grid-template-columns:1fr}.readiness-detail-row{grid-template-columns:54px 1fr}.readiness-detail-row .d-message{grid-column:1/-1}.readiness-counts{grid-template-columns:repeat(3,1fr)}}
+
+/* toast */
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:11px 18px;border-radius:99px;font-size:.86rem;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s;z-index:200;border:1px solid var(--gold);}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+footer{max-width:1180px;margin:0 auto;padding:24px 18px 60px;color:var(--ink-soft);font-size:.82rem;}
+footer a{color:var(--navy-3);}
+.small{font-size:.8rem;color:var(--ink-soft);}
+.divider{height:1px;background:var(--line);margin:14px 0;border:none;}
+.muted{color:var(--ink-soft);}
+
+@media(max-width:720px){
+  .masthead h1{font-size:1.4rem;}
+  body{font-size:15px;}
+  .converter,.grid.g2{grid-template-columns:1fr;}
+}
+
+/* PRINT */
+@page{size:auto;margin:.45in;}
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  html,body{background:#fff !important;font-size:10.5pt;}
+  .banner,.navbar,.toolbar,.overall,.pager,#toast,.no-print,.del-row,.add-row-btn,.tbl-toolbar{display:none !important;}
+  .masthead{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%) !important;color:#fff !important;border-bottom:4px double var(--gold) !important;}
+  .masthead h1{color:#fff !important;}.docket-eyebrow{color:var(--gold-soft) !important;}
+  main{max-width:100%;padding:0;}
+  .tab-section{display:block !important;page-break-before:always;animation:none !important;}
+  .tab-section:first-of-type{page-break-before:avoid;}
+  .collapse[data-open] .collapse-body,.collapse-body{display:block !important;}
+  .collapse .tw{display:none;}
+  .card,.collapse,.section-head,.appear-card,.step,.readiness-card{box-shadow:none !important;break-inside:avoid;}
+  .section-head{background:#fff !important;border:1px solid var(--line) !important;border-left:6px solid var(--accent,#16294e) !important;}
+  .data-table th{background:var(--navy) !important;color:#fff !important;}
+  .data-table tr:nth-child(even) td{background:#faf8f2 !important;}
+  .live-banner{background:linear-gradient(180deg,#1a1340,#241a52) !important;color:#fff !important;border:1px solid #3a2f6b !important;}
+  .live-banner h3{color:#fff !important;}.live-banner p{color:#cfc8ee !important;}
+  .respond-out{background:var(--navy) !important;color:#fff !important;border:1px solid var(--gold) !important;}
+  .callout-note{background:#eef2f8 !important}.callout-warn{background:var(--warn-bg) !important}.callout-key{background:#f6ecef !important}.callout-good{background:#e9f2ea !important}
+  input,select,textarea{border:1px solid #999 !important;background:#fff !important;color:#000 !important;}
+  textarea{height:auto !important;min-height:0;overflow:visible;}
+  a{color:var(--navy-3) !important;text-decoration:underline;}
+  .print-only{display:block !important;}
+  .readiness-hero{break-inside:avoid;background:linear-gradient(135deg,#101f3d 0%,#1d3563 70%,#314c7d 100%) !important;color:#fff !important;}
+  .score-ring:before{background:var(--navy) !important;}
+  footer{padding-bottom:10px;}
+}
+.print-only{display:none;}
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="wrap">
+    <div class="seal">PRO<br>SE<br>TRIAL</div>
+    <div>
+      This is a private organizing tool for someone preparing for a <strong>divorce trial without a lawyer</strong>. It is <strong>not legal advice</strong> and does not predict outcomes. Court rules, deadlines, and the rules of evidence <strong>vary by state and by judge</strong> — always confirm what applies in your court. The signed, written orders and the entered judgment are what control.
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="docket-eyebrow">Self-Represented · Trial Preparation · Working File · Not for filing</p>
+    <h1>Divorce Trial Companion</h1>
+    <div class="toolbar no-print">
+      <button class="btn btn-gold" onclick="saveNow()">▣ Save progress</button>
+      <button class="btn btn-ghost" onclick="exportText()">⤓ Export notes (.txt)</button>
+      <button class="btn btn-ghost" onclick="printAllPages()">⎙ Color print preview / Save PDF</button>
+      <button class="btn btn-danger" onclick="clearAll()">⟲ Clear all</button>
+    </div>
+  </div>
+</header>
+
+<div class="overall no-print">
+  <div class="progress-shell"><div class="progress-fill" id="overallFill"></div></div>
+  <div class="progress-label" id="overallLabel">Saved locally in this browser only.</div>
+</div>
+
+<nav class="navbar no-print" aria-label="Sections">
+  <div class="nav-scroll" id="navScroll" role="tablist"></div>
+</nav>
+
+<main id="main">
+
+<!-- ============ TAB 1 ============ -->
+<section class="tab-section acc-1" id="tab-1" role="tabpanel" aria-labelledby="navbtn-1">
+  <div class="section-head">
+    <p class="eyebrow">Section 1</p>
+    <h2>Start here — your case at a glance</h2>
+    <p>Set up who's who, where the case is, and where you are in the process. Everything you type stays on this device. <span class="tab-progress" data-progress-for="1"></span></p>
+  </div>
+
+  <div class="card">
+    <h3>Where are you in the process?</h3>
+    <p class="small">Tap each stage you've reached. This is just a map — every court's path is a little different.</p>
+    <div class="stepper" id="stageStepper"></div>
+  </div>
+
+  <div class="card">
+    <h3>Case caption &amp; key facts</h3>
+    <p class="small">Use the names as they appear on your court papers. There's no need to enter anything you'd rather keep off this device.</p>
+    <div class="grid">
+      <div class="field"><label for="cap_court">Court name</label><input type="text" id="cap_court" data-field placeholder="e.g., Superior Court / Supreme Court"></div>
+      <div class="field"><label for="cap_county">County / district</label><input type="text" id="cap_county" data-field></div>
+      <div class="field"><label for="cap_state">State</label><input type="text" id="cap_state" data-field></div>
+      <div class="field"><label for="cap_index">Case / index / docket no.</label><input type="text" id="cap_index" data-field></div>
+      <div class="field"><label for="cap_judge">Judge (if known)</label><input type="text" id="cap_judge" data-field></div>
+      <div class="field"><label for="cap_trialdate">Trial date</label><input type="date" id="cap_trialdate" data-field></div>
+      <div class="field"><label for="cap_party_a">Petitioner / Plaintiff</label><input type="text" id="cap_party_a" data-field placeholder="Name on the papers"></div>
+      <div class="field"><label for="cap_party_b">Respondent / Defendant</label><input type="text" id="cap_party_b" data-field placeholder="Name on the papers"></div>
+    </div>
+    <div class="divider"></div>
+    <div class="grid">
+      <div class="field"><span class="lbl">In this case, I am the…</span>
+        <div class="chkrow"><input type="radio" id="role_a" name="role" value="Petitioner/Plaintiff" data-field-radio="role"><label for="role_a">Petitioner / Plaintiff (I filed)</label></div>
+        <div class="chkrow"><input type="radio" id="role_b" name="role" value="Respondent/Defendant" data-field-radio="role"><label for="role_b">Respondent / Defendant (I was served)</label></div>
+      </div>
+      <div class="field"><span class="lbl">Am I representing myself?</span>
+        <div class="chkrow"><input type="radio" id="rep_self" name="rep" value="Self-represented" data-field-radio="rep"><label for="rep_self">Yes — self-represented (pro se)</label></div>
+        <div class="chkrow"><input type="radio" id="rep_atty" name="rep" value="Have attorney" data-field-radio="rep"><label for="rep_atty">No — I have an attorney</label></div>
+        <div class="chkrow"><input type="radio" id="rep_limited" name="rep" value="Limited-scope help" data-field-radio="rep"><label for="rep_limited">Some — limited-scope / coaching help</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapse" data-open="true">
+    <button class="collapse-head" aria-expanded="true"><span>How a divorce trial usually works</span><span class="tw">▾</span></button>
+    <div class="collapse-body" id="howTrialBody"></div>
+  </div>
+
+  <div class="callout callout-key">
+    <strong>Please read this first.</strong>
+    This tool helps you <em>organize, prepare, and stay calm</em> — it does not give legal advice, fill in the law for you, or promise any result. It can't replace a licensed attorney, and even one limited-scope consultation can be worth a great deal. Where this tool mentions a rule or procedure, treat it as a prompt to look up the exact rule in <em>your</em> state and court.
+  </div>
+</section>
+
+<!-- ============ TAB 2 ============ -->
+<section class="tab-section acc-2" id="tab-2" role="tabpanel" aria-labelledby="navbtn-2">
+  <div class="section-head">
+    <p class="eyebrow">Section 2</p>
+    <h2>Issues &amp; positions</h2>
+    <p>A divorce trial is decided issue by issue. List each issue, what you're asking for, what the other side likely wants, and what you'll need to show. <span class="tab-progress" data-progress-for="2"></span></p>
+  </div>
+
+  <div class="callout callout-note">
+    <strong>What "burden" means.</strong> For most issues, whoever asks the court to do something has to give the court enough evidence to support it. Think about what facts the judge would need to be convinced of, and what proves each one. The exact standard varies by state — note your state's rule in the last column.
+  </div>
+
+  <div class="card">
+    <h3>Issue map</h3>
+    <p class="small">Common divorce issues are pre-loaded. Edit, delete, or add your own. In "Key evidence," jot the exhibit numbers from Section 3 (e.g., "Ex. 4, 7").</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="min-width:150px">Issue</th><th style="min-width:180px">What I'm asking for</th><th style="min-width:180px">Their likely position</th><th style="min-width:180px">What I must show</th><th style="min-width:120px">Key evidence (Ex. #)</th><th style="min-width:140px">My state's rule / law</th><th></th></tr></thead>
+        <tbody id="issuesBody"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-plain btn-sm add-row-btn no-print" onclick="addIssueRow()">+ Add issue</button>
+  </div>
+</section>
+
+<!-- ============ TAB 3 ============ -->
+<section class="tab-section acc-3" id="tab-3" role="tabpanel" aria-labelledby="navbtn-3">
+  <div class="section-head">
+    <p class="eyebrow">Section 3 · The heart of the file</p>
+    <h2>Evidence &amp; exhibit manager</h2>
+    <p>Every document, photo, message, or record you might show the judge is an "exhibit." This is your master list and your checkpoint system — it cross-references each exhibit to the tab in your physical binder so you can find it instantly in court. <span class="tab-progress" data-progress-for="3"></span></p>
+  </div>
+
+  <div class="collapse" data-open="true">
+    <button class="collapse-head" aria-expanded="true"><span>How exhibits work — read before trial</span><span class="tw">▾</span></button>
+    <div class="collapse-body" id="exhibitHelpBody"></div>
+  </div>
+
+  <div class="card">
+    <h3>Exhibit list &amp; readiness</h3>
+    <div class="tbl-toolbar no-print">
+      <button class="btn btn-plain btn-sm" onclick="addExhibit()">+ Add exhibit</button>
+      <input type="text" id="exhFilter" placeholder="Filter by any word…" oninput="filterExhibits()">
+      <select id="exhFilterStatus" onchange="filterExhibits()"><option value="">All readiness</option><option>Not ready</option><option>Ready to offer</option><option>Admitted</option></select>
+      <span class="small" id="exhCount"></span>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr>
+          <th style="min-width:64px">Ex. #</th>
+          <th style="min-width:210px">What it is</th>
+          <th style="min-width:130px">Issue it supports</th>
+          <th style="min-width:120px">Brought in by</th>
+          <th style="min-width:110px">Binder / tab</th>
+          <th class="ck" title="Original or clean copy gathered">Got</th>
+          <th class="ck" title="3 copies: court, other side, you">×3</th>
+          <th class="ck" title="You can show it's authentic / lay foundation">Found.</th>
+          <th class="ck" title="Pre-marked or ready to be marked">Mark</th>
+          <th class="ck" title="Shared / exchanged with the other side">Shared</th>
+          <th class="ck" title="Offered into evidence at trial">Offer</th>
+          <th class="ck" title="Admitted by the judge">Adm.</th>
+          <th style="min-width:140px">Notes / objection</th>
+          <th></th>
+        </tr></thead>
+        <tbody id="exhibitsBody"></tbody>
+      </table>
+    </div>
+    <p class="small muted">Checkpoints, left to right: <strong>Got</strong> the document · made <strong>×3</strong> copies (judge, other side, you) · can lay <strong>foundation</strong> (show it's real) · ready to <strong>mark</strong> · <strong>shared</strong> with the other side if required · <strong>offered</strong> at trial · <strong>admitted</strong> by the judge.</p>
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>Bring three copies of every exhibit.</strong> Courts generally expect one for the judge, one for the other party, and one for yourself to hold while you talk. Keep them in the same order and numbering as this list, with a tab for each, so "Exhibit 7" is always behind tab 7.
+  </div>
+</section>
+
+<!-- ============ TAB 4 ============ -->
+<section class="tab-section acc-4" id="tab-4" role="tabpanel" aria-labelledby="navbtn-4">
+  <div class="section-head">
+    <p class="eyebrow">Section 4</p>
+    <h2>Witnesses</h2>
+    <p>A witness is anyone who testifies — including you. List who you may call, what each one proves, and whether they'll actually be there on the day. <span class="tab-progress" data-progress-for="4"></span></p>
+  </div>
+
+  <div class="collapse" data-open="false">
+    <button class="collapse-head" aria-expanded="false"><span>Witness basics</span><span class="tw">▾</span></button>
+    <div class="collapse-body" id="witnessHelpBody"></div>
+  </div>
+
+  <div class="card">
+    <h3>Witness list</h3>
+    <p class="small">In "Proves," note the issue(s) and the exhibit numbers that come in through this witness.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="min-width:140px">Name</th><th style="min-width:130px">Role / relationship</th><th style="min-width:200px">What they prove (issue + Ex. #)</th><th style="min-width:120px">Helps</th><th style="min-width:140px">Subpoena / contact</th><th style="min-width:130px">On trial day</th><th style="min-width:140px">Notes</th><th></th></tr></thead>
+        <tbody id="witnessBody"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-plain btn-sm add-row-btn no-print" onclick="addWitnessRow()">+ Add witness</button>
+  </div>
+
+  <div class="callout callout-note">
+    <strong>If a witness might not show.</strong> Some witnesses only attend if formally subpoenaed, and subpoenas usually must be served a certain number of days ahead. Mark each witness's status here and confirm your court's subpoena rules early.
+  </div>
+</section>
+
+<!-- ============ TAB 5 ============ -->
+<section class="tab-section acc-5" id="tab-5" role="tabpanel" aria-labelledby="navbtn-5">
+  <div class="section-head">
+    <p class="eyebrow">Section 5</p>
+    <h2>My testimony &amp; direct questions</h2>
+    <p>Plan what you'll tell the judge in your own words, and the open-ended questions you'll ask your own witnesses. <span class="tab-progress" data-progress-for="5"></span></p>
+  </div>
+
+  <div class="callout callout-good">
+    <strong>On direct, ask open questions.</strong> When questioning your own witness (or telling your own story), use who / what / when / where / how. Let the witness do the talking. Save the pointed yes-or-no questions for cross-examination of the other side.
+  </div>
+
+  <div class="card">
+    <h3>My own testimony — points I want to make</h3>
+    <p class="small">Each point: the fact in plain words, the exhibit that backs it up, and which issue it serves.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="min-width:280px">Point / fact (in my own words)</th><th style="min-width:120px">Backed by (Ex. #)</th><th style="min-width:150px">Issue</th><th></th></tr></thead>
+        <tbody id="directSelfBody"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-plain btn-sm add-row-btn no-print" onclick="addDirectSelfRow()">+ Add point</button>
+  </div>
+
+  <div class="card">
+    <h3>Questions for my witnesses</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="min-width:130px">Witness</th><th style="min-width:300px">Open-ended question</th><th style="min-width:160px">What it proves (Ex. #)</th><th></th></tr></thead>
+        <tbody id="directWitBody"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-plain btn-sm add-row-btn no-print" onclick="addDirectWitRow()">+ Add question</button>
+  </div>
+</section>
+
+<!-- ============ TAB 6 ============ -->
+<section class="tab-section acc-6" id="tab-6" role="tabpanel" aria-labelledby="navbtn-6">
+  <div class="section-head">
+    <p class="eyebrow">Section 6</p>
+    <h2>Cross-examination</h2>
+    <p>Cross-examination is your chance to question the other party and their witnesses. Plan tight, factual questions in advance. <span class="tab-progress" data-progress-for="6"></span></p>
+  </div>
+
+  <div class="collapse" data-open="true">
+    <button class="collapse-head" aria-expanded="true"><span>Cross-examination ground rules</span><span class="tw">▾</span></button>
+    <div class="collapse-body" id="crossHelpBody"></div>
+  </div>
+
+  <div class="card">
+    <h3>Cross questions</h3>
+    <p class="small">If you plan to challenge a witness with their own prior words or a document, note it in "Impeachment" with the exhibit number.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="min-width:130px">Witness</th><th style="min-width:130px">Topic</th><th style="min-width:260px">Leading question (one fact each)</th><th style="min-width:170px">Impeachment (prior words / Ex. #)</th><th style="min-width:130px">Goal</th><th></th></tr></thead>
+        <tbody id="crossBody"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-plain btn-sm add-row-btn no-print" onclick="addCrossRow()">+ Add question</button>
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>A caution on accusing someone of lying.</strong> Don't call a witness a liar unless you can show it with a document or their own prior statement. Let the contradiction speak for itself — judges find that far more persuasive than the accusation.
+  </div>
+</section>
+
+<!-- ============ TAB 7 ============ -->
+<section class="tab-section acc-7" id="tab-7" role="tabpanel" aria-labelledby="navbtn-7">
+  <div class="section-head">
+    <p class="eyebrow">Section 7</p>
+    <h2>Opening statement</h2>
+    <p>An opening is a short roadmap: who you are, what the case is about, and what the evidence will show. It is not argument — that comes at the end. <span class="tab-progress" data-progress-for="7"></span></p>
+  </div>
+
+  <div class="card">
+    <h3>Build your opening</h3>
+    <div class="field"><label for="op_intro">Who I am &amp; what this case is about (1–2 sentences)</label><textarea id="op_intro" data-field placeholder="Good morning, Your Honor. I am the [petitioner/respondent], appearing on my own behalf. This case asks the court to decide…"></textarea></div>
+    <div class="field"><label for="op_issues">The issues the court needs to decide</label><textarea id="op_issues" data-field placeholder="The issues are: (1) … (2) … (3) …"></textarea></div>
+    <div class="field"><label for="op_preview">What the evidence will show — issue by issue</label><textarea id="op_preview" data-field placeholder="On [issue], the evidence will show… (point to the documents and witnesses, by exhibit number)"></textarea></div>
+    <div class="field"><label for="op_request">What I'll ask the court to do</label><textarea id="op_request" data-field placeholder="At the close of the evidence, I will ask the court to…"></textarea></div>
+    <button class="btn btn-gold btn-sm no-print" onclick="assembleOpening()">↻ Assemble opening</button>
+  </div>
+
+  <div class="card">
+    <h3>Assembled opening</h3>
+    <div class="readout" id="openingReadout"><span class="empty">Fill in the fields above and tap "Assemble opening."</span></div>
+    <div class="toolbar no-print" style="margin-top:10px">
+      <button class="btn btn-plain btn-sm" onclick="copyText('openingReadout')">⧉ Copy</button>
+    </div>
+  </div>
+
+  <div class="callout callout-note"><strong>Keep it short.</strong> A clear two-to-three minute opening that previews your evidence lands better than a long speech. Don't argue yet — just tell the judge what they're about to see.</div>
+</section>
+
+<!-- ============ TAB 8 ============ -->
+<section class="tab-section acc-8" id="tab-8" role="tabpanel" aria-labelledby="navbtn-8">
+  <div class="section-head">
+    <p class="eyebrow">Section 8</p>
+    <h2>Closing argument</h2>
+    <p>Now you argue. Tie the evidence the judge actually heard to each issue, and to what you're asking for. Address your weak spots honestly. <span class="tab-progress" data-progress-for="8"></span></p>
+  </div>
+
+  <div class="card">
+    <h3>Argument by issue</h3>
+    <p class="small">For each issue: what the evidence showed (with exhibit numbers), why it favors your position, and the specific relief you want.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="min-width:140px">Issue</th><th style="min-width:240px">What the evidence showed (Ex. #)</th><th style="min-width:200px">Why it supports me</th><th style="min-width:160px">What I ask for</th><th></th></tr></thead>
+        <tbody id="closingBody"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-plain btn-sm add-row-btn no-print" onclick="addClosingRow()">+ Add issue</button>
+  </div>
+
+  <div class="card">
+    <h3>Framing &amp; weak spots</h3>
+    <div class="field"><label for="cl_intro">Opening line of my closing</label><textarea id="cl_intro" data-field placeholder="Your Honor, the evidence has shown…"></textarea></div>
+    <div class="field"><label for="cl_weak">The hard facts against me — and my honest answer to them</label><textarea id="cl_weak" data-field placeholder="The other side will point to… Here's the honest context the court should weigh…"></textarea></div>
+    <div class="field"><label for="cl_request">My final, specific request to the court</label><textarea id="cl_request" data-field placeholder="For these reasons, I respectfully ask the court to…"></textarea></div>
+    <button class="btn btn-gold btn-sm no-print" onclick="assembleClosing()">↻ Assemble closing</button>
+  </div>
+
+  <div class="card">
+    <h3>Assembled closing</h3>
+    <div class="readout" id="closingReadout"><span class="empty">Fill in the fields above and tap "Assemble closing."</span></div>
+    <div class="toolbar no-print" style="margin-top:10px"><button class="btn btn-plain btn-sm" onclick="copyText('closingReadout')">⧉ Copy</button></div>
+  </div>
+
+  <div class="callout callout-good"><strong>Facing your weak facts is strength.</strong> Naming the hard facts yourself, calmly, and giving the court the context, is far more credible than hoping the judge won't notice them.</div>
+</section>
+
+<!-- ============ TAB 9 ============ -->
+<section class="tab-section acc-9" id="tab-9" role="tabpanel" aria-labelledby="navbtn-9">
+  <div class="section-head">
+    <p class="eyebrow">Section 9</p>
+    <h2>Trial notebook — order of proof</h2>
+    <p>The sequence you'll actually follow in the room. Build it here, then carry it into Live Mode on the day. <span class="tab-progress" data-progress-for="9"></span></p>
+  </div>
+
+  <div class="card">
+    <h3>The usual order of a trial day</h3>
+    <div class="flow-strip" id="trialFlowStrip"></div>
+    <p class="small muted">Your judge may adjust this. If you're the responding party, the other side often goes first.</p>
+  </div>
+
+  <div class="card">
+    <h3>My order of witnesses &amp; proof</h3>
+    <p class="small">List the order you'll call witnesses and what comes in through each. The button below drafts a running order from your Witnesses (Section 4) and Exhibits (Section 3).</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="width:54px">#</th><th style="min-width:140px">Witness</th><th style="min-width:230px">Topics to cover</th><th style="min-width:130px">Exhibits (Ex. #)</th><th style="min-width:90px">Est. time</th><th></th></tr></thead>
+        <tbody id="orderBody"></tbody>
+      </table>
+    </div>
+    <div class="toolbar no-print" style="margin-top:6px">
+      <button class="btn btn-plain btn-sm" onclick="addOrderRow()">+ Add row</button>
+      <button class="btn btn-gold btn-sm" onclick="draftOrderOfProof()">↻ Draft from my witnesses &amp; exhibits</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Order-of-proof readout</h3>
+    <div class="readout" id="orderReadout"><span class="empty">Add witnesses and exhibits, then tap "Draft."</span></div>
+    <div class="toolbar no-print" style="margin-top:10px"><button class="btn btn-plain btn-sm" onclick="copyText('orderReadout')">⧉ Copy</button></div>
+  </div>
+</section>
+
+<!-- ============ TAB 10 ============ -->
+<section class="tab-section acc-10" id="tab-10" role="tabpanel" aria-labelledby="navbtn-10">
+  <div class="section-head">
+    <p class="eyebrow">Section 10 · Keep open during trial</p>
+    <h2>Objections &amp; procedure — quick reference</h2>
+    <p>Plain-English explanations of the most common objections: what each means, when you might say it, and how to respond if it's used against you. <span class="tab-progress" data-progress-for="10"></span></p>
+  </div>
+
+  <div class="callout callout-warn"><strong>Evidence rules vary by state.</strong> This is a general study aid, not the rules of your court. Look up your state's rules of evidence, and when in doubt, ask the judge how they'd like you to proceed — that's a completely normal thing for a self-represented person to do.</div>
+
+  <div id="objectionsWrap"></div>
+
+  <div class="collapse" data-open="false">
+    <button class="collapse-head" aria-expanded="false"><span>How a trial day flows, minute to minute</span><span class="tw">▾</span></button>
+    <div class="collapse-body" id="dayFlowBody"></div>
+  </div>
+</section>
+
+<!-- ============ TAB 11 ============ -->
+<section class="tab-section acc-11" id="tab-11" role="tabpanel" aria-labelledby="navbtn-11">
+  <div class="section-head">
+    <p class="eyebrow">Section 11 · Open this in the courtroom</p>
+    <h2>Live mode — your in-court companion</h2>
+    <p>A calm command center for the day itself: who's present, instant exhibit lookup, a running log of what's said, and a builder that helps you frame a clear response on the spot. <span class="tab-progress" data-progress-for="11"></span></p>
+  </div>
+
+  <div class="live-banner">
+    <h3>You're prepared. Breathe.</h3>
+    <p>Speak slowly, address the judge as "Your Honor," and it's always okay to ask for a moment to find a document or collect your thoughts.</p>
+  </div>
+
+  <div class="card">
+    <h3>Who's here today</h3>
+    <p class="small">Mark each person as the case is called. If the other party isn't present, see the note that appears.</p>
+    <div class="appear-grid" id="appearGrid"></div>
+    <div id="absentNote"></div>
+    <div style="margin-top:12px">
+      <h4>Other people present (witnesses, attorneys)</h4>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th style="min-width:150px">Name</th><th style="min-width:130px">Role</th><th style="min-width:130px">Status</th><th style="min-width:160px">Note</th><th></th></tr></thead>
+          <tbody id="appearExtraBody"></tbody>
+        </table>
+      </div>
+      <button class="btn btn-plain btn-sm add-row-btn no-print" onclick="addAppearRow()">+ Add person</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Find an exhibit fast</h3>
+    <p class="small">Type a word — a name, a date, "bank," "text" — to jump to the exhibit and its binder tab.</p>
+    <div class="finder">
+      <input type="text" id="finderInput" class="no-print" placeholder="Search your exhibits…" oninput="runFinder()">
+      <div class="finder-list" id="finderList"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Help me respond</h3>
+    <p class="small">When the other side says something you need to answer, work through these four boxes. The tool drafts a calm, court-ready sentence you can read or adapt.</p>
+    <div class="grid g2">
+      <div class="field"><label for="rb_said">1 · What did they say or claim?</label><textarea id="rb_said" data-field placeholder="e.g., That I never contributed to the mortgage."></textarea></div>
+      <div class="field"><label for="rb_truth">2 · Is it true?</label>
+        <select id="rb_truth" data-field><option value="">— choose —</option><option>That's not accurate</option><option>That's only partly accurate</option><option>That's accurate, but it leaves out context</option><option>I'm not sure / I'd need to check</option></select>
+      </div>
+      <div class="field"><label for="rb_evidence">3 · What answers it? (exhibit # or witness)</label><input type="text" id="rb_evidence" data-field placeholder="e.g., Exhibit 7 — bank statements"></div>
+      <div class="field"><label for="rb_point">4 · The point I want the judge to take</label><textarea id="rb_point" data-field placeholder="e.g., I paid the mortgage from my account every month for three years."></textarea></div>
+    </div>
+    <button class="btn btn-gold btn-sm no-print" onclick="composeResponse()">↻ Compose a response</button>
+    <div class="respond-out" id="respondOut"><span class="ph">Your drafted response will appear here.</span></div>
+    <div class="toolbar no-print" style="margin-top:8px">
+      <button class="btn btn-plain btn-sm" onclick="copyText('respondOut')">⧉ Copy</button>
+      <button class="btn btn-plain btn-sm" onclick="logResponse()">＋ Save to today's log</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Today's log — what was said &amp; what to do</h3>
+    <p class="small">Capture key moments as they happen so nothing slips. Tick "Respond?" for anything you need to come back to.</p>
+    <button class="btn btn-plain btn-sm no-print" onclick="addLogRow()">＋ New log entry (timestamps now)</button>
+    <div class="table-wrap" style="margin-top:8px">
+      <table class="data-table">
+        <thead><tr><th style="width:74px">Time</th><th style="min-width:120px">Who</th><th style="min-width:260px">What was said / happened</th><th class="ck">Respond?</th><th style="min-width:180px">My note / answer</th><th></th></tr></thead>
+        <tbody id="logBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 12 ============ -->
+<section class="tab-section acc-12" id="tab-12" role="tabpanel" aria-labelledby="navbtn-12">
+  <div class="section-head">
+    <p class="eyebrow">Section 12</p>
+    <h2>Deadlines, logistics &amp; questions</h2>
+    <p>The practical scaffolding: what's due and when, what to bring, where to go, and the questions to ask before you run out of time. <span class="tab-progress" data-progress-for="12"></span></p>
+  </div>
+
+  <div class="card">
+    <h3>Deadlines &amp; pre-trial requirements</h3>
+    <p class="small">Many courts require exchanging exhibit and witness lists, or filing a pre-trial statement, by set dates. Confirm yours and track them here.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th style="min-width:240px">What's due</th><th style="min-width:150px">Date</th><th class="ck">Done</th><th style="min-width:160px">Notes</th><th></th></tr></thead>
+        <tbody id="deadlineBody"></tbody>
+      </table>
+    </div>
+    <button class="btn btn-plain btn-sm add-row-btn no-print" onclick="addDeadlineRow()">+ Add deadline</button>
+  </div>
+
+  <div class="card">
+    <h3>What to bring on the day</h3>
+    <div id="bringWrap"></div>
+  </div>
+
+  <div class="card">
+    <h3>Courtroom logistics</h3>
+    <div class="grid">
+      <div class="field"><label for="loc_where">Courthouse address &amp; room</label><input type="text" id="loc_where" data-field></div>
+      <div class="field"><label for="loc_when">Date &amp; arrival time</label><input type="text" id="loc_when" data-field placeholder="Arrive 30–45 min early for security"></div>
+      <div class="field"><label for="loc_park">Parking / transit plan</label><input type="text" id="loc_park" data-field></div>
+      <div class="field"><label for="loc_security">Security / ID notes</label><input type="text" id="loc_security" data-field placeholder="Photo ID; allow time for the line"></div>
+    </div>
+    <div class="collapse" data-open="false" style="margin-top:12px">
+      <button class="collapse-head" aria-expanded="false"><span>Courtroom conduct — small things that help</span><span class="tw">▾</span></button>
+      <div class="collapse-body" id="conductBody"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Questions to ask</h3>
+    <div class="field"><label for="q_clerk">For the clerk's office (logistics, filing, copies)</label><textarea id="q_clerk" data-field></textarea></div>
+    <div class="field"><label for="q_atty">For an attorney / legal-aid consult (the law, my weak spots)</label><textarea id="q_atty" data-field></textarea></div>
+    <div class="field"><label for="q_self">Things I keep forgetting / want to double-check</label><textarea id="q_self" data-field></textarea></div>
+  </div>
+
+  <div class="callout callout-good"><strong>Take care of yourself.</strong> Sleep, eat, and bring water. A rested, steady voice is one of the most persuasive things in the room. If you feel overwhelmed at any point, it's okay to ask the court for a brief recess.</div>
+</section>
+
+<!-- ============ TAB 13 ============ -->
+<section class="tab-section acc-13" id="tab-13" role="tabpanel" aria-labelledby="navbtn-13">
+  <div class="section-head">
+    <p class="eyebrow">Section 13 · Live final check</p>
+    <h2>Trial readiness dashboard &amp; complete packet</h2>
+    <p>This page reads every section, identifies what is ready, flags what still needs work, and states plainly when an issue has no proof connected to it yet. The dashboard and packet update automatically as you type. <span class="tab-progress" data-progress-for="13"></span></p>
+  </div>
+
+  <div class="card no-print">
+    <div class="toolbar">
+      <button class="btn btn-gold" onclick="refreshFinalPage()">↻ Refresh readiness &amp; packet</button>
+      <button class="btn btn-plain" onclick="copyText('packetReadout')">⧉ Copy packet</button>
+      <button class="btn btn-plain" onclick="downloadPacket()">⤓ Download packet (.txt)</button>
+      <button class="btn btn-plain" onclick="printAllPages()">⎙ Color print preview / Save PDF</button>
+    </div>
+    <div class="print-instruction"><strong>One click prints all 13 sections.</strong> Your browser will open its print preview. Choose <em>Save as PDF</em>. Colors are preserved through print-color settings; if your browser shows a “Background graphics” option, keep it enabled for the richest color output.</div>
+  </div>
+
+  <!-- READINESS UI ANCHOR: overview metrics and numbered domain cards -->
+  <div class="card" id="readinessDashboardCard">
+    <h3>Trial Readiness — one-glance dashboard</h3>
+    <div id="readinessDashboardAnchor" class="readiness-shell" aria-live="polite"><div class="readiness-empty">The readiness analysis will appear here.</div></div>
+  </div>
+
+  <!-- READINESS UI ANCHOR: prioritized next actions -->
+  <div class="card" id="readinessActionsCard">
+    <h3>Prioritized next actions</h3>
+    <div id="readinessActionsAnchor"><div class="readiness-empty">Your highest-priority next steps will appear here.</div></div>
+  </div>
+
+  <!-- READINESS UI ANCHOR: detailed coded findings -->
+  <div class="card" id="readinessDetailCard">
+    <h3>Number-coded readiness findings</h3>
+    <div id="readinessDetailAnchor"><div class="readiness-empty">Detailed findings will appear here.</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Complete trial packet summary</h3>
+    <div class="readout" id="packetReadout"><span class="empty">Your full packet will build automatically from everything entered in Sections 1–12.</span></div>
+  </div>
+
+  <div class="card">
+    <h3>Where to look things up</h3>
+    <div id="resourcesWrap"></div>
+    <p class="small muted" style="margin-top:10px">Resource links open official government and court websites. Some examples are New York–specific because that's a common starting point; if your case is elsewhere, search "[your state] courts self-represented divorce" and your county court's website for local rules and forms.</p>
+  </div>
+
+  <div class="callout callout-key"><strong>One last word.</strong> This packet is your organization, not your verdict. A divorce trial with property, support, or children at stake is genuinely high-stakes — even a single limited-scope consult with a family-law attorney to pressure-test your plan can change the outcome. You've done real work getting ready. Walk in steady.</div>
+</section>
+
+</main>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<footer>
+  <p><strong>Private &amp; offline.</strong> Everything you type is saved only in this browser on this device using local storage — nothing is sent anywhere, and there is no account, server, tracking, or analytics. If you clear your browser data, switch browsers or devices, or open this file from a different folder, your entries won't follow. Use <em>Export notes</em> and <em>Print / Save PDF</em> to keep backups.</p>
+  <p class="small">This tool is general educational and organizational support for self-represented litigants. It is not legal advice, it does not predict outcomes, and it is not a substitute for a licensed attorney. Rules of procedure and evidence vary by jurisdiction and judge.</p>
+</footer>
+
+<script>
+/* ============================================================
+   STATE + PERSISTENCE ENGINE  (carried over, proven)
+   ============================================================ */
+const STORAGE_KEY = 'divorceTrialCompanion_v1';
+const dynTables = {};
+let saveTimer = null;
+let current = 0;
+let sections = [];
+
+function cssEscape(s){ return (window.CSS && CSS.escape) ? CSS.escape(s) : String(s).replace(/["\\]/g,'\\$&'); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+function collect(){
+  const fields = {};
+  document.querySelectorAll('[data-field]').forEach(el=>{
+    if(!el.id) return;
+    fields[el.id] = (el.type==='checkbox') ? el.checked : el.value;
+  });
+  const radios = {};
+  document.querySelectorAll('[data-field-radio]').forEach(el=>{
+    const g = el.getAttribute('data-field-radio');
+    if(!(g in radios)) radios[g] = '';
+    if(el.checked) radios[g] = el.value;
+  });
+  return { v:1, fields, radios, dyn:dynTables };
+}
+function saveNow(showMsg){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(collect()));
+    if(showMsg!==false) toast('Progress saved in this browser');
+  }catch(e){ toast('Could not save — storage may be full or blocked'); }
+  refreshProgress();
+}
+function scheduleSave(){ clearTimeout(saveTimer); saveTimer = setTimeout(()=>saveNow(false), 600); }
+
+function restore(data){
+  if(data.dyn){
+    Object.keys(data.dyn).forEach(key=>{
+      const cfg = DYN[key]; if(!cfg) return;
+      const tb = document.getElementById(cfg.tbody); if(!tb) return;
+      (data.dyn[key]||[]).forEach(rowId=>{
+        if(!dynTables[key] || !dynTables[key].includes(rowId)) addDynRow(key, tb, cfg.cols, rowId);
+      });
+    });
+  }
+  if(data.fields){
+    Object.entries(data.fields).forEach(([id,val])=>{
+      const el = document.getElementById(id); if(!el) return;
+      if(el.type==='checkbox') el.checked = !!val; else el.value = val;
+    });
+  }
+  if(data.radios){
+    Object.entries(data.radios).forEach(([g,val])=>{
+      if(!val) return;
+      const el = document.querySelector('[data-field-radio="'+g+'"][value="'+cssEscape(val)+'"]');
+      if(el) el.checked = true;
+    });
+  }
+}
+function clearAll(){
+  if(!confirm('Clear ALL saved information from this browser? This cannot be undone. Consider exporting your notes first.')) return;
+  if(!confirm('Final confirmation: permanently erase everything you have entered?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+/* ---- dynamic rows (now supports preset values) ---- */
+function addDynRow(key, tbody, cols, rowId, focus, vals){
+  rowId = rowId || uid();
+  if(!dynTables[key]) dynTables[key] = [];
+  if(!dynTables[key].includes(rowId)) dynTables[key].push(rowId);
+  const tr = document.createElement('tr');
+  cols.forEach((c,i)=>{
+    const td = document.createElement('td');
+    let el;
+    if(c.type==='select'){
+      el = document.createElement('select');
+      (c.opts||[]).forEach(o=>{ const op=document.createElement('option'); op.value=(o==='—'?'':o); op.textContent=o; el.appendChild(op); });
+    } else if(c.type==='checkbox'){
+      td.className='ck';
+      el = document.createElement('input'); el.type='checkbox';
+    } else if(c.type==='textarea'){
+      el = document.createElement('textarea'); el.rows=1; if(c.ph) el.placeholder=c.ph;
+    } else {
+      el = document.createElement('input'); el.type=c.type||'text'; if(c.ph) el.placeholder=c.ph;
+    }
+    el.id = key+'__'+rowId+'__'+i;
+    el.setAttribute('data-field','');
+    if(c.cls) el.className=c.cls;
+    if(c.ro) el.readOnly=true;
+    if(vals && vals[i]!==undefined && vals[i]!==null){
+      if(el.type==='checkbox') el.checked=!!vals[i]; else el.value=vals[i];
+    }
+    td.appendChild(el);
+    tr.appendChild(td);
+  });
+  const tdDel = document.createElement('td');
+  tdDel.style.textAlign='center';
+  const del = document.createElement('button');
+  del.className='del-row no-print'; del.type='button'; del.textContent='✕'; del.setAttribute('aria-label','Delete row');
+  del.onclick = ()=>{ tr.remove(); dynTables[key]=(dynTables[key]||[]).filter(r=>r!==rowId); saveNow(false); refreshProgress(); scheduleReadinessRefresh(); };
+  tdDel.appendChild(del);
+  tr.appendChild(tdDel);
+  tbody.appendChild(tr);
+  if(focus){ const f=tr.querySelector('input,select,textarea'); if(f) f.focus(); }
+  return tr;
+}
+/* read a dynamic tbody into array-of-rows (each row = array of cell values) */
+function readRows(tbodyId){
+  const tb=document.getElementById(tbodyId); if(!tb) return [];
+  return [...tb.querySelectorAll('tr')].map(tr=>{
+    return [...tr.querySelectorAll('td')].slice(0,-1).map(td=>{
+      const el=td.querySelector('input,select,textarea'); if(!el) return '';
+      return el.type==='checkbox' ? el.checked : (el.value||'');
+    });
+  });
+}
+
+/* ============================================================
+   CONTENT DATA
+   ============================================================ */
+const TABS = ['Start here','Issues','Evidence','Witnesses','My testimony','Cross-exam','Opening','Closing','Trial notebook','Objections','Live mode','Logistics','Packet'];
+
+const STAGES = [
+  ['Case filed','The divorce petition/complaint has been filed.'],
+  ['Served','The other party has been served with the papers.'],
+  ['Response','An answer/response has been filed (or the time to respond has passed).'],
+  ['Discovery','Exchanging financial disclosure, documents, and information.'],
+  ['Motions','Any temporary or pre-trial motions have been heard.'],
+  ['Settlement talks','Negotiation, mediation, or a settlement conference.'],
+  ['Pre-trial conference','The court sets the trial and any exchange deadlines.'],
+  ['Trial','The contested issues are tried before the judge.'],
+  ['Decision & judgment','The court decides; the signed judgment controls.']
+];
+
+const HOW_TRIAL = `
+<p>A divorce trial is how a judge decides the issues you and the other party could not agree on. There is usually no jury in family cases — the judge decides.</p>
+<p>The day generally moves in this order: brief <strong>opening statements</strong>; the party who goes first presents their <strong>case</strong> (calling witnesses and offering exhibits); the other party does the same; each side can <strong>cross-examine</strong> the other's witnesses; then <strong>closing arguments</strong>. The judge may rule that day or issue a written decision later.</p>
+<p>Your job as a self-represented person is to (1) know the issues, (2) have your evidence organized and ready to offer, (3) ask clear questions, and (4) stay calm and respectful. This tool is built around exactly those four things.</p>
+<p class="small muted">Your court may do things a little differently. When unsure, it is completely acceptable to ask the judge, "Your Honor, may I ask how you'd like me to proceed?"</p>`;
+
+const EXHIBIT_HELP = `
+<p>An <strong>exhibit</strong> is any physical or document evidence you want the judge to consider — bank statements, texts, emails, photos, records, letters. Each gets a number (or letter) so everyone can refer to it.</p>
+<p>To actually get an exhibit "in," you generally: <strong>mark</strong> it, <strong>lay a foundation</strong> (show what it is and that it's authentic — e.g., "These are my bank statements that I downloaded from my bank"), <strong>offer</strong> it into evidence, let the other side object if they wish, and the judge <strong>admits</strong> or excludes it. Only admitted exhibits count.</p>
+<p>The checkpoint columns track each exhibit from "gathered" all the way to "admitted." The <strong>Binder / tab</strong> column is the bridge to your physical copies: if Exhibit 7 lives behind tab 7 of your binder, you can find it in seconds when the judge says "show me."</p>
+<p class="small muted">Some evidence (like statements someone made outside court) can run into hearsay limits. Section 10 covers common objections in plain English.</p>`;
+
+const WITNESS_HELP = `
+<p>A <strong>witness</strong> is anyone who testifies under oath — including <em>you</em>. List everyone who could help prove an issue.</p>
+<p>You question your own witnesses on <strong>direct examination</strong> (open questions), and you may <strong>cross-examine</strong> the other side's witnesses (pointed, leading questions). If a witness won't come voluntarily, you may need a <strong>subpoena</strong> — and those usually must be served a set number of days before trial, so plan early.</p>
+<p>For each witness, be clear on one thing: <em>what does this person prove that I can't prove another way?</em> If the answer is "nothing," you may not need them.</p>`;
+
+const CROSS_HELP = `
+<p>Cross-examination is tight and controlled. A few rules that help:</p>
+<p><strong>Lead.</strong> On cross you can ask leading (yes/no) questions: "You were living in the home in March, correct?" Each question should contain just <em>one</em> fact.</p>
+<p><strong>Don't ask what you don't know.</strong> Only ask questions where you already know — and can prove — the answer. Surprises on cross usually hurt you.</p>
+<p><strong>Use documents.</strong> If a witness says something different from a prior statement or a document, that document (an exhibit) does the work. Have the exhibit number ready.</p>
+<p><strong>Know when to stop.</strong> Once you've made your point, move on. You don't have to cross-examine every witness.</p>`;
+
+const OBJECTIONS = [
+  ['Hearsay','A statement someone made <em>outside</em> court, offered to prove that what they said was true.','When the other side tries to use what a third person said (a text, a "he told me…") to prove a fact.','If you hear it against you, you can explain why it fits an exception (for example, the statement is a business record, or it\'s the opposing party\'s own words), or offer it for a reason other than its truth.'],
+  ['Relevance','Evidence that doesn\'t make any fact the court must decide more or less likely.','When testimony or a document has nothing to do with the issues being tried.','Explain in one sentence how it connects to an issue the court must decide ("This goes to who paid the mortgage, Your Honor").'],
+  ['Foundation / authentication','There\'s no showing yet of what the document is or that it\'s genuine.','When a document appears without anyone explaining where it came from.','Lay the foundation first: who made it, where it came from, how you know it\'s what it claims to be — then re-offer it.'],
+  ['Leading the witness','A question that suggests its own answer, asked of your <em>own</em> witness on direct.','You generally object to this when the other side feeds answers to their witness.','On <em>cross</em>, leading is allowed — so this objection mostly applies during direct examination.'],
+  ['Speculation / no personal knowledge','The witness is guessing about something they didn\'t see or know firsthand.','When a witness testifies about what someone else thought, or about events they weren\'t present for.','Rephrase to ask only what the witness personally saw, heard, or did.'],
+  ['Asked and answered','The same question has already been asked and answered.','When a point is being repeated to hammer it home.','Move on once you have the answer; you can return to it in closing.'],
+  ['Argumentative','The "question" is really an argument, not a request for facts.','When cross-examination turns into debating the witness.','Keep questions factual and one fact at a time; save argument for closing.'],
+  ['Narrative','A question so broad the witness just talks at length with no control.','Sometimes raised when "tell me everything that happened" invites a runaway answer.','Break it into specific questions: when, where, who, what next.'],
+  ['Best evidence','For the contents of a writing, the original (or a reliable copy) is generally needed rather than someone\'s memory of it.','When a witness describes what a document said instead of showing it.','Have the actual document marked as an exhibit and offer it.'],
+  ['Privilege','Certain communications are protected (e.g., attorney–client).','When a question seeks protected communications.','Don\'t ask for privileged content; if asked, you can note the privilege.']
+];
+
+const DAY_FLOW = `
+<p><strong>Before you\'re called:</strong> arrive early, clear security, find your courtroom, check in with the clerk, and silence your phone. Sit where the clerk directs.</p>
+<p><strong>When the case is called:</strong> step forward, state your name, and note whether the other party is present (mark it in Live Mode).</p>
+<p><strong>Openings:</strong> short roadmaps from each side.</p>
+<p><strong>First party\'s case:</strong> they call witnesses and offer exhibits; you may cross-examine and you may object.</p>
+<p><strong>Your case:</strong> you testify and/or call witnesses, and offer your exhibits one by one (mark → foundation → offer → admitted).</p>
+<p><strong>Closings:</strong> each side argues how the evidence supports their requests.</p>
+<p><strong>Decision:</strong> the judge rules from the bench or in a later written decision. Listen for any deadlines and write them down.</p>`;
+
+const TRIAL_FLOW = ['Openings','First party\'s case','Cross-examination','Your case','Cross-examination','Closings','Decision'];
+
+const BRING = [
+  'Three copies of every exhibit (judge, other side, you), tabbed and in order',
+  'Your printed exhibit list (Section 3) and witness list (Section 4)',
+  'This packet printed (Section 13), plus your outline and notes',
+  'A copy of every prior court order and the papers that started the case',
+  'Financial documents and disclosure forms relevant to your issues',
+  'Photo ID and any case/index number written down',
+  'Pen, paper (or this tool open) to take notes during testimony',
+  'A calendar to write down any new dates the court gives',
+  'Water, and a little patience — there is often waiting'
+];
+
+const CONDUCT = `
+<ul>
+<li>Address the judge as <strong>"Your Honor."</strong> Refer to the other party respectfully by name or role.</li>
+<li><strong>Stand</strong> when you speak to the judge, if you\'re able.</li>
+<li><strong>Don\'t interrupt</strong> — not the judge, not the other party, not their witness. Let the objection or answer finish, then respond.</li>
+<li>Speak <strong>slowly</strong> and to the judge, not to your ex. It\'s about the evidence, not the relationship.</li>
+<li>It\'s fine to <strong>pause</strong>: "May I have a moment to find that document, Your Honor?" is completely normal.</li>
+<li>Dress neatly and conservatively if you can. Silence your phone.</li>
+<li>If emotion rises, breathe and slow down. Steadiness reads as credibility.</li>
+</ul>`;
+
+const RESOURCES = [
+  ['Find your state\'s self-help / self-represented resources','https://www.lawhelp.org/','LawHelp links to free legal-aid and self-help resources by state.'],
+  ['New York — Divorce resources (example)','https://www.nycourts.gov/divorce-resources/','Official NY courts divorce resource hub.'],
+  ['New York — Maintenance & child support calculators (example)','https://www.nycourts.gov/divorce-resources/maintenance-and-child-support-tools','Official NY calculators — estimates only; confirm in court.'],
+  ['New York — Help for unrepresented litigants (example)','https://www.nycourts.gov/courthelp/','NY CourtHelp for people without a lawyer.']
+];
+
+const ISSUES_PRELOAD = [
+  ['Grounds for divorce','','','',''],
+  ['Property / asset division','','','',''],
+  ['Debts','','','',''],
+  ['The marital home','','','',''],
+  ['Spousal support / maintenance / alimony','','','',''],
+  ['Child custody / parenting time','','','',''],
+  ['Child support','','','',''],
+  ['Retirement / pensions','','','',''],
+  ['Attorney\'s fees / costs','','','',''],
+  ['Name change','','','','']
+];
+const ISSUE_OPTS = ['—','Grounds','Property division','Debts','Marital home','Spousal support','Custody / parenting','Child support','Retirement / pensions','Attorney\'s fees','Name change','Other'];
+
+const DEADLINES_PRELOAD = [
+  ['Exchange exhibit list with other side','',false,''],
+  ['Exchange witness list with other side','',false,''],
+  ['File pre-trial statement (if required)','',false,''],
+  ['Serve any subpoenas','',false,''],
+  ['Complete financial disclosure','',false,'']
+];
+
+const APPEAR_ROLES = [
+  ['pet','Petitioner / Plaintiff'],
+  ['resp','Respondent / Defendant'],
+  ['judge','Judge'],
+  ['myatty','My attorney (if any)'],
+  ['theiratty','Other side\'s attorney']
+];
+
+/* ============================================================
+   DYN CONFIGS
+   ============================================================ */
+const DYN = {
+  issues:{ tbody:'issuesBody', cols:[
+    {type:'text',ph:'Issue'},{type:'textarea',ph:'What I want'},{type:'textarea',ph:'Their position'},
+    {type:'textarea',ph:'What I must show'},{type:'text',ph:'Ex. #'},{type:'textarea',ph:'Rule / law'} ] },
+  exhibits:{ tbody:'exhibitsBody', cols:[
+    {type:'text',ph:'#'},{type:'textarea',ph:'What it is'},{type:'select',opts:ISSUE_OPTS},
+    {type:'text',ph:'Witness'},{type:'text',ph:'Binder/tab'},
+    {type:'checkbox'},{type:'checkbox'},{type:'checkbox'},{type:'checkbox'},{type:'checkbox'},{type:'checkbox'},{type:'checkbox'},
+    {type:'textarea',ph:'Notes / objection'} ] },
+  witnesses:{ tbody:'witnessBody', cols:[
+    {type:'text',ph:'Name'},{type:'text',ph:'Role'},{type:'textarea',ph:'Proves'},
+    {type:'select',opts:['—','Me','Other side','Neutral']},{type:'select',opts:['—','Will attend','Needs subpoena','Subpoena served','Unsure']},
+    {type:'select',opts:['—','Expected','Present','Absent','Excused']},{type:'textarea',ph:'Notes'} ] },
+  directSelf:{ tbody:'directSelfBody', cols:[
+    {type:'textarea',ph:'Point / fact'},{type:'text',ph:'Ex. #'},{type:'select',opts:ISSUE_OPTS} ] },
+  directWit:{ tbody:'directWitBody', cols:[
+    {type:'text',ph:'Witness'},{type:'textarea',ph:'Open-ended question'},{type:'text',ph:'Proves / Ex. #'} ] },
+  cross:{ tbody:'crossBody', cols:[
+    {type:'text',ph:'Witness'},{type:'text',ph:'Topic'},{type:'textarea',ph:'Leading question'},
+    {type:'text',ph:'Prior words / Ex. #'},{type:'text',ph:'Goal'} ] },
+  closing:{ tbody:'closingBody', cols:[
+    {type:'select',opts:ISSUE_OPTS},{type:'textarea',ph:'What evidence showed'},
+    {type:'textarea',ph:'Why it supports me'},{type:'textarea',ph:'Relief'} ] },
+  order:{ tbody:'orderBody', cols:[
+    {type:'text',ph:'#'},{type:'text',ph:'Witness'},{type:'textarea',ph:'Topics'},{type:'text',ph:'Ex. #'},{type:'text',ph:'Time'} ] },
+  appearExtra:{ tbody:'appearExtraBody', cols:[
+    {type:'text',ph:'Name'},{type:'text',ph:'Role'},
+    {type:'select',opts:['—','Present','Absent','Late','Excused']},{type:'text',ph:'Note'} ] },
+  log:{ tbody:'logBody', cols:[
+    {type:'text',ph:'time',ro:true},{type:'text',ph:'Who'},{type:'textarea',ph:'What was said / happened'},
+    {type:'checkbox'},{type:'textarea',ph:'My note / answer'} ] },
+  deadline:{ tbody:'deadlineBody', cols:[
+    {type:'text',ph:'What\'s due'},{type:'date'},{type:'checkbox'},{type:'textarea',ph:'Notes'} ] }
+};
+
+/* add-row helpers */
+function addIssueRow(){ addDynRow('issues',document.getElementById('issuesBody'),DYN.issues.cols,null,true); saveNow(false); }
+function addExhibit(){
+  const n = (dynTables.exhibits?dynTables.exhibits.length:0)+1;
+  addDynRow('exhibits',document.getElementById('exhibitsBody'),DYN.exhibits.cols,null,true,[String(n)]);
+  saveNow(false); updateExhibitCount();
+}
+function addWitnessRow(){ addDynRow('witnesses',document.getElementById('witnessBody'),DYN.witnesses.cols,null,true); saveNow(false); }
+function addDirectSelfRow(){ addDynRow('directSelf',document.getElementById('directSelfBody'),DYN.directSelf.cols,null,true); saveNow(false); }
+function addDirectWitRow(){ addDynRow('directWit',document.getElementById('directWitBody'),DYN.directWit.cols,null,true); saveNow(false); }
+function addCrossRow(){ addDynRow('cross',document.getElementById('crossBody'),DYN.cross.cols,null,true); saveNow(false); }
+function addClosingRow(){ addDynRow('closing',document.getElementById('closingBody'),DYN.closing.cols,null,true); saveNow(false); }
+function addOrderRow(){ addDynRow('order',document.getElementById('orderBody'),DYN.order.cols,null,true); saveNow(false); }
+function addAppearRow(){ addDynRow('appearExtra',document.getElementById('appearExtraBody'),DYN.appearExtra.cols,null,true); saveNow(false); }
+function addDeadlineRow(){ addDynRow('deadline',document.getElementById('deadlineBody'),DYN.deadline.cols,null,true); saveNow(false); }
+function addLogRow(){
+  const t=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  addDynRow('log',document.getElementById('logBody'),DYN.log.cols,null,false,[t]);
+  saveNow(false);
+}
+
+/* ============================================================
+   BUILD STATIC CONTENT
+   ============================================================ */
+function buildAll(){
+  // stage stepper
+  const ss=document.getElementById('stageStepper');
+  STAGES.forEach((s,i)=>{
+    const lab=document.createElement('label');
+    lab.className='step'; lab.tabIndex=0; lab.id='stage_'+i;
+    lab.innerHTML=`<input type="checkbox" data-field id="stagechk_${i}"><div class="s-num">Stage ${i+1}</div><div class="s-label">${s[0]}</div><div class="s-state">${s[1]}</div>`;
+    ss.appendChild(lab);
+  });
+  // help bodies
+  setHTML('howTrialBody',HOW_TRIAL);
+  setHTML('exhibitHelpBody',EXHIBIT_HELP);
+  setHTML('witnessHelpBody',WITNESS_HELP);
+  setHTML('crossHelpBody',CROSS_HELP);
+  setHTML('dayFlowBody',DAY_FLOW);
+  setHTML('conductBody',CONDUCT);
+  // objections
+  const ow=document.getElementById('objectionsWrap');
+  OBJECTIONS.forEach((o,i)=>{
+    const open=i<2?'true':'false';
+    const c=document.createElement('div'); c.className='collapse'; c.setAttribute('data-open',open);
+    c.innerHTML=`<button class="collapse-head" aria-expanded="${open}"><span>${o[0]}</span><span class="tw">▾</span></button>
+      <div class="collapse-body"><p><strong>What it means:</strong> ${o[1]}</p><p><strong>When you might raise it:</strong> ${o[2]}</p><p><strong>If it\'s used against you:</strong> ${o[3]}</p></div>`;
+    ow.appendChild(c);
+  });
+  // trial flow strip
+  const tfs=document.getElementById('trialFlowStrip');
+  TRIAL_FLOW.forEach((f,i)=>{
+    const n=document.createElement('span'); n.className='fs'; n.textContent=f; tfs.appendChild(n);
+    if(i<TRIAL_FLOW.length-1){ const a=document.createElement('span'); a.className='fa'; a.textContent='→'; tfs.appendChild(a); }
+  });
+  // bring checklist
+  const bw=document.getElementById('bringWrap');
+  BRING.forEach((b,i)=>{
+    const r=document.createElement('div'); r.className='chkrow';
+    r.innerHTML=`<input type="checkbox" data-field id="bring_${i}"><label for="bring_${i}">${b}</label>`;
+    bw.appendChild(r);
+  });
+  // resources
+  const rw=document.getElementById('resourcesWrap');
+  RESOURCES.forEach(r=>{
+    const d=document.createElement('div'); d.className='chkrow';
+    d.innerHTML=`<span>📑</span><label><a href="${r[1]}" target="_blank" rel="noopener noreferrer">${r[0]}</a><br><span class="small muted">${r[2]}</span></label>`;
+    rw.appendChild(d);
+  });
+  // appearance grid
+  const ag=document.getElementById('appearGrid');
+  APPEAR_ROLES.forEach(r=>{
+    const g='appear_'+r[0];
+    const card=document.createElement('div'); card.className='appear-card';
+    const opts=['Present','Absent','Late','Excused'].map(o=>
+      `<label class="pchip" data-pchip="${g}"><input type="radio" name="${g}" value="${o}" data-field-radio="${g}">${o}</label>`).join('');
+    card.innerHTML=`<div class="who">${r[1]}</div><div class="pchips">${opts}</div>
+      <div class="appear-note"><textarea data-field id="appearnote_${r[0]}" placeholder="Note (optional)"></textarea></div>`;
+    ag.appendChild(card);
+  });
+}
+function setHTML(id,html){ const el=document.getElementById(id); if(el) el.innerHTML=html; }
+
+function seedDefaults(){
+  ISSUES_PRELOAD.forEach(v=>addDynRow('issues',document.getElementById('issuesBody'),DYN.issues.cols,null,false,v));
+  DEADLINES_PRELOAD.forEach(v=>addDynRow('deadline',document.getElementById('deadlineBody'),DYN.deadline.cols,null,false,v));
+  addExhibitSilent(); addExhibitSilent(); addExhibitSilent();
+}
+function addExhibitSilent(){
+  const n=(dynTables.exhibits?dynTables.exhibits.length:0)+1;
+  addDynRow('exhibits',document.getElementById('exhibitsBody'),DYN.exhibits.cols,null,false,[String(n)]);
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+function buildNav(){
+  sections=[...document.querySelectorAll('.tab-section')];
+  const nav=document.getElementById('navScroll');
+  sections.forEach((sec,i)=>{
+    const b=document.createElement('button');
+    b.className='tabbtn'; b.id='navbtn-'+(i+1); b.setAttribute('role','tab');
+    b.setAttribute('aria-selected', i===0?'true':'false');
+    b.tabIndex = i===0?0:-1;
+    b.innerHTML=`<span class="num">${i+1}</span><span>${TABS[i]||('Tab '+(i+1))}</span><span class="chk" data-chk="${i}"></span>`;
+    b.addEventListener('click',()=>activate(i));
+    b.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        e.preventDefault();
+        const d=e.key==='ArrowRight'?1:-1;
+        const ni=Math.min(Math.max(i+d,0),sections.length-1);
+        activate(ni); document.getElementById('navbtn-'+(ni+1)).focus();
+      }
+    });
+    nav.appendChild(b);
+  });
+}
+function activate(i){
+  current=i;
+  sections.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.querySelectorAll('.tabbtn').forEach((b,k)=>{
+    b.setAttribute('aria-selected',k===i?'true':'false'); b.tabIndex=k===i?0:-1;
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  updatePager();
+  if(sections[i].id==='tab-11'){ runFinder(); }
+  if(sections[i].id==='tab-13'){ refreshFinalPage(); }
+}
+function go(dir){ activate(Math.min(Math.max(current+dir,0),sections.length-1)); }
+function updatePager(){
+  document.querySelectorAll('[data-pg-prev]').forEach(b=>b.disabled=current===0);
+  document.querySelectorAll('[data-pg-next]').forEach(b=>b.disabled=current===sections.length-1);
+}
+
+/* ============================================================
+   PROGRESS
+   ============================================================ */
+function sectionStats(sec){
+  const els=[...sec.querySelectorAll('input[type=text],input[type=date],input[type=time],input[type=number],textarea,select')]
+    .filter(el=>el.hasAttribute('data-field')&&!el.readOnly);
+  let filled=0; els.forEach(el=>{ if((el.value||'').trim()) filled++; });
+  return {filled,total:els.length};
+}
+function refreshProgress(){
+  let allF=0,allT=0;
+  sections.forEach((sec,i)=>{
+    const {filled,total}=sectionStats(sec);
+    allF+=filled; allT+=total;
+    const p=document.querySelector('[data-progress-for="'+(i+1)+'"]');
+    if(p) p.textContent = total? `· ${filled}/${total} fields` : '';
+    const chk=document.querySelector('[data-chk="'+i+'"]');
+    if(chk) chk.textContent = (total>0 && filled>=Math.ceil(total*0.6))?'✓':'';
+  });
+  const pct=allT?Math.round(allF/allT*100):0;
+  const fill=document.getElementById('overallFill'); if(fill) fill.style.width=pct+'%';
+  const lab=document.getElementById('overallLabel');
+  if(lab) lab.textContent=`Overall: ${allF} of ${allT} fields entered (${pct}%) — saved locally in this browser only.`;
+}
+
+/* ============================================================
+   STEPPER + COLLAPSIBLES + PCHIPS
+   ============================================================ */
+function initSteppers(){
+  document.querySelectorAll('.step').forEach(step=>{
+    const cb=step.querySelector('input');
+    const sync=()=>step.classList.toggle('done',cb.checked);
+    // pointer click on the <label> natively toggles the contained checkbox -> change handles sync
+    step.addEventListener('keydown',e=>{ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); cb.checked=!cb.checked; cb.dispatchEvent(new Event('change',{bubbles:true})); }});
+    cb.addEventListener('change',()=>{ sync(); scheduleSave(); });
+    sync();
+  });
+}
+function initCollapsibles(){
+  document.addEventListener('click',e=>{
+    const head=e.target.closest('.collapse-head'); if(!head) return;
+    const c=head.closest('.collapse'); const open=c.getAttribute('data-open')==='true';
+    c.setAttribute('data-open',open?'false':'true');
+    head.setAttribute('aria-expanded',open?'false':'true');
+  });
+}
+function initPchips(){
+  document.querySelectorAll('[data-field-radio^="appear_"]').forEach(r=>{
+    r.addEventListener('change',()=>{ refreshPchips(); scheduleSave(); checkAbsent(); });
+  });
+}
+function refreshPchips(){
+  document.querySelectorAll('.pchip').forEach(l=>{
+    l.classList.remove('sel-present','sel-absent','sel-late','sel-excused');
+    const inp=l.querySelector('input');
+    if(inp && inp.checked) l.classList.add('sel-'+inp.value.toLowerCase());
+  });
+}
+function checkAbsent(){
+  const note=document.getElementById('absentNote'); if(!note) return;
+  const v=g=>{ const e=document.querySelector('[data-field-radio="appear_'+g+'"]:checked'); return e?e.value:''; };
+  const absent=[];
+  if(v('pet')==='Absent') absent.push('the Petitioner / Plaintiff');
+  if(v('resp')==='Absent') absent.push('the Respondent / Defendant');
+  if(!absent.length){ note.innerHTML=''; return; }
+  note.innerHTML=`<div class="callout callout-warn" style="margin-top:12px"><strong>A party is marked absent (${absent.join(' and ')}).</strong>
+    Courts handle an absent party in different ways — the court may let the present party proceed, may treat it as a default or inquest, or may adjourn to another date. You can ask the judge directly: "Your Honor, how would you like to proceed given that ${absent.join(' and ')} is not present?" Write down whatever the court decides in today's log. This is organizational guidance, not legal advice.</div>`;
+}
+
+/* ============================================================
+   EXHIBITS: status, filter, finder
+   ============================================================ */
+function exhibitStatus(row){
+  // row indices: 5 got,6 x3,7 found,8 mark,9 shared,10 offer,11 adm
+  if(row[11]) return 'Admitted';
+  if(row[5]&&row[6]&&row[7]) return 'Ready to offer';
+  return 'Not ready';
+}
+function updateExhibitCount(){
+  const rows=readRows('exhibitsBody');
+  const adm=rows.filter(r=>exhibitStatus(r)==='Admitted').length;
+  const ready=rows.filter(r=>exhibitStatus(r)==='Ready to offer').length;
+  const el=document.getElementById('exhCount');
+  if(el) el.textContent=`${rows.length} exhibit${rows.length===1?'':'s'} · ${ready} ready · ${adm} admitted`;
+}
+function filterExhibits(){
+  const q=(document.getElementById('exhFilter').value||'').toLowerCase();
+  const sv=document.getElementById('exhFilterStatus').value;
+  const tb=document.getElementById('exhibitsBody');
+  [...tb.querySelectorAll('tr')].forEach(tr=>{
+    const cells=[...tr.querySelectorAll('td')].slice(0,-1).map(td=>{const e=td.querySelector('input,select,textarea');return e?(e.type==='checkbox'?e.checked:e.value):'';});
+    const text=cells.filter(c=>typeof c==='string').join(' ').toLowerCase();
+    const status=exhibitStatus(cells);
+    const okText=!q||text.includes(q);
+    const okStatus=!sv||status===sv;
+    tr.style.display=(okText&&okStatus)?'':'none';
+  });
+  updateExhibitCount();
+}
+function runFinder(){
+  const q=(document.getElementById('finderInput')?document.getElementById('finderInput').value:'').toLowerCase();
+  const list=document.getElementById('finderList'); if(!list) return;
+  const rows=readRows('exhibitsBody');
+  const matches=rows.filter(r=>{
+    const text=[r[0],r[1],r[2],r[3],r[4],r[12]].join(' ').toLowerCase();
+    return !q||text.includes(q);
+  });
+  if(!matches.length){ list.innerHTML='<div class="finder-empty">'+(rows.length?'No exhibits match that search.':'No exhibits yet — add them in Section 3.')+'</div>'; return; }
+  list.innerHTML=matches.map(r=>{
+    const lab=r[0]||'—', desc=r[1]||'(no description)', loc=r[4], st=exhibitStatus(r);
+    return `<div class="finder-item"><span class="lab">Ex. ${escapeHtml(lab)}</span>${escapeHtml(desc)}<br>
+      ${loc?`<span class="loc">Binder: ${escapeHtml(loc)}</span> `:''}<span class="small muted">${st}</span></div>`;
+  }).join('');
+}
+
+/* ============================================================
+   RESPOND BUILDER + LOG
+   ============================================================ */
+function composeResponse(){
+  const said=gv('rb_said'), truth=gv('rb_truth'), ev=gv('rb_evidence'), point=gv('rb_point');
+  const out=document.getElementById('respondOut');
+  if(!said&&!point){ out.innerHTML='<span class="ph">Fill in at least what they said and the point you want to make.</span>'; return; }
+  let s='Your Honor, ';
+  if(truth==='That\'s not accurate') s+='I need to respectfully correct that. ';
+  else if(truth==='That\'s only partly accurate') s+='that\'s only partly accurate. ';
+  else if(truth==='That\'s accurate, but it leaves out context') s+='that\'s accurate as far as it goes, but it leaves out important context. ';
+  else if(truth==='I\'m not sure / I\'d need to check') s+='I\'d want to verify that before responding fully, ';
+  if(point) s+=point.replace(/\s+$/,'')+(/[.!?]$/.test(point.trim())?' ':'. ');
+  if(ev){
+    if(/^ex/i.test(ev.trim())) s+=`${ev} supports this. `;
+    else s+=`The evidence — ${ev} — supports this. `;
+  }
+  s+='I\'d ask the court to weigh that.';
+  out.textContent=s;
+}
+function logResponse(){
+  const out=document.getElementById('respondOut');
+  const txt=out?out.textContent.trim():'';
+  if(!txt||out.querySelector('.ph')){ toast('Compose a response first'); return; }
+  const t=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  addDynRow('log',document.getElementById('logBody'),DYN.log.cols,null,false,[t,'Me (planned response)',gv('rb_said'),false,txt]);
+  saveNow(false); toast('Saved to today\'s log'); activate(10);
+  setTimeout(()=>document.getElementById('logBody').lastElementChild.scrollIntoView({behavior:'smooth',block:'center'}),200);
+}
+
+/* ============================================================
+   ASSEMBLERS
+   ============================================================ */
+function assembleOpening(){
+  const parts=[];
+  if(gv('op_intro')) parts.push(gv('op_intro'));
+  if(gv('op_issues')) parts.push('The issues for the court are: '+gv('op_issues'));
+  if(gv('op_preview')) parts.push('The evidence will show: '+gv('op_preview'));
+  if(gv('op_request')) parts.push('At the close of the evidence, I will ask the court to '+lc(gv('op_request')));
+  const ro=document.getElementById('openingReadout');
+  ro.innerHTML = parts.length? parts.map(p=>`<p>${escapeHtml(p)}</p>`).join('') : '<span class="empty">Fill in the fields above and tap "Assemble opening."</span>';
+}
+function assembleClosing(){
+  const out=[];
+  if(gv('cl_intro')) out.push(`<p>${escapeHtml(gv('cl_intro'))}</p>`);
+  const rows=readRows('closingBody').filter(r=>(r[0]||r[1]||r[2]||r[3]));
+  if(rows.length){
+    out.push('<h4>Issue by issue</h4>');
+    rows.forEach(r=>{
+      out.push(`<p><strong>${escapeHtml(r[0]||'Issue')}.</strong> ${escapeHtml(r[1]||'')} ${r[2]?escapeHtml('— '+r[2]):''} ${r[3]?escapeHtml('I ask the court to '+lc(r[3])):''}</p>`);
+    });
+  }
+  if(gv('cl_weak')) out.push(`<h4>Addressing the hard facts</h4><p>${escapeHtml(gv('cl_weak'))}</p>`);
+  if(gv('cl_request')) out.push(`<h4>Request</h4><p>${escapeHtml(gv('cl_request'))}</p>`);
+  const ro=document.getElementById('closingReadout');
+  ro.innerHTML = out.length? out.join('') : '<span class="empty">Fill in the fields above and tap "Assemble closing."</span>';
+}
+function draftOrderOfProof(){
+  const wits=readRows('witnessBody').filter(r=>r[0]);
+  const exs=readRows('exhibitsBody').filter(r=>r[0]||r[1]);
+  const ro=document.getElementById('orderReadout');
+  if(!wits.length&&!exs.length){ ro.innerHTML='<span class="empty">Add witnesses (Section 4) and exhibits (Section 3) first.</span>'; return; }
+  let h='<h4>Suggested order of proof</h4><ol>';
+  h+='<li><strong>Opening statement</strong> — preview the issues and evidence.</li>';
+  if(wits.length){
+    wits.forEach(w=>{
+      const through=exs.filter(e=>(e[3]||'').toLowerCase().includes((w[0]||'').toLowerCase())&&w[0]).map(e=>'Ex. '+e[0]);
+      h+=`<li><strong>${escapeHtml(w[0])}</strong>${w[1]?' ('+escapeHtml(w[1])+')':''} — ${escapeHtml(w[2]||'testimony')}${through.length?'<br><span class="small muted">Exhibits through this witness: '+through.join(', ')+'</span>':''}</li>`;
+    });
+  } else {
+    h+='<li><strong>My testimony</strong> and exhibits.</li>';
+  }
+  // unassigned exhibits
+  const assigned=new Set();
+  wits.forEach(w=>exs.forEach(e=>{ if(w[0]&&(e[3]||'').toLowerCase().includes((w[0]||'').toLowerCase())) assigned.add(e[0]); }));
+  const loose=exs.filter(e=>!assigned.has(e[0])).map(e=>'Ex. '+(e[0]||'?')+(e[1]?' — '+e[1]:''));
+  if(loose.length){ h+='<li><strong>Other exhibits to offer</strong><br><span class="small muted">'+loose.map(escapeHtml).join('; ')+'</span></li>'; }
+  h+='<li><strong>Closing argument</strong> — tie the evidence to each issue and your requests.</li>';
+  h+='</ol>';
+  ro.innerHTML=h;
+}
+function lc(s){ s=(s||'').trim(); return s? s.charAt(0).toLowerCase()+s.slice(1):s; }
+
+/* ============================================================
+   PACKET / EXPORT
+   ============================================================ */
+function gv(id){ const el=document.getElementById(id); return el?(el.value||'').trim():''; }
+function radioVal(g){ const e=document.querySelector('[data-field-radio="'+g+'"]:checked'); return e?e.value:''; }
+
+/* ============================================================
+   READINESS ANALYSIS + COMPLETE PACKET
+   JS insertion anchors:
+   - buildTrialReadiness() reads all sections and returns coded findings/actions
+   - renderTrialReadiness() writes to readinessDashboardAnchor,
+     readinessActionsAnchor, and readinessDetailAnchor
+   ============================================================ */
+function clean(v){ return String(v===undefined||v===null?'':v).trim(); }
+function meaningfulRows(tbodyId){ return readRows(tbodyId).filter(r=>r.some(v=>v===true||clean(v))); }
+function issueKey(s){
+  s=clean(s).toLowerCase();
+  const groups=[
+    ['grounds','grounds'],['property','property'],['asset','property'],['debt','debts'],['home','marital-home'],
+    ['maintenance','spousal-support'],['alimony','spousal-support'],['spousal','spousal-support'],
+    ['custody','custody'],['parenting','custody'],['child support','child-support'],
+    ['retirement','retirement'],['pension','retirement'],['attorney','attorney-fees'],['name','name-change']
+  ];
+  for(const [needle,key] of groups) if(s.includes(needle)) return key;
+  return s.replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+function hasProofForIssue(issue, exhibits, witnesses, selfPoints, directQuestions){
+  if(clean(issue[4])) return true;
+  const k=issueKey(issue[0]);
+  const textMatches=t=>clean(t) && issueKey(t)===k;
+  if(exhibits.some(e=>clean(e[1]) && (issueKey(e[2])===k || textMatches(e[1])))) return true;
+  if(witnesses.some(w=>textMatches(w[2]))) return true;
+  if(selfPoints.some(r=>issueKey(r[2])===k || textMatches(r[0]))) return true;
+  if(directQuestions.some(r=>textMatches(r[2]) || textMatches(r[1]))) return true;
+  return false;
+}
+function statusLabel(level){ return level==='ready'?'Ready':level==='critical'?'Critical gap':'Needs work'; }
+function daysUntil(dateStr){
+  if(!dateStr) return null;
+  const d=new Date(dateStr+'T12:00:00'); if(Number.isNaN(d.getTime())) return null;
+  return Math.ceil((d-new Date())/86400000);
+}
+function buildTrialReadiness(){
+  const findings=[];
+  const actions=[];
+  const add=(code,area,level,message,action,priority)=>{
+    findings.push({code,area,level,message,action:action||''});
+    if(level!=='ready'&&action) actions.push({priority:priority||2,level,title:action,detail:message,code});
+  };
+
+  const basics=[['Court',gv('cap_court')],['Case/index number',gv('cap_index')],['Petitioner',gv('cap_party_a')],['Respondent',gv('cap_party_b')],['Trial date',gv('cap_trialdate')],['Your role',radioVal('role')],['Representation status',radioVal('rep')]];
+  const missingBasics=basics.filter(x=>!x[1]).map(x=>x[0]);
+  add('01','Case basics',missingBasics.length?'critical':'ready',missingBasics.length?`Missing: ${missingBasics.join(', ')}.`:'Court, parties, trial date, role, and representation status are identified.',missingBasics.length?'Complete the case-at-a-glance fields in Section 1.':'',1);
+
+  const allIssues=readRows('issuesBody').filter(r=>clean(r[0]));
+  const issues=allIssues.filter(r=>r.slice(1).some(v=>clean(v)));
+  if(!issues.length){
+    add('02','Issues & positions','critical','No issue has a developed position yet. The preloaded issue names alone do not show what you want or what you must prove.','Develop each contested issue in Section 2: requested result, opposing position, required facts, and law.',1);
+  }else{
+    const under=issues.filter(r=>!clean(r[1])||!clean(r[3]));
+    add('02','Issues & positions',under.length?'attention':'ready',under.length?`${under.length} issue(s) still lack either a specific request or a statement of what must be proven.`:`${issues.length} contested issue(s) have a requested result and proof target.`,under.length?'Finish the “What I’m asking for” and “What I must show” cells in Section 2.':'',2);
+  }
+
+  const exhibits=readRows('exhibitsBody').filter(r=>clean(r[1]));
+  const witnesses=readRows('witnessBody').filter(r=>clean(r[0]));
+  const selfPoints=readRows('directSelfBody').filter(r=>clean(r[0]));
+  const directQuestions=readRows('directWitBody').filter(r=>clean(r[1]));
+  const proofGaps=issues.filter(r=>!hasProofForIssue(r,exhibits,witnesses,selfPoints,directQuestions));
+  if(!issues.length){
+    add('03','Proof coverage','critical','Proof cannot be evaluated until the contested issues are developed.','Develop the issue map, then connect each issue to exhibit numbers or an exhibit category.',1);
+  }else if(proofGaps.length){
+    add('03','Proof coverage','critical',proofGaps.map(r=>`You have no proof for “${clean(r[0])}” yet.`).join(' '),'Connect evidence to every contested issue in Sections 2 and 3. Add exhibit numbers in the issue map or assign exhibits to that issue.',1);
+  }else{
+    add('03','Proof coverage','ready',`Every developed issue has at least one evidence reference or matching exhibit category.`,'',3);
+  }
+
+  if(!exhibits.length){
+    add('04','Exhibits','critical','No described exhibits have been entered. Blank preloaded exhibit rows do not count as evidence.','Enter the documents, records, messages, photographs, or other proof you may offer in Section 3.',1);
+  }else{
+    const incomplete=exhibits.filter(r=>!clean(r[0])||!clean(r[2])||!clean(r[4])||!r[5]||!r[6]||!r[7]||!r[8]);
+    const unshared=exhibits.filter(r=>!r[9]);
+    const msg=incomplete.length?`${incomplete.length} of ${exhibits.length} exhibit(s) are missing a number, issue, binder location, copy/foundation, or marking checkpoint.`:(unshared.length?`${unshared.length} exhibit(s) are not marked as shared/exchanged; confirm whether your court requires this.`:`${exhibits.length} exhibit(s) are organized through the pre-trial readiness checkpoints.`);
+    add('04','Exhibits',incomplete.length?'attention':'ready',msg,incomplete.length?'Complete the missing exhibit readiness checkpoints and binder locations in Section 3.':'',2);
+  }
+
+  if(!witnesses.length&&!selfPoints.length){
+    add('05','Witnesses & testimony','critical','No witness plan and no personal-testimony points have been entered.','List yourself and any other witnesses, then identify what each person proves in Sections 4 and 5.',1);
+  }else{
+    const risky=witnesses.filter(r=>!clean(r[2])||!clean(r[4])||!clean(r[5]));
+    add('05','Witnesses & testimony',risky.length?'attention':'ready',risky.length?`${risky.length} witness(es) lack a proof purpose, attendance/subpoena plan, or trial-day status.`:`Witness purposes and attendance plans are recorded; ${selfPoints.length} personal-testimony point(s) are outlined.`,risky.length?'Finish witness proof and attendance/subpoena planning in Sections 4 and 5.':'',2);
+  }
+
+  add('06','Direct examination',selfPoints.length||directQuestions.length?'ready':'attention',selfPoints.length||directQuestions.length?`${selfPoints.length} personal point(s) and ${directQuestions.length} witness question(s) are prepared.`:'No personal-testimony points or open-ended direct questions are prepared.','Prepare your own testimony points and open-ended questions in Section 5.',2);
+
+  const cross=readRows('crossBody').filter(r=>clean(r[2]));
+  add('07','Cross-examination',cross.length?'ready':'attention',cross.length?`${cross.length} leading cross-examination question(s) are prepared.`:'No cross-examination questions are entered. This may leave you reacting without a focused plan.','Prepare short, one-fact leading questions and note any impeachment exhibit in Section 6.',3);
+
+  const openingFields=[gv('op_intro'),gv('op_issues'),gv('op_preview'),gv('op_request')];
+  const openingCount=openingFields.filter(Boolean).length;
+  add('08','Opening statement',openingCount===4?'ready':'attention',openingCount===4?'The opening contains identity, issues, evidence preview, and requested result.':`${4-openingCount} of 4 opening components are still blank.`,'Finish and assemble the opening in Section 7.',2);
+
+  const closingRows=readRows('closingBody').filter(r=>clean(r[0])||clean(r[1])||clean(r[2])||clean(r[3]));
+  const closingCore=[gv('cl_intro'),gv('cl_weak'),gv('cl_request')].filter(Boolean).length;
+  add('09','Closing argument',closingRows.length&&closingCore>=2?'ready':'attention',closingRows.length&&closingCore>=2?`${closingRows.length} issue-specific closing row(s) and the core closing framework are present.`:'The closing does not yet tie the evidence to each issue and a specific final request.','Complete the issue-by-issue closing and final request in Section 8.',3);
+
+  const order=readRows('orderBody').filter(r=>clean(r[1]));
+  add('10','Order of proof',order.length?'ready':'attention',order.length?`${order.length} witness/proof step(s) are in the trial sequence.`:'No running order of witnesses and proof has been entered.','Draft the order of proof in Section 9 and confirm which exhibits come through each witness.',2);
+
+  const deadlines=readRows('deadlineBody').filter(r=>clean(r[0]));
+  const overdue=deadlines.filter(r=>clean(r[1])&&!r[2]&&daysUntil(clean(r[1]))<0);
+  const datedOpen=deadlines.filter(r=>clean(r[1])&&!r[2]&&daysUntil(clean(r[1]))>=0);
+  const undated=deadlines.filter(r=>!clean(r[1])&&!r[2]);
+  if(overdue.length){
+    add('11','Deadlines','critical',`${overdue.length} incomplete deadline(s) appear overdue: ${overdue.map(r=>clean(r[0])).join('; ')}.`,'Immediately confirm the court docket, local rules, and whether any missed requirement can still be cured.',1);
+  }else if(datedOpen.length||undated.length){
+    add('11','Deadlines','attention',`${datedOpen.length} dated requirement(s) remain open and ${undated.length} incomplete requirement(s) have no date.`,'Confirm every due date and mark completed requirements in Section 12.',1);
+  }else{
+    add('11','Deadlines','ready','All entered deadlines are marked complete, or no open deadline remains.','',3);
+  }
+
+  const logistics=[gv('loc_where'),gv('loc_when'),gv('loc_park'),gv('loc_security')];
+  const bringDone=BRING.filter((_,i)=>chk('bring_'+i)).length;
+  const logMissing=logistics.filter(Boolean).length<3;
+  add('12','Day-of logistics',logMissing||bringDone<Math.ceil(BRING.length*.75)?'attention':'ready',`${logistics.filter(Boolean).length}/4 logistics fields completed; ${bringDone}/${BRING.length} bring-list items checked.`,logMissing||bringDone<Math.ceil(BRING.length*.75)?'Finish the courthouse plan and day-of packing checklist in Section 12.':'',2);
+
+  findings.forEach((f,i)=>f.seq=String(i+1).padStart(2,'0'));
+  const levelRank={critical:0,attention:1,ready:2};
+  actions.sort((a,b)=>a.priority-b.priority || levelRank[a.level]-levelRank[b.level]);
+  const ready=findings.filter(f=>f.level==='ready').length;
+  const critical=findings.filter(f=>f.level==='critical').length;
+  const attention=findings.filter(f=>f.level==='attention').length;
+  const score=Math.round((ready+attention*.45)/findings.length*100);
+  return {findings,actions,ready,critical,attention,score,proofGaps};
+}
+
+function renderTrialReadiness(data){
+  const dash=document.getElementById('readinessDashboardAnchor');
+  const act=document.getElementById('readinessActionsAnchor');
+  const det=document.getElementById('readinessDetailAnchor');
+  if(!dash||!act||!det) return;
+  const headline=data.critical?`${data.critical} critical gap${data.critical===1?'':'s'} must be addressed.`:(data.attention?`${data.attention} area${data.attention===1?'':'s'} still need work.`:'Your preparation file is complete across the tracked domains.');
+  const cards=data.findings.map(f=>`<div class="readiness-card ${f.level}"><div class="r-top"><span class="r-code">${f.code}</span><span class="r-status">${statusLabel(f.level)}</span></div><h4>${escapeHtml(f.area)}</h4><p>${escapeHtml(f.message)}</p></div>`).join('');
+  dash.innerHTML=`<div class="readiness-hero"><div class="readiness-score"><div class="score-ring" style="--score:${data.score}%"><strong>${data.score}%</strong></div><div><h3>Preparation readiness</h3><p>${escapeHtml(headline)} This score measures completion and organization, not legal merit or likely outcome.</p></div></div><div class="readiness-counts"><div class="readiness-count"><strong>${data.ready}</strong><span>Ready</span></div><div class="readiness-count"><strong>${data.attention}</strong><span>Needs work</span></div><div class="readiness-count"><strong>${data.critical}</strong><span>Critical gaps</span></div></div></div><div class="readiness-grid">${cards}</div>`;
+
+  if(data.actions.length){
+    act.innerHTML='<ol class="action-list">'+data.actions.slice(0,12).map(a=>`<li class="priority-${a.level}"><div><strong>${escapeHtml(a.title)}</strong><span>${escapeHtml(a.code+' · '+a.detail)}</span></div></li>`).join('')+'</ol>';
+  }else{
+    act.innerHTML='<div class="callout callout-good"><strong>No preparation gaps detected in the tracked fields.</strong>Review accuracy, confirm local rules, and pressure-test the file with qualified legal help if possible.</div>';
+  }
+  det.innerHTML='<div class="readiness-detail">'+data.findings.map(f=>`<div class="readiness-detail-row ${f.level}"><div class="d-code">${escapeHtml(f.code)}</div><div class="d-area">${escapeHtml(f.area)}</div><div class="d-message"><strong>${statusLabel(f.level)}.</strong> ${escapeHtml(f.message)}${f.action?' <em>Next: '+escapeHtml(f.action)+'</em>':''}</div></div>`).join('')+'</div>';
+}
+
+function buildPacket(){
+  const out=[];
+  const readiness=buildTrialReadiness();
+  const builtAt=new Date().toLocaleString();
+  out.push(`<h4>Packet status</h4><p><strong>Readiness: ${readiness.score}%</strong> · ${readiness.ready} ready · ${readiness.attention} need work · ${readiness.critical} critical gap(s)<br><span class="small muted">Compiled ${escapeHtml(builtAt)} from every saved field in Sections 1–12.</span></p>`);
+  if(readiness.proofGaps.length) out.push('<div class="callout callout-key"><strong>Proof gaps</strong>'+readiness.proofGaps.map(r=>`<div>You have no proof for <strong>${escapeHtml(clean(r[0]))}</strong> yet.</div>`).join('')+'</div>');
+
+  let cap=`${gv('cap_court')||'Court'}`;
+  const place=[gv('cap_county'),gv('cap_state')].filter(Boolean).join(', ');
+  if(place) cap+=`  —  ${place}`;
+  cap+=`\nCase/Index No.: ${gv('cap_index')||'—'}\n`;
+  cap+=`${gv('cap_party_a')||'Petitioner'}  v.  ${gv('cap_party_b')||'Respondent'}\n`;
+  cap+=`Judge: ${gv('cap_judge')||'—'}   Trial date: ${gv('cap_trialdate')||'—'}\n`;
+  cap+=`I am: ${radioVal('role')||'—'} · ${radioVal('rep')||'—'}`;
+  out.push(`<h4>1 · Caption and case basics</h4><p>${escapeHtml(cap).replace(/\n/g,'<br>')}</p>`);
+
+  const stage=[]; STAGES.forEach((st,i)=>{ if(chk('stagechk_'+i)) stage.push(st[0]); });
+  out.push('<h4>2 · Procedural stage reached</h4>'+(stage.length?`<p>${stage.map(escapeHtml).join(' → ')}</p>`:'<p class="empty">No procedural stage marked.</p>'));
+
+  const iss=readRows('issuesBody').filter(r=>clean(r[0])&&r.slice(1).some(v=>clean(v)));
+  out.push('<h4>3 · Issues, positions, proof targets, and law</h4>');
+  out.push(iss.length?'<ol>'+iss.map(r=>`<li><strong>${escapeHtml(clean(r[0]))}</strong><br>My request: ${escapeHtml(clean(r[1])||'—')}<br>Other side’s likely position: ${escapeHtml(clean(r[2])||'—')}<br>What I must show: ${escapeHtml(clean(r[3])||'—')}<br>Key evidence: ${escapeHtml(clean(r[4])||'NO PROOF LINKED YET')}<br>Rule/law to confirm: ${escapeHtml(clean(r[5])||'—')}</li>`).join('')+'</ol>':'<p class="empty">No developed issues entered.</p>');
+
+  const exs=readRows('exhibitsBody').filter(r=>clean(r[0])||clean(r[1]));
+  out.push('<h4>4 · Complete exhibit list and readiness</h4>');
+  if(exs.length){
+    out.push(exs.map(r=>`<div class="ex-line"><strong>Ex. ${escapeHtml(clean(r[0])||'?')}</strong> — ${escapeHtml(clean(r[1])||'(no description)')}<br><span class="small">Issue: ${escapeHtml(clean(r[2])||'—')} · Brought in by: ${escapeHtml(clean(r[3])||'—')} · Binder/tab: ${escapeHtml(clean(r[4])||'—')} · ${escapeHtml(exhibitStatus(r))}${clean(r[12])?' · Note: '+escapeHtml(clean(r[12])):''}</span></div>`).join(''));
+  }else out.push('<p class="empty">No exhibits entered.</p>');
+
+  const wits=readRows('witnessBody').filter(r=>clean(r[0]));
+  out.push('<h4>5 · Witness plan</h4>');
+  out.push(wits.length?'<ul>'+wits.map(r=>`<li><strong>${escapeHtml(clean(r[0]))}</strong>${clean(r[1])?' ('+escapeHtml(clean(r[1]))+')':''}<br>Proves: ${escapeHtml(clean(r[2])||'—')} · Helps: ${escapeHtml(clean(r[3])||'—')} · Attendance/subpoena: ${escapeHtml(clean(r[4])||'—')} · Trial day: ${escapeHtml(clean(r[5])||'—')}${clean(r[6])?'<br>Note: '+escapeHtml(clean(r[6])):''}</li>`).join('')+'</ul>':'<p class="empty">No witnesses entered.</p>');
+
+  const self=readRows('directSelfBody').filter(r=>clean(r[0]));
+  const direct=readRows('directWitBody').filter(r=>clean(r[0])||clean(r[1]));
+  out.push('<h4>6 · My testimony and direct examination</h4>');
+  if(self.length) out.push('<p><strong>My testimony points</strong></p><ul>'+self.map(r=>`<li>${escapeHtml(clean(r[0]))}${clean(r[1])?' · Ex. '+escapeHtml(clean(r[1])):''}${clean(r[2])?' · '+escapeHtml(clean(r[2])):''}</li>`).join('')+'</ul>');
+  if(direct.length) out.push('<p><strong>Questions for my witnesses</strong></p><ul>'+direct.map(r=>`<li><strong>${escapeHtml(clean(r[0])||'Witness')}:</strong> ${escapeHtml(clean(r[1])||'—')}${clean(r[2])?' · Proves: '+escapeHtml(clean(r[2])):''}</li>`).join('')+'</ul>');
+  if(!self.length&&!direct.length) out.push('<p class="empty">No testimony points or direct questions entered.</p>');
+
+  const cross=readRows('crossBody').filter(r=>clean(r[0])||clean(r[2]));
+  out.push('<h4>7 · Cross-examination plan</h4>');
+  out.push(cross.length?'<ol>'+cross.map(r=>`<li><strong>${escapeHtml(clean(r[0])||'Witness')}</strong> · ${escapeHtml(clean(r[1])||'Topic not labeled')}<br>Question: ${escapeHtml(clean(r[2])||'—')}<br>Impeachment: ${escapeHtml(clean(r[3])||'—')} · Goal: ${escapeHtml(clean(r[4])||'—')}</li>`).join('')+'</ol>':'<p class="empty">No cross-examination questions entered.</p>');
+
+  const opening=[['Introduction',gv('op_intro')],['Issues',gv('op_issues')],['Evidence preview',gv('op_preview')],['Requested result',gv('op_request')]];
+  out.push('<h4>8 · Opening statement</h4>'+ (opening.some(x=>x[1])?'<p>'+opening.filter(x=>x[1]).map(x=>`<strong>${escapeHtml(x[0])}:</strong> ${escapeHtml(x[1])}`).join('<br><br>')+'</p>':'<p class="empty">No opening entered.</p>'));
+
+  const closingRows=readRows('closingBody').filter(r=>r.some(v=>clean(v)));
+  out.push('<h4>9 · Closing argument</h4>');
+  if(closingRows.length) out.push('<ol>'+closingRows.map(r=>`<li><strong>${escapeHtml(clean(r[0])||'Issue')}</strong><br>Evidence: ${escapeHtml(clean(r[1])||'—')}<br>Why it supports me: ${escapeHtml(clean(r[2])||'—')}<br>Requested relief: ${escapeHtml(clean(r[3])||'—')}</li>`).join('')+'</ol>');
+  const closingText=[['Opening line',gv('cl_intro')],['Weak facts and response',gv('cl_weak')],['Final request',gv('cl_request')]].filter(x=>x[1]);
+  if(closingText.length) out.push('<p>'+closingText.map(x=>`<strong>${escapeHtml(x[0])}:</strong> ${escapeHtml(x[1])}`).join('<br><br>')+'</p>');
+  if(!closingRows.length&&!closingText.length) out.push('<p class="empty">No closing entered.</p>');
+
+  const ord=readRows('orderBody').filter(r=>clean(r[1])||clean(r[2]));
+  out.push('<h4>10 · Order of proof</h4>');
+  out.push(ord.length?'<ol>'+ord.map(r=>`<li>${clean(r[0])?escapeHtml(clean(r[0]))+' · ':''}<strong>${escapeHtml(clean(r[1])||'Witness/step')}</strong>${clean(r[2])?' — '+escapeHtml(clean(r[2])):''}${clean(r[3])?' · Exhibits: '+escapeHtml(clean(r[3])):''}${clean(r[4])?' · Time: '+escapeHtml(clean(r[4])):''}</li>`).join('')+'</ol>':'<p class="empty">No order of proof entered.</p>');
+
+  const appearances=APPEAR_ROLES.map(r=>[r[1],radioVal('appear_'+r[0]),gv('appearnote_'+r[0])]).filter(r=>r[1]||r[2]);
+  const extra=readRows('appearExtraBody').filter(r=>r.some(v=>clean(v)));
+  const response=[gv('rb_said'),gv('rb_truth'),gv('rb_evidence'),gv('rb_point')];
+  const logs=readRows('logBody').filter(r=>r.some(v=>v===true||clean(v)));
+  out.push('<h4>11 · Live-mode courtroom notes</h4>');
+  if(appearances.length) out.push('<p><strong>Attendance</strong><br>'+appearances.map(r=>`${escapeHtml(r[0])}: ${escapeHtml(r[1]||'—')}${r[2]?' · '+escapeHtml(r[2]):''}`).join('<br>')+'</p>');
+  if(extra.length) out.push('<p><strong>Other people present</strong></p><ul>'+extra.map(r=>`<li>${escapeHtml(clean(r[0])||'—')} · ${escapeHtml(clean(r[1])||'—')} · ${escapeHtml(clean(r[2])||'—')}${clean(r[3])?' · '+escapeHtml(clean(r[3])):''}</li>`).join('')+'</ul>');
+  if(response.some(Boolean)) out.push(`<p><strong>Response builder notes</strong><br>Claim: ${escapeHtml(response[0]||'—')}<br>Accuracy: ${escapeHtml(response[1]||'—')}<br>Answering evidence: ${escapeHtml(response[2]||'—')}<br>Point for judge: ${escapeHtml(response[3]||'—')}</p>`);
+  if(logs.length) out.push('<p><strong>Today’s log</strong></p><ul>'+logs.map(r=>`<li>${escapeHtml(clean(r[0])||'')} ${escapeHtml(clean(r[1])||'')}: ${escapeHtml(clean(r[2])||'')}${r[3]?' · RESPONSE NEEDED':''}${clean(r[4])?' · Note: '+escapeHtml(clean(r[4])):''}</li>`).join('')+'</ul>');
+  if(!appearances.length&&!extra.length&&!response.some(Boolean)&&!logs.length) out.push('<p class="empty">No live-mode notes entered.</p>');
+
+  const dl=readRows('deadlineBody').filter(r=>clean(r[0]));
+  out.push('<h4>12 · Deadlines and logistics</h4>');
+  if(dl.length) out.push('<p><strong>Deadlines</strong></p><ul>'+dl.map(r=>`<li>${escapeHtml(clean(r[0]))} — ${escapeHtml(clean(r[1])||'date not entered')} · ${r[2]?'DONE':'OPEN'}${clean(r[3])?' · '+escapeHtml(clean(r[3])):''}</li>`).join('')+'</ul>');
+  const bringChecked=BRING.filter((_,i)=>chk('bring_'+i));
+  out.push(`<p><strong>Bring checklist:</strong> ${bringChecked.length}/${BRING.length} checked${bringChecked.length?'<br>'+bringChecked.map(escapeHtml).join('<br>'):''}</p>`);
+  const loc=[['Courthouse / room',gv('loc_where')],['Date / arrival',gv('loc_when')],['Parking / transit',gv('loc_park')],['Security / ID',gv('loc_security')]].filter(x=>x[1]);
+  if(loc.length) out.push('<p><strong>Logistics</strong><br>'+loc.map(x=>`${escapeHtml(x[0])}: ${escapeHtml(x[1])}`).join('<br>')+'</p>');
+  const qs=[gv('q_clerk')&&'Clerk: '+gv('q_clerk'),gv('q_atty')&&'Attorney/legal aid: '+gv('q_atty'),gv('q_self')&&'Personal reminder: '+gv('q_self')].filter(Boolean);
+  if(qs.length) out.push('<p><strong>Open questions</strong></p><ul>'+qs.map(q=>`<li>${escapeHtml(q)}</li>`).join('')+'</ul>');
+
+  document.getElementById('packetReadout').innerHTML=out.join('');
+  return readiness;
+}
+
+function refreshFinalPage(){
+  const readiness=buildPacket();
+  renderTrialReadiness(readiness);
+  return readiness;
+}
+
+let readinessTimer=null;
+function scheduleReadinessRefresh(){
+  clearTimeout(readinessTimer);
+  readinessTimer=setTimeout(()=>{
+    if(document.getElementById('readinessDashboardAnchor')) refreshFinalPage();
+  },180);
+}
+
+function packetToText(){
+  return document.getElementById('packetReadout').innerText.replace(/\n{3,}/g,'\n\n');
+}
+function downloadPacket(){ refreshFinalPage(); downloadBlob(new Blob([packetToText()],{type:'text/plain'}),'divorce-trial-packet.txt'); toast('Packet downloaded'); }
+
+
+/* One-click all-section color print preview / PDF */
+let printCollapseState=[];
+function printAllPages(){
+  saveNow(false);
+  refreshFinalPage();
+  printCollapseState=[...document.querySelectorAll('.collapse')].map(c=>({el:c,open:c.getAttribute('data-open'),expanded:c.querySelector('.collapse-head')?.getAttribute('aria-expanded')}));
+  printCollapseState.forEach(x=>{ x.el.setAttribute('data-open','true'); const h=x.el.querySelector('.collapse-head'); if(h) h.setAttribute('aria-expanded','true'); });
+  document.body.classList.add('printing-all');
+  setTimeout(()=>window.print(),60);
+}
+window.addEventListener('beforeprint',()=>{ refreshFinalPage(); });
+window.addEventListener('afterprint',()=>{
+  printCollapseState.forEach(x=>{ x.el.setAttribute('data-open',x.open||'false'); const h=x.el.querySelector('.collapse-head'); if(h) h.setAttribute('aria-expanded',x.expanded||'false'); });
+  printCollapseState=[];
+  document.body.classList.remove('printing-all');
+});
+
+/* generic export of all notes */
+function labelFor(el){
+  if(el.id){ const l=document.querySelector('label[for="'+cssEscape(el.id)+'"]'); if(l) return l.textContent.trim(); }
+  return '';
+}
+function buildExportText(){
+  let out='DIVORCE TRIAL COMPANION — NOTES\nSaved locally; not legal advice.\n\n';
+  sections.forEach((sec,i)=>{
+    out+='\n========================================\n'+(i+1)+'. '+(TABS[i]||'')+'\n========================================\n';
+    sec.querySelectorAll('input[type=text],input[type=date],input[type=time],input[type=number],textarea,select').forEach(el=>{
+      if(!el.hasAttribute('data-field')) return;
+      const v=(el.value||'').trim(); if(!v) return;
+      const lab=labelFor(el)||el.placeholder||el.id;
+      out+= '• '+lab+': '+v+'\n';
+    });
+    sec.querySelectorAll('input[type=checkbox][data-field]').forEach(el=>{
+      if(el.checked){ const lab=labelFor(el)||el.closest('label')?.textContent?.trim()||el.id; out+='  [x] '+lab+'\n'; }
+    });
+    const rad={};
+    sec.querySelectorAll('[data-field-radio]:checked').forEach(el=>{ rad[el.getAttribute('data-field-radio')]=el.value; });
+    Object.entries(rad).forEach(([g,v])=>out+='• '+g+': '+v+'\n');
+  });
+  return out;
+}
+function exportText(){ downloadBlob(new Blob([buildExportText()],{type:'text/plain'}),'divorce-trial-notes.txt'); toast('Notes exported'); }
+
+/* ============================================================
+   UTIL
+   ============================================================ */
+function chk(id){ const el=document.getElementById(id); return !!(el&&el.checked); }
+function downloadBlob(blob,name){
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},100);
+}
+function copyText(id){
+  const el=document.getElementById(id); if(!el) return;
+  const txt=(el.innerText||el.textContent||'').trim();
+  if(!txt){ toast('Nothing to copy yet'); return; }
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(()=>toast('Copied'),()=>fallbackCopy(txt)); }
+  else fallbackCopy(txt);
+}
+function fallbackCopy(t){
+  const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); toast('Copied'); }catch(e){ toast('Copy not supported — select and copy manually'); }
+  ta.remove();
+}
+let toastTimer=null;
+function toast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+/* ============================================================
+   PAGERS (added per section)
+   ============================================================ */
+function injectPagers(){
+  sections.forEach((sec,i)=>{
+    const mk=pos=>{
+      const p=document.createElement('div'); p.className='pager no-print'+(pos==='bottom'?' bottom':'');
+      p.innerHTML=`<button class="btn btn-plain btn-sm" data-pg-prev onclick="go(-1)">‹ Previous</button><span class="spacer"></span><button class="btn btn-plain btn-sm" data-pg-next onclick="go(1)">Next ›</button>`;
+      return p;
+    };
+    sec.insertBefore(mk('top'), sec.firstChild.nextSibling);
+    sec.appendChild(mk('bottom'));
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function init(){
+  buildAll();
+  buildNav();
+  injectPagers();
+  initSteppers();
+  initCollapsibles();
+  initPchips();
+
+  let data=null;
+  try{ data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null'); }catch(e){}
+  if(data) restore(data); else seedDefaults();
+
+  // autosave
+  document.addEventListener('input',e=>{ if(e.target.matches('[data-field],[data-field-radio]')){ scheduleSave(); scheduleReadinessRefresh(); if(e.target.closest('#exhibitsBody')) updateExhibitCount(); }});
+  document.addEventListener('change',e=>{ if(e.target.matches('[data-field],[data-field-radio]')){ scheduleSave(); refreshProgress(); scheduleReadinessRefresh(); if(e.target.closest('#exhibitsBody')){ updateExhibitCount(); } }});
+
+  refreshPchips(); checkAbsent();
+  updateExhibitCount();
+  refreshProgress();
+  refreshFinalPage();
+  activate(0);
+  updatePager();
+}
+document.addEventListener('DOMContentLoaded',init);
+
+</script>
+</body>
+</html>
